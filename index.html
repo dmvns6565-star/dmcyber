@@ -3,103 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber - आपकी सेवा, हमारी पहचान</title>
+    <meta name="description" content="D.M Cyber - मण्डुआर रोहनिया वाराणसी का सबसे विश्वसनीय जन सेवा केंद्र। संचालक: धीरज मौर्य।">
+    <title>D.M Cyber - आपकी सेवा हमारी पहचान</title>
     
     <style>
-        :root { 
-            --primary: #001f3f; 
-            --accent: #ff851b; /* फोटो जैसा परफेक्ट ऑरेंज */
-            --bg: #f8f9fa; 
-        }
-        
+        :root { --primary: #001f3f; --accent: #ff851b !important; --bg: #f4f7f6; --success: #28a745; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg); color: #333; }
         
-        /* एडमिन नोटिस */
-        #admin-notice { display: none; background: #d32f2f; color: white; text-align: center; padding: 10px; font-weight: bold; position: sticky; top: 0; z-index: 5000; }
+        #admin-notice { display: none; background: #d32f2f; color: white; text-align: center; padding: 8px; font-weight: bold; position: sticky; top: 0; z-index: 3000; }
 
-        /* फोटो जैसा फुल ऑरेंज हेडर */
-        header { 
-            background: #ff851b; /* सॉलिड ऑरेंज जैसा आपकी फोटो में है */
-            color: white; 
-            padding: 50px 15px; 
-            text-align: center; 
-            position: relative; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+        header { background: linear-gradient(135deg, var(--primary), #0074d9); color: white; padding: 40px 15px; text-align: center; border-bottom: 5px solid var(--accent); position: relative; }
+        .profile-img { width: 115px; height: 115px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 10px; object-fit: cover; background: white; cursor: pointer; }
+        .logo-text { font-size: 3.5em; font-weight: bold; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .logo-text span { color: var(--accent); }
+        .owner-tag { background: var(--accent); padding: 6px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-top: 15px; }
+
+        .container { padding: 15px; max-width: 1100px; margin: auto; }
+        .main-card { background: white; padding: 25px; border-radius: 20px; margin-top: -45px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #ddd; }
+
+        .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+        .btn { text-decoration: none; padding: 12px 22px; border-radius: 30px; font-weight: bold; color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-wa { background: #25D366; } .btn-call { background: var(--primary); } .btn-pay { background: #673ab7; } .btn-admin { background: #444; } .btn-ledger { background: #d32f2f; }
+
+        .section-title { background: var(--primary); color: white; padding: 10px 22px; border-radius: 8px; margin: 30px 0 15px; display: inline-block; box-shadow: 3px 3px 0 var(--accent); }
         
-        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid white; margin-bottom: 15px; object-fit: cover; background: white; cursor: pointer; }
-        .logo-text { font-size: 3.2em; font-weight: bold; margin: 0; }
-        .logo-text span { color: #001f3f; } 
-        .tagline { color: #fff; font-size: 1.1em; margin-top: 5px; opacity: 0.9; }
-        .owner-tag { background: #001f3f; padding: 6px 25px; border-radius: 20px; font-weight: bold; display: inline-block; margin-top: 15px; color: white; }
-
-        .container { padding: 15px; max-width: 1000px; margin: auto; }
-        
-        /* फोटो जैसा इन्फो कार्ड */
-        .info-card { 
-            background: white; 
-            padding: 20px; 
-            border-radius: 15px; 
-            margin-top: -30px; 
-            text-align: center; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
-            border: 1px solid #eee;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* एडमिन मोड में शब्द दिखने का फिक्स */
-        [contenteditable="true"] { 
-            border: 2px dashed #333 !important; 
-            background: #ffffff !important; 
-            color: #000000 !important; /* शब्द हमेशा काला दिखेगा */
-            outline: none; 
-            padding: 4px;
-            border-radius: 5px;
-        }
-        [contenteditable="true"]:focus {
-            background: #fff3e0 !important;
-        }
-
-        .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
-        .btn { text-decoration: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; font-size: 0.9em; }
-        .btn-wa { background: #25D366; } .btn-call { background: #001f3f; } .btn-pay { background: #6f42c1; } .btn-admin { background: #444; } .btn-ledger { background: #d32f2f; }
-
-        .section-title { background: #001f3f; color: white; padding: 8px 20px; border-radius: 5px; margin: 30px 0 15px; display: inline-block; font-weight: bold; border-left: 5px solid #ff851b; }
-        
-        .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-        .vip-card { background: white; border: 1px solid #ddd; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        
-        .rate-table { width: 100%; border-collapse: collapse; background: white; margin-top: 10px; border-radius: 10px; overflow: hidden; }
-        .rate-table td { border: 1px solid #eee; padding: 15px; }
+        .rate-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; }
+        .rate-table td { border: 1px solid #eee; padding: 14px; color: #000; }
         .price { color: #d32f2f; font-weight: bold; text-align: right; }
 
-        footer { text-align: center; padding: 40px; background: #001f3f; color: white; margin-top: 50px; }
-        .del-btn { color: red; cursor: pointer; font-weight: bold; margin-left: 10px; display: none; }
+        .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 10px; }
+        .vip-card { background: white; border-top: 4px solid var(--accent); padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-weight: bold; color: #000; }
         
-        /* पेमेंट और उधार सेक्शन */
-        #ledger-section, #pay-modal { display: none; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,0.2); position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 6000; width: 90%; max-width: 400px; border: 2px solid #ff851b; }
+        /* Edit Mode Highlights */
+        [contenteditable="true"] { 
+            border: 1px dashed blue !important; 
+            background: #fffde7 !important; 
+            outline: 2px solid var(--accent);
+            min-height: 20px;
+        }
+
+        #pay-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4000; width: 85%; max-width: 400px; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 0 100px rgba(0,0,0,0.6); }
+        footer { text-align: center; padding: 50px 15px; background: var(--primary); color: white; margin-top: 50px; }
     </style>
 </head>
-<body oncontextmenu="return false;"> <div id="admin-notice">🛠️ एडमिन कंट्रोल पैनल चालू है | बदलाव के बाद 'सेव' बटन दबाएं</div>
+<body oncontextmenu="return false;"> <div id="admin-notice">🛠️ एडमिन मोड चालू: अब आप किसी भी शब्द पर क्लिक करके उसे बदल सकते हैं।</div>
 
 <header>
-    <img id="myLogo" src="https://via.placeholder.com/120?text=LOGO" class="profile-img" onclick="changePhoto()">
+    <img id="myLogo" src="https://via.placeholder.com/115?text=D.M+LOGO" class="profile-img" onclick="changePhoto()">
     <div class="logo-text">D.M <span>Cyber</span></div>
-    <div class="tagline editable">"आपकी सेवा, हमारी पहचान"</div>
-    <div class="owner-tag">संचालक: <span id="owner-name" class="editable">धीरज मौर्या</span></div>
+    <div class="tagline">"आपकी सेवा हमारी पहचान"</div>
+    <div class="owner-tag">संचालक: <span id="owner-name" class="editable">धीरज मौर्य</span></div>
+    <p id="site-desc" class="editable" style="margin-top:10px;">वाराणसी का नंबर 1 जन सेवा केंद्र | मण्डुआर, रोहनिया</p>
 </header>
 
 <div class="container">
-    <div class="info-card">
+    <div class="main-card">
         <p>📍 <strong id="addr" class="editable">Mandaw, Rohaniya, Varanasi (221108)</strong></p>
-        <p>📧 <span id="email" class="editable">dmvns6565@gmail.com</span> | 📞 <span id="mob" class="editable">8303585793</span></p>
+        <p>📧 <span id="email" class="editable">Dmvns6565@gmail.com</span> | 📞 <span id="mob" class="editable">8303585793</span></p>
         
         <div class="btn-group">
             <a href="tel:8303585793" class="btn btn-call">📞 कॉल</a>
             <a href="https://wa.me/918303585793" class="btn btn-wa">💬 व्हाट्सएप</a>
             <button onclick="togglePay()" class="btn btn-pay">💳 पेमेंट</button>
-            <button onclick="openLedger()" class="btn btn-ledger">📒 उधार खाता</button>
             <button id="admin-btn" onclick="handleAdmin()" class="btn btn-admin">⚙️ एडमिन पैनल</button>
         </div>
     </div>
@@ -107,34 +72,26 @@
     <div class="section-title">⭐ लोकप्रिय सेवाएँ</div>
     <div class="vip-grid" id="vip-section">
         <div class="vip-card editable">आय / जाति / निवास</div>
-        <div class="vip-card editable">आधार कार्ड सुधार</div>
+        <div class="vip-card editable">आधार नकद निकासी</div>
         <div class="vip-card editable">नया पैन कार्ड</div>
-        <div class="vip-card editable">बैंकिंग सेवाएँ</div>
+        <div class="vip-card editable">राशन कार्ड ऑनलाइन</div>
     </div>
 
     <div class="section-title">💰 सर्विस रेट लिस्ट</div>
     <table class="rate-table">
-        <tbody id="rate-body"></tbody>
+        <tbody id="rate-body">
+            </tbody>
     </table>
     
-    <div id="admin-tools" style="display:none; text-align:center; margin-top:20px;">
-        <button onclick="addNewRow()" style="background:#28a745; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">+ नई सर्विस</button>
+    <div id="admin-tools" style="display:none; margin-top:15px; text-align:center;">
+        <button onclick="addNewRow()" style="background:var(--success); color:white; padding:12px 25px; border-radius:8px; border:none; cursor:pointer;">+ नई सर्विस जोड़ें</button>
     </div>
 </div>
 
 <div id="pay-modal">
     <h3>💳 पेमेंट जानकारी</h3>
     <p>UPI ID: <span id="upi-id" class="editable">8303585793@okicici</span></p>
-    <button onclick="togglePay()" style="width:100%; padding:10px; background:#444; color:white; border:none; border-radius:10px; cursor:pointer;">बंद करें</button>
-</div>
-
-<div id="ledger-section">
-    <h3>📒 उधार रजिस्टर</h3>
-    <input type="text" id="cust-name" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="नाम">
-    <input type="number" id="cust-amt" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="रकम">
-    <button onclick="saveUdhaar()" style="width:100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; margin-bottom:10px;">सेव करें</button>
-    <div id="ledger-display"></div>
-    <button onclick="document.getElementById('ledger-section').style.display='none'" style="width:100%; padding:10px; background:#444; color:white; border:none; border-radius:5px;">बंद करें</button>
+    <button onclick="togglePay()" style="background:#673ab7; color:white; border:none; width:100%; padding:10px; border-radius:10px;">बंद करें</button>
 </div>
 
 <footer>
@@ -147,34 +104,34 @@
 
     function handleAdmin() {
         if (!isAdmin) {
-            let pin = prompt("धीरज जी, पिन डालें:");
-            if (pin === "2525") {
-                isAdmin = true;
-                document.getElementById('admin-notice').style.display = 'block';
-                document.getElementById('admin-btn').innerText = "💾 सेव करें";
-                document.getElementById('admin-btn').style.background = "#28a745";
-                document.getElementById('admin-tools').style.display = 'block';
-                document.querySelectorAll('.editable').forEach(el => el.contentEditable = "true");
-                document.querySelectorAll('.del-btn').forEach(el => el.style.display = "inline");
-                document.querySelectorAll('#rate-body td').forEach(td => td.contentEditable = "true");
+            let pin = prompt("धीरज जी, अपना एडमिन पिन डालें:");
+            if (pin === "1234") {
+                enterAdminMode();
             } else { alert("गलत पिन!"); }
         } else {
-            saveData();
-            alert("डेटा अपडेट हो गया!");
+            saveAllData();
+            alert("डेटा सुरक्षित रूप से अपडेट कर दिया गया है!");
             location.reload();
         }
+    }
+
+    function enterAdminMode() {
+        isAdmin = true;
+        document.getElementById('admin-notice').style.display = 'block';
+        document.getElementById('admin-btn').innerText = "💾 डेटा सेव करें";
+        document.getElementById('admin-btn').style.background = "var(--success)";
+        document.getElementById('admin-tools').style.display = 'block';
+        
+        // सभी एडिटेबल क्लास को एक्टिव करना
+        document.querySelectorAll('.editable').forEach(el => el.contentEditable = "true");
+        document.querySelectorAll('.vip-card').forEach(el => el.contentEditable = "true");
+        document.querySelectorAll('#rate-body td').forEach(td => td.contentEditable = "true");
     }
 
     function addNewRow() {
         let tbody = document.getElementById('rate-body');
         let row = tbody.insertRow();
-        row.innerHTML = `<td contenteditable="true">नई सेवा</td><td class="price" contenteditable="true">₹00</td><td class="del-btn" onclick="this.parentElement.remove()" style="display:inline">❌</td>`;
-    }
-
-    function changePhoto() {
-        if(!isAdmin) return;
-        let url = prompt("फोटो लिंक डालें:");
-        if(url) document.getElementById('myLogo').src = url;
+        row.innerHTML = `<td contenteditable="true">नई सेवा</td><td class="price" contenteditable="true">₹00</td><td onclick="this.parentElement.remove()" style="cursor:pointer">❌</td>`;
     }
 
     function togglePay() {
@@ -182,66 +139,36 @@
         m.style.display = (m.style.display === 'block') ? 'none' : 'block';
     }
 
-    function openLedger() {
-        let p = prompt("पिन डालें:");
-        if(p === "1234") {
-            document.getElementById('ledger-section').style.display = 'block';
-            displayLedger();
-        }
-    }
-
-    function saveUdhaar() {
-        let n = document.getElementById('cust-name').value;
-        let a = document.getElementById('cust-amt').value;
-        if(n && a) {
-            let records = JSON.parse(localStorage.getItem('dm_ledger') || "[]");
-            records.push({name: n, amt: a});
-            localStorage.setItem('dm_ledger', JSON.stringify(records));
-            displayLedger();
-        }
-    }
-
-    function displayLedger() {
-        let records = JSON.parse(localStorage.getItem('dm_ledger') || "[]");
-        let h = '';
-        records.forEach((r, i) => { h += `<p>${r.name}: ₹${r.amt} <span onclick="delL(${i})" style="color:red;cursor:pointer">❌</span></p>`; });
-        document.getElementById('ledger-display').innerHTML = h;
-    }
-
-    function delL(i) {
-        let r = JSON.parse(localStorage.getItem('dm_ledger'));
-        r.splice(i,1);
-        localStorage.setItem('dm_ledger', JSON.stringify(r));
-        displayLedger();
-    }
-
-    function saveData() {
-        const data = {
+    function saveAllData() {
+        const config = {
             owner: document.getElementById('owner-name').innerText,
+            desc: document.getElementById('site-desc').innerText,
             addr: document.getElementById('addr').innerText,
             email: document.getElementById('email').innerText,
             mob: document.getElementById('mob').innerText,
-            logo: document.getElementById('myLogo').src,
             vip: document.getElementById('vip-section').innerHTML,
             rates: document.getElementById('rate-body').innerHTML,
             upi: document.getElementById('upi-id').innerText
         };
-        localStorage.setItem('dm_cyber_data', JSON.stringify(data));
+        localStorage.setItem('dm_cyber_data', JSON.stringify(config));
     }
 
     window.onload = function() {
-        const s = JSON.parse(localStorage.getItem('dm_cyber_data'));
-        if(s) {
-            document.getElementById('owner-name').innerText = s.owner;
-            document.getElementById('addr').innerText = s.addr;
-            document.getElementById('email').innerText = s.email;
-            document.getElementById('mob').innerText = s.mob;
-            document.getElementById('myLogo').src = s.logo;
-            document.getElementById('vip-section').innerHTML = s.vip;
-            document.getElementById('rate-body').innerHTML = s.rates;
-            document.getElementById('upi-id').innerText = s.upi;
+        const saved = JSON.parse(localStorage.getItem('dm_cyber_data'));
+        if (saved) {
+            document.getElementById('owner-name').innerText = saved.owner;
+            document.getElementById('site-desc').innerText = saved.desc;
+            document.getElementById('addr').innerText = saved.addr;
+            document.getElementById('email').innerText = saved.email;
+            document.getElementById('mob').innerText = saved.mob;
+            document.getElementById('vip-section').innerHTML = saved.vip;
+            document.getElementById('rate-body').innerHTML = saved.rates;
+            document.getElementById('upi-id').innerText = saved.upi;
         } else {
-            document.getElementById('rate-body').innerHTML = '<tr><td>आय प्रमाण पत्र</td><td class="price">₹100</td></tr>';
+            document.getElementById('rate-body').innerHTML = `
+                <tr><td>आय / जाति / निवास</td><td class="price">₹100</td></tr>
+                <tr><td>पैन कार्ड</td><td class="price">₹200</td></tr>
+            `;
         }
     };
 </script>
