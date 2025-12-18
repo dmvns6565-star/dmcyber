@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="D.M Cyber - वाराणसी का सबसे विश्वसनीय जन सेवा केंद्र। संचालक: धीरज मौर्या । आय, जाति, निवास, पैन कार्ड और ऑनलाइन फॉर्म।">
-    <meta name="keywords" content="D.M Cyber, Cyber cafe, Jan Seva Kendra Mandaw, CSC Varanasi, Dhiraj Maurya Cyber, Cyber Cafe Rohaniya, Online Form Varanasi">
+    <meta name="description" content="D.M Cyber - वाराणसी का सबसे विश्वसनीय जन सेवा केंद्र।">
+    <meta name="keywords" content="D.M Cyber, Jan Seva Kendra, Varanasi">
     <title>D.M Cyber - आपकी सेवा, हमारी पहचान</title>
     
     <style>
-        :root { --primary: #001f3f; --accent: #ff851b !important; --bg: #f4f7f6; --success: #28a745; }
+        /* 1. ऑरेंज थीम सेटिंग्स */
+        :root { 
+            --primary: #001f3f; 
+            --accent: #ff851b; /* मुख्य ऑरेंज */
+            --bg: #f4f7f6; 
+            --success: #28a745; 
+        }
+        
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg); color: #333; }
         
-        /* एडमिन मोड */
-        #admin-notice { display: none; background: #d32f2f; color: white; text-align: center; padding: 8px; font-weight: bold; position: sticky; top: 0; z-index: 3000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        #admin-notice { display: none; background: #d32f2f; color: white; text-align: center; padding: 8px; font-weight: bold; position: sticky; top: 0; z-index: 3000; }
 
-        header { background: linear-gradient(135deg, var(--primary), #0074d9); color: white; padding: 40px 15px; text-align: center; border-bottom: 5px solid var(--accent); position: relative; }
-        .profile-img { width: 115px; height: 115px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 10px; object-fit: cover; background: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
+        /* हेडर को पूरी तरह ऑरेंज कर दिया गया है */
+        header { 
+            background: linear-gradient(135deg, #ff851b, #e67e22); 
+            color: white; 
+            padding: 40px 15px; 
+            text-align: center; 
+            border-bottom: 5px solid #d35400; 
+            position: relative; 
+        }
+        
+        .profile-img { width: 115px; height: 115px; border-radius: 50%; border: 4px solid white; margin-bottom: 10px; object-fit: cover; background: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
         .logo-text { font-size: 3.5em; font-weight: bold; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .logo-text span { color: var(--accent); }
-        .tagline { font-style: italic; color: #eee; font-size: 1.1em; margin-top: 5px; letter-spacing: 1px; }
-        .owner-tag { background: var(--accent); padding: 6px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-top: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .logo-text span { color: #001f3f; } 
+        .tagline { font-style: italic; color: #fff; font-size: 1.1em; margin-top: 5px; letter-spacing: 1px; }
+        .owner-tag { background: #001f3f; padding: 6px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-top: 15px; color: white; }
 
         .container { padding: 15px; max-width: 1100px; margin: auto; }
         .main-card { background: white; padding: 25px; border-radius: 20px; margin-top: -45px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #ddd; }
 
+        /* 2. एडमिन मोड में शब्दों का साफ दिखना (फिक्स) */
+        [contenteditable="true"] { 
+            border: 2px dashed var(--accent) !important; 
+            background: #ffffff !important; /* सफेद बैकग्राउंड ताकि शब्द दिखे */
+            color: #000000 !important;    /* काला अक्षर */
+            outline: none; 
+            padding: 4px;
+            display: inline-block;
+            min-width: 20px;
+        }
+        [contenteditable="true"]:focus {
+            background: #fff3e0 !important; 
+            color: #000 !important;
+        }
+
         .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
         .btn { text-decoration: none; padding: 12px 22px; border-radius: 30px; font-weight: bold; color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; font-size: 0.95em; }
         .btn-wa { background: #25D366; } .btn-call { background: var(--primary); } .btn-pay { background: #673ab7; } .btn-admin { background: #444; } .btn-ledger { background: #d32f2f; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-
+        
         .section-title { background: var(--primary); color: white; padding: 10px 22px; border-radius: 8px; margin: 30px 0 15px; display: inline-block; box-shadow: 3px 3px 0 var(--accent); font-weight: bold; }
         
         .rate-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -36,22 +65,19 @@
         .price { color: #d32f2f; font-weight: bold; text-align: right; }
 
         .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 10px; }
-        .vip-card { background: white; border-top: 4px solid var(--accent); padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-weight: bold; transition: 0.3s; }
+        .vip-card { background: white; border-top: 4px solid var(--accent); padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-weight: bold; }
         
-        /* उधार खाता स्टाइल */
         #ledger-section { display: none; background: #fff; padding: 20px; border-radius: 20px; border: 2px solid #d32f2f; margin-top: 20px; }
         .ledger-input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        .ledger-row { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; align-items: center; }
-
-        [contenteditable="true"] { border: 2px dashed var(--accent) !important; background: #fffde7 !important; outline: none; padding: 2px; }
-        .del-btn { color: red; cursor: pointer; font-weight: bold; padding: 5px; }
 
         #pay-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4000; width: 85%; max-width: 400px; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 0 100px rgba(0,0,0,0.6); }
         
         footer { text-align: center; padding: 50px 15px; background: var(--primary); color: white; margin-top: 50px; }
+        .del-btn { color: red; cursor: pointer; font-weight: bold; padding: 5px; }
     </style>
 </head>
-<body oncontextmenu="return false;" onkeydown="return false;">
+
+<body oncontextmenu="return false;">
 
 <div id="admin-notice">🛠️ एडमिन कंट्रोल पैनल चालू है | बदलाव के बाद 'सेव' बटन दबाएं</div>
 
@@ -87,8 +113,7 @@
 
     <div class="section-title">💰 सर्विस रेट लिस्ट</div>
     <table class="rate-table">
-        <tbody id="rate-body">
-            </tbody>
+        <tbody id="rate-body"></tbody>
     </table>
     
     <div id="admin-tools" style="display:none; margin-top:15px; text-align:center;">
@@ -118,14 +143,12 @@
 <footer>
     <h2 class="editable">D.M Cyber Varanasi</h2>
     <p>आपकी सेवा, हमारी पहचान/आपका भरोसेमंद जन सेवा केन्द्र</p>
-    <p>मंडाव ,रोहनिया ,वाराणसी</p>
-    <p>© 2025 सर्वाधिकार सुरक्षित | Security: SSL & Anti-Theft Enabled</p>
+    <p>© 2025 | मंडाव, रोहनिया, वाराणसी</p>
 </footer>
 
 <script>
     let isAdmin = false;
 
-    // एडमिन कंट्रोल
     function handleAdmin() {
         if (!isAdmin) {
             let pin = prompt("धीरज जी, अपना एडमिन पिन डालें:");
@@ -134,7 +157,7 @@
             } else { alert("गलत पिन!"); }
         } else {
             saveAllData();
-            alert("डेटा सुरक्षित रूप से अपडेट कर दिया गया है!");
+            alert("डेटा अपडेट हो गया है!");
             location.reload();
         }
     }
@@ -158,7 +181,7 @@
 
     function changePhoto() {
         if(!isAdmin) return;
-        let url = prompt("अपनी फोटो का वेब लिंक डालें:");
+        let url = prompt("फोटो लिंक डालें:");
         if(url) document.getElementById('myLogo').src = url;
     }
 
@@ -167,9 +190,8 @@
         m.style.display = (m.style.display === 'block') ? 'none' : 'block';
     }
 
-    // उधार खाता लॉजिक
     function openLedger() {
-        let pin = prompt("उधार खाता देखने के लिए पिन डालें:");
+        let pin = prompt("उधार पिन डालें:");
         if(pin === "1234") {
             document.getElementById('ledger-section').style.display = 'block';
             displayLedger();
@@ -193,9 +215,9 @@
         let records = JSON.parse(localStorage.getItem('dm_ledger_v4') || "[]");
         let html = '';
         records.forEach((r, i) => {
-            html += `<div class="ledger-row"><span><strong>${r.name}</strong> (${r.date})</span> <span>₹${r.amt} <span class="del-btn" onclick="deleteUdhaar(${i})">❌</span></span></div>`;
+            html += `<div class="ledger-row"><span><strong>${r.name}</strong></span> <span>₹${r.amt} <span class="del-btn" onclick="deleteUdhaar(${i})">❌</span></span></div>`;
         });
-        document.getElementById('ledger-display').innerHTML = html || '<p>कोई उधार रिकॉर्ड नहीं है।</p>';
+        document.getElementById('ledger-display').innerHTML = html || '<p>कोई रिकॉर्ड नहीं है।</p>';
     }
 
     function deleteUdhaar(i) {
@@ -239,12 +261,10 @@
         } else {
             document.getElementById('rate-body').innerHTML = `
                 <tr><td>आय / जाति / निवास</td><td class="price">₹100</td><td class="del-btn" onclick="this.parentElement.remove()">❌</td></tr>
-                <tr><td>पैन कार्ड (नया/सुधार)</td><td class="price">₹200</td><td class="del-btn" onclick="this.parentElement.remove()">❌</td></tr>
-                <tr><td>सरकारी नौकरी फॉर्म</td><td class="price">₹100</td><td class="del-btn" onclick="this.parentElement.remove()">❌</td></tr>
+                <tr><td>पैन कार्ड (नया)</td><td class="price">₹200</td><td class="del-btn" onclick="this.parentElement.remove()">❌</td></tr>
             `;
         }
     };
 </script>
 </body>
 </html>
-
