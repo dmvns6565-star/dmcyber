@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber - सेवा और विश्वास</title>
+    <meta name="description" content="D.M Cyber - वाराणसी का सबसे विश्वसनीय जन सेवा केंद्र। संचालक: धीरज मौर्या । आय, जाति, निवास, पैन कार्ड और ऑनलाइन फॉर्म।">
+    <meta name="keywords" content="D.M Cyber, Cyber cafe, Jan Seva Kendra Mandaw, CSC Varanasi, Dhiraj Maurya Cyber, Cyber Cafe Rohaniya, Online Form Varanasi">
+    <title>D.M Cyber - आपकी सेवा, हमारी पहचान</title>
     
     <style>
-        :root { --primary: #001f3f; --accent: #ff851b; --bg: #f4f7f6; --success: #28a745; --form: #0074d9; --danger: #d32f2f; }
+        :root { --primary: #001f3f; --accent: #ff851b !important; --bg: #f4f7f6; --success: #28a745; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; padding-bottom: 80px; -webkit-tap-highlight-color: transparent; }
         
         .editable-mode { border: 2px dashed var(--accent) !important; background: #fff3e0 !important; outline: none !important; padding: 3px; border-radius: 5px; }
@@ -77,11 +79,11 @@
 </div>
 
 <header>
-    <img id="logo" src="https://via.placeholder.com/100" class="profile-img" onclick="changeImg()">
+    <img id="myLogo" src="https://via.placeholder.com/115?text=D.M+LOGO" class="profile-img" onclick="changePhoto()" title="फोटो बदलने के लिए क्लिक करें">
     <div class="logo-text">D.M <span>Cyber</span></div>
-    <div style="background:var(--accent); padding:5px 20px; border-radius:20px; font-weight:bold; display:inline-block; font-size: 0.9em;">
-        संचालक: <span id="owner" class="edit">धीरज मौर्या</span>
-    </div>
+    <div class="tagline">"आपकी सेवा, हमारी पहचान"</div>
+    <div class="owner-tag">संचालक: <span id="owner-name" class="editable">धीरज मौर्या</span></div>
+    <p id="site-desc" class="editable" style="margin-top:10px; opacity:0.9;">वाराणसी का नंबर 1 जन सेवा केंद्र</p>
 </header>
 
 <div class="container">
@@ -91,8 +93,8 @@
     </div>
 
     <div class="main-card">
-        <p>📍 <span id="addr" class="edit">Mandaw, Rohaniya, Varanasi</span></p>
-        <p>📞 <span id="mob" class="edit">8303585793</span></p>
+        <p>📍 <strong id="addr" class="editable">Mandaw, Rohaniya, Varanasi (221108)</strong></p>
+        <p>📧 <span id="email" class="editable">dmvns6565@gmail.com</span> | 📞 <span id="mob" class="editable">8303585793</span></p>
         <div class="btn-group">
             <a id="call-link" href="tel:8303585793" class="btn btn-call">📞 कॉल करें</a>
             <a id="wa-link" href="https://wa.me/918303585793" class="btn btn-wa">💬 व्हाट्सप्प</a>
@@ -150,6 +152,12 @@
         <button onclick="closeModal('pin-modal')" style="background:gray; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; margin-left:5px;">रद्द</button>
     </div>
 </div>
+<footer>
+    <h2 class="editable">D.M Cyber Varanasi</h2>
+    <p>आपकी सेवा, हमारी पहचान/आपका भरोसेमंद जन सेवा केन्द्र</p>
+    <p>मंडाव ,रोहनिया ,वाराणसी</p>
+    <p>© 2025 सर्वाधिकार सुरक्षित | Security: SSL & Anti-Theft Enabled</p>
+</footer>
 
 <div id="pay-modal" class="modal">
     <div class="modal-box" id="pay-content">
@@ -314,3 +322,4 @@
 
 </body>
 </html>
+
