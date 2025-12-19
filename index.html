@@ -101,33 +101,35 @@
         <button class="submit-btn" onclick="saveEntry()">डाटा सुरक्षित करें</button>
     </div>
 
-    <center><div class="section-tag">⭐ लोकप्रिय सेवाएँ</div></center>
-    <div class="grid" id="edit-services">
-        <div class="box editable">आय प्रमाण पत्र</div>
-        <div class="box editable">जाति प्रमाण पत्र</div>
-        <div class="box editable">निवास प्रमाण पत्र</div>
-        <div class="box editable">पैन कार्ड नया</div>
-        <div class="box editable">आधार कार्ड</div>
+    <center><div class="section-title">⭐ लोकप्रिय सेवाएँ</div></center>
+    <div class="grid-5" id="vip-area">
+        <div class="card">आय प्रमाण</div>
+        <div class="card">जाति प्रमाण</div>
+        <div class="card">निवास प्रमाण</div>
+        <div class="card">पैन कार्ड</div>
+        <div class="card">आधार कार्ड</div>
     </div>
+    <center><button class="add-btn" onclick="addBox('vip-area', 'card')">+ सेवा जोड़ें</button></center>
 
-    <center><div class="section-tag">📋 महत्वपूर्ण फॉर्म</div></center>
-    <div class="grid">
-        <div class="box editable">यूपी पुलिस भर्ती</div>
-        <div class="box editable">स्कॉलरशिप फॉर्म</div>
-        <div class="box editable">रेलवे भर्ती</div>
+    <center><div class="section-title" style="background:var(--form);">📝 महत्वपूर्ण फॉर्म</div></center>
+        <div class="grid-3" id="form-area">
+        <div class="form-card">UP पुलिस भर्ती</div>
+        <div class="form-card">रेलवे भर्ती</div>
     </div>
+    <center><button class="add-btn" style="background:var(--form);" onclick="addBox('form-area', 'form-card')">+ फॉर्म जोड़ें</button></center>
+</div>
 
-    <center><div class="section-tag">💰 रेट लिस्ट</div></center>
-    <table>
-        <thead><tr><th>सेवा</th><th style="text-align:right">शुल्क</th></tr></thead>
-        <tbody id="edit-rates">
-            <tr><td class="editable">नया पैन कार्ड</td><td class="editable" style="text-align:right; color:red;">₹100</td></tr>
-            <tr><td class="editable">आय/जाति/निवास</td><td class="editable" style="text-align:right; color:red;">₹80</td></tr>
-            <tr><td class="editable">आधार प्रिंट</td><td class="editable" style="text-align:right; color:red;">₹50</td></tr>
-        </tbody>
-    </table>
+    <center><div class="section-title">💰 रेट लिस्ट</div></center>
+    <div class="table-container">
+        <table>
+            <thead><tr><th>सेवा</th><th style="text-align:right">शुल्क</th></tr></thead>
+            <tbody id="rate-body">
+                <tr><td>नया पैन कार्ड</td><td class="price">₹100</td></tr>
+                <tr><td>आय/जाति/निवास</td><td class="price">₹80</td></tr>
+            </tbody>
+        </table>
     </div>
-
+    
     <div id="admin-panel">
         <h2 style="text-align:center; color:var(--dark-blue);">📊 मास्टर कंट्रोल पैनल</h2>
         <div style="display:flex; gap:10px; margin-bottom:20px;">
@@ -253,3 +255,4 @@
 </script>
 </body>
 </html>
+
