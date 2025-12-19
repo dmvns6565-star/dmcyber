@@ -3,199 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber - Smart Management</title>
+    <title>D.M Cyber - Varanasi Smart Portal</title>
     <style>
-        /* आपकी फोटो के अनुसार Original Colors */
+        /* आपकी इमेज के अनुसार परफेक्ट कलर मैच */
         :root { 
-            --deep-blue: #004a99; --accent-orange: #ff851b; --bg-sky: #007bff; 
-            --white: #ffffff; --admin-green: #28a745;
+            --bg-top: #004080; /* गहरा नीला */
+            --bg-bottom: #007bff; /* आसमानी नीला */
+            --heading-bg-1: #001f3f; /* हेडिंग का पहला कलर */
+            --heading-bg-2: #ff851b; /* हेडिंग का दूसरा कलर (Orange) */
+            --card-white: #ffffff;
         }
         
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: linear-gradient(to bottom, var(--bg-sky), var(--deep-blue)); color: #333; min-height: 100vh; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%); 
+            background-attachment: fixed;
+            color: #333; 
+            min-height: 100vh; 
+        }
 
-        /* Header Styling */
-        header { text-align: center; padding: 40px 10px; color: white; }
-        .logo-circle { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 15px; }
-        .best-label { background: var(--accent-orange); color: white; padding: 5px 20px; border-radius: 20px; font-size: 0.9em; font-weight: bold; display: inline-block; border: 1px solid white; margin-top: 10px; }
-
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-
-        /* White Section Card (Like your Image) */
-        .white-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-align: center; }
+        /* Header with Dual Color Style */
+        header { text-align: center; padding: 50px 10px; color: white; }
+        .logo-circle { width: 90px; height: 90px; background: white; border-radius: 50%; margin: 0 auto 15px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
         
-        /* Buttons inside White Card */
-        .btn-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-        .action-btn { border-radius: 20px; padding: 8px 18px; color: white; border: none; font-size: 0.8em; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        .main-title { font-size: 3em; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .main-title span { color: var(--heading-bg-2); }
 
-        /* Titles (Blue Capsules) */
-        .capsule-title { background: var(--deep-blue); color: white; padding: 8px 25px; border-radius: 25px; display: inline-block; margin: 20px 0 15px; font-size: 0.9em; font-weight: bold; border: 1px solid rgba(255,255,255,0.3); }
+        /* Dual Background Heading Style */
+        .dual-heading { 
+            display: inline-block;
+            background: linear-gradient(90deg, var(--heading-bg-1) 50%, var(--heading-bg-2) 50%);
+            color: white; 
+            padding: 10px 35px; 
+            border-radius: 50px; 
+            margin: 25px 0 15px; 
+            font-size: 1em; 
+            font-weight: bold; 
+            border: 2px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
 
-        /* Grid for Services/Forms */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .item-box { background: white; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 0.85em; box-shadow: 0 3px 6px rgba(0,0,0,0.1); color: var(--deep-blue); }
+        .container { max-width: 900px; margin: -30px auto 40px; padding: 15px; }
+
+        /* White Info Card */
+        .white-card { 
+            background: var(--card-white); 
+            border-radius: 20px; 
+            padding: 25px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            text-align: center; 
+        }
+        
+        /* Action Buttons */
+        .btn-group { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        .nav-link { 
+            border-radius: 25px; padding: 10px 20px; color: white; border: none; 
+            font-size: 0.8em; font-weight: bold; cursor: pointer; text-decoration: none;
+        }
+
+        /* Services Grid */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+        .service-box { 
+            background: white; padding: 15px; border-radius: 12px; font-weight: bold; 
+            font-size: 0.9em; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--bg-top);
+            transition: 0.3s; border-bottom: 4px solid var(--heading-bg-2);
+        }
+
+        /* Silent Save Form */
+        .silent-input-area { 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            padding: 25px; border-radius: 20px; margin-top: 20px; 
+            backdrop-filter: blur(5px);
+        }
+        .silent-input-area input { 
+            width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 10px; 
+            border: none; font-size: 1em; outline: none; box-sizing: border-box;
+        }
+        .submit-trigger { 
+            background: var(--heading-bg-2); color: white; width: 100%; padding: 15px; 
+            border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.1em;
+        }
 
         /* Rate Table */
-        .rate-table { width: 100%; background: white; border-radius: 10px; overflow: hidden; border-collapse: collapse; }
-        .rate-table th { background: var(--deep-blue); color: white; padding: 12px; font-size: 0.9em; text-align: left; }
-        .rate-table td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.9em; font-weight: bold; }
-        .price { color: #d32f2f; text-align: right; }
+        .price-list { width: 100%; background: white; border-radius: 15px; overflow: hidden; border-collapse: collapse; }
+        .price-list th { background: var(--heading-bg-1); color: white; padding: 15px; text-align: left; }
+        .price-list td { padding: 15px; border-bottom: 1px solid #eee; font-weight: bold; }
 
-        /* Silent Order Form */
-        .order-form { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.3); padding: 20px; border-radius: 15px; margin-top: 30px; }
-        .order-form input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: none; box-sizing: border-box; }
-        .order-btn { background: var(--accent-orange); color: white; width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        /* AI Assistant */
+        .ai-fab { position: fixed; bottom: 25px; right: 25px; background: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid var(--heading-bg-2); z-index: 999; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
+        .ai-chat { position: fixed; bottom: 95px; right: 25px; width: 300px; background: white; border-radius: 20px; display: none; flex-direction: column; z-index: 999; box-shadow: 0 10px 40px rgba(0,0,0,0.4); border: 1px solid #ddd; overflow: hidden; }
 
-        /* Floating AI assistant */
-        .ai-assist { position: fixed; bottom: 20px; right: 20px; background: white; color: var(--deep-blue); width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 100; border: 2px solid var(--accent-orange); }
-        .ai-box { position: fixed; bottom: 85px; right: 20px; width: 280px; background: white; border-radius: 15px; display: none; flex-direction: column; box-shadow: 0 5px 25px rgba(0,0,0,0.3); z-index: 100; overflow: hidden; }
-        .ai-header { background: var(--deep-blue); color: white; padding: 12px; font-weight: bold; font-size: 0.9em; }
-        .ai-body { padding: 15px; font-size: 0.85em; max-height: 200px; overflow-y: auto; }
+        /* Admin Section */
+        #admin-log { display: none; background: white; margin-top: 25px; padding: 20px; border-radius: 20px; }
 
-        /* Admin Panel (Hidden) */
-        #admin-panel { display: none; background: white; margin-top: 20px; padding: 15px; border-radius: 15px; color: #333; }
-        
-        footer { text-align: center; color: white; padding: 30px; font-size: 0.8em; opacity: 0.8; }
+        footer { text-align: center; color: white; padding: 50px 20px; font-size: 0.85em; opacity: 0.9; line-height: 1.6; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo-circle"></div>
-    <div style="font-size: 2.2em; font-weight: 900; letter-spacing: 1px;">D.M <span style="color: var(--accent-orange);">Cyber</span></div>
-    <div style="font-size: 0.8em; opacity: 0.9;">"आपकी सेवा, हमारी पहचान"</div>
-    <div style="font-size: 0.8em; margin-top:5px;">संचालक: धीरज मौर्या</div>
-    <div class="best-label">वाराणसी का नंबर 1 जन सेवा केंद्र</div>
+    <h1 class="main-title">D.M <span>Cyber</span></h1>
+    <p style="margin: 5px 0 0; opacity: 0.8;">"वाराणसी का विश्वसनीय डिजिटल केंद्र"</p>
 </header>
 
 <div class="container">
     <div class="white-card">
-        <div style="font-weight: bold; color: #555; font-size: 0.9em;">📍 मंडाव, रोहनिया, वाराणसी</div>
-        <div class="btn-row">
-            <button class="action-btn" style="background:#001f3f;">📞 कॉल</button>
-            <button class="action-btn" style="background:#25d366;">💬 व्हाट्सप्प</button>
-            <button class="action-btn" style="background:#673ab7;">💳 पेमेंट</button>
-            <button class="action-btn" style="background:#d32f2f;">📒 उधार खाता</button>
-            <button class="action-btn" style="background:#333;" onclick="openAdmin()">⚙️ एडमिन</button>
+        <p style="font-weight: bold; font-size: 1.1em; margin-bottom: 15px;">📍 मंडाव, रोहनिया, वाराणसी</p>
+        <div class="btn-group">
+            <a href="tel:8303585793" class="nav-link" style="background:#001f3f;">📞 कॉल करें</a>
+            <a href="https://wa.me/918303585793" class="nav-link" style="background:#25d366;">💬 व्हाट्सप्प</a>
+            <button onclick="openAdmin()" class="nav-link" style="background:#333;">⚙️ एडमिन</button>
         </div>
     </div>
 
-    <div class="order-form">
-        <h4 style="color:white; margin:0 0 10px 0; text-align:center;">📝 फॉर्म अपडेट के लिए जानकारी भरें</h4>
-        <input type="text" id="cust-name" placeholder="ग्राहक का नाम">
-        <input type="number" id="cust-phone" placeholder="मोबाइल नंबर">
-        <input type="text" id="cust-work" placeholder="काम का नाम (उदा: पैन कार्ड)">
-        <button class="order-btn" onclick="silentSave()">जानकारी सुरक्षित करें</button>
+    <div class="silent-input-area">
+        <h3 style="color:white; text-align:center; margin-top:0;">📝 फॉर्म अपडेट के लिए जानकारी भरें</h3>
+        <input type="text" id="cust-n" placeholder="आपका पूरा नाम">
+        <input type="number" id="cust-p" placeholder="मोबाइल नंबर">
+        <input type="text" id="cust-w" placeholder="कौन सा फॉर्म अपडेट करना है?">
+        <button class="submit-trigger" onclick="silentUpdate()">डाटा सुरक्षित करें</button>
     </div>
 
-    <center><div class="capsule-title">⭐ लोकप्रिय सेवाएँ</div></center>
-    <div class="grid-layout">
-        <div class="item-box">आय प्रमाण</div>
-        <div class="item-box">जाति प्रमाण</div>
-        <div class="item-box">निवास प्रमाण</div>
-        <div class="item-box">पैन कार्ड</div>
-        <div class="item-box">आधार कार्ड</div>
+    <center><div class="dual-heading">★ लोकप्रिय सेवाएँ ★</div></center>
+    <div class="grid-container">
+        <div class="service-box">आय प्रमाण पत्र</div>
+        <div class="service-box">जाति प्रमाण पत्र</div>
+        <div class="service-box">निवास प्रमाण पत्र</div>
+        <div class="service-box">पैन कार्ड नया/सुधार</div>
+        <div class="service-box">आधार प्रिंट</div>
     </div>
 
-    <center><div class="capsule-title">📋 महत्वपूर्ण फॉर्म</div></center>
-    <div class="grid-layout">
-        <div class="item-box">यूपी पुलिस भर्ती</div>
-        <div class="item-box">स्कॉलरशिप फॉर्म</div>
-        <div class="item-box">रेलवे भर्ती</div>
-    </div>
-
-    <center><div class="capsule-title">💰 रेट लिस्ट</div></center>
-    <table class="rate-table" id="rate-list">
-        <thead><tr><th>सेवा का नाम</th><th style="text-align:right">शुल्क (₹)</th></tr></thead>
+    <center><div class="dual-heading">💰 रेट लिस्ट 💰</div></center>
+    <table class="price-list" id="rates-data">
+        <thead><tr><th>सेवा का नाम</th><th style="text-align:right">चार्ज</th></tr></thead>
         <tbody>
-            <tr><td>नया पैन कार्ड</td><td class="price">₹100</td></tr>
-            <tr><td>आय/जाति/निवास</td><td class="price">₹80</td></tr>
+            <tr><td>नया पैन कार्ड (PAN)</td><td style="color:red; text-align:right">₹100</td></tr>
+            <tr><td>आय/जाति/निवास (Cert)</td><td style="color:red; text-align:right">₹80</td></tr>
+            <tr><td>आधार कार्ड प्रिंट</td><td style="color:red; text-align:right">₹50</td></tr>
         </tbody>
     </table>
 
-    <div id="admin-panel">
-        <h3 style="border-bottom: 2px solid var(--deep-blue);">📊 ग्राहक डेटा और फॉर्म अपडेट्स</h3>
-        <table style="width:100%; font-size:0.8em; border-collapse:collapse;">
-            <thead><tr style="background:#eee;"><th>नाम</th><th>मोबाइल</th><th>काम</th><th>तारीख</th></tr></thead>
-            <tbody id="admin-list"></tbody>
-        </table>
-        <button onclick="document.getElementById('admin-panel').style.display='none'" style="margin-top:10px; width:100%; padding:8px; background:#888; color:white; border:none; border-radius:5px;">पैनल बंद करें</button>
+    <div id="admin-log">
+        <h3 style="color:var(--bg-top); border-bottom:2px solid var(--heading-bg-2);">📊 ग्राहक डेटाबेस (Admin Only)</h3>
+        <div style="overflow-x:auto;">
+            <table style="width:100%; font-size:0.85em; border-collapse:collapse;">
+                <thead style="background:#f8f9fa;"><tr><th>नाम</th><th>मोबाइल</th><th>काम</th><th>दिनांक</th></tr></thead>
+                <tbody id="admin-rows"></tbody>
+            </table>
+        </div>
+        <button onclick="document.getElementById('admin-log').style.display='none'" style="margin-top:15px; width:100%; padding:10px; border:none; background:#888; color:white; border-radius:8px;">पैनल बंद करें</button>
     </div>
 </div>
 
-<div class="ai-assist" onclick="toggleAI()">🤖</div>
-<div class="ai-box" id="ai-box">
-    <div class="ai-header">D.M Cyber - AI सहायक</div>
-    <div class="ai-body" id="ai-messages">
-        नमस्ते! मैं यहाँ आपकी सहायता के लिए हूँ। क्या आप रेट या किसी फॉर्म के बारे में जानना चाहते हैं?
+<div class="ai-fab" onclick="toggleChat()">🤖</div>
+<div class="ai-chat" id="ai-chat">
+    <div style="background:var(--heading-bg-1); color:white; padding:15px; font-weight:bold;">AI सहायक - D.M Cyber</div>
+    <div id="ai-messages" style="padding:15px; height:200px; overflow-y:auto; font-size:0.9em; background:#f9f9f9;">
+        नमस्ते! मैं AI सहायक हूँ। आप मुझसे रेट या सेवाओं के बारे में पूछ सकते हैं।
     </div>
-    <div style="display:flex; padding:10px; border-top:1px solid #eee;">
-        <input type="text" id="ai-input" placeholder="पूछें (उदा: पैन कार्ड रेट)..." style="flex:1; padding:8px; border:1px solid #ddd; border-radius:5px;">
-        <button onclick="askAI()" style="background:var(--deep-blue); color:white; border:none; padding:8px; margin-left:5px; border-radius:5px;">Send</button>
+    <div style="padding:10px; display:flex; border-top:1px solid #eee;">
+        <input type="text" id="ai-input" placeholder="यहाँ लिखें..." style="flex:1; padding:8px; border:1px solid #ddd; border-radius:5px;">
+        <button onclick="askAI()" style="background:var(--heading-bg-1); color:white; border:none; padding:8px 15px; margin-left:5px; border-radius:5px;">पूछें</button>
     </div>
 </div>
 
 <footer>
-    <div style="font-weight: 900; font-size: 1.2em;">D.M Cyber Varanasi</div>
-    <div style="margin-top:5px;">मंडाव, रोहनिया, वाराणसी | +91 8303585793</div>
-    <div style="margin-top:10px; font-size: 0.7em;">© 2025 | Security: SSL & Anti-Theft Protected</div>
+    <div style="font-weight: 900; font-size: 1.5em; letter-spacing: 1px;">D.M Cyber Varanasi</div>
+    <div style="margin-top:10px;">मंडाव, रोहनिया, वाराणसी | संचालक: धीरज मौर्या</div>
+    <div style="margin-top:15px; font-size: 0.8em; opacity: 0.6;">© 2025 | सुरक्षित और स्मार्ट डिजिटल सेवा पोर्टल</div>
 </footer>
 
 <script>
-    const STORAGE_KEY = 'dm_cyber_smart_records';
+    const DB_KEY = 'dm_cyber_pro_records';
 
-    // 1. Silent Data Save
-    function silentSave() {
-        let name = document.getElementById('cust-name').value;
-        let phone = document.getElementById('cust-phone').value;
-        let work = document.getElementById('cust-work').value;
-        let date = new Date().toLocaleDateString();
+    // Silent Record Saving
+    function silentUpdate() {
+        let n = document.getElementById('cust-n').value;
+        let p = document.getElementById('cust-p').value;
+        let w = document.getElementById('cust-w').value;
+        let d = new Date().toLocaleDateString();
 
-        if(!name || !phone) { alert("कृपया नाम और नंबर भरें!"); return; }
+        if(!n || !p) { alert("विवरण पूरा भरें!"); return; }
 
-        let records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        records.push({name, phone, work, date});
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+        let list = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+        list.push({n, p, w, d});
+        localStorage.setItem(DB_KEY, JSON.stringify(list));
 
-        alert("आपकी जानकारी सफलतापूर्वक अपडेट कर दी गई है।");
-        document.getElementById('cust-name').value = '';
-        document.getElementById('cust-phone').value = '';
-        document.getElementById('cust-work').value = '';
+        alert("विवरण सफलतापूर्वक सुरक्षित कर दिया गया है।");
+        document.getElementById('cust-n').value = '';
+        document.getElementById('cust-p').value = '';
+        document.getElementById('cust-w').value = '';
     }
 
-    // 2. AI Smart Update
-    function toggleAI() {
-        let box = document.getElementById('ai-box');
-        box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
+    // AI Chat System
+    function toggleChat() {
+        let c = document.getElementById('ai-chat');
+        c.style.display = (c.style.display === 'flex') ? 'none' : 'flex';
     }
 
     function askAI() {
         let q = document.getElementById('ai-input').value.toLowerCase();
-        let msgBox = document.getElementById('ai-messages');
-        let rates = document.getElementById('rate-list').innerText;
+        let box = document.getElementById('ai-messages');
+        let res = "मुझे इसके बारे में जानकारी नहीं है। कृपया धीरज मौर्या जी से संपर्क करें।";
 
-        let reply = "क्षमा करें, इसके बारे में जानकारी नहीं है। कृपया धीरज जी से संपर्क करें।";
-        
-        if(q.includes("पैन") || q.includes("pan")) reply = "पैन कार्ड का शुल्क ₹100 है और इसे बनने में 7-10 दिन लगते हैं।";
-        if(q.includes("आय") || q.includes("जाति") || q.includes("निवास")) reply = "इन प्रमाण पत्रों का शुल्क ₹80 है।";
-        if(q.includes("रेट") || q.includes("rate")) reply = "हमारे रेट्स: पैन कार्ड (₹100), आय/जाति/निवास (₹80)।";
+        if(q.includes("रेट") || q.includes("पैसा") || q.includes("चार्ज")) res = "पैन कार्ड: ₹100, प्रमाण पत्र: ₹80, आधार प्रिंट: ₹50।";
+        if(q.includes("पैन") || q.includes("pan")) res = "पैन कार्ड बनाने के लिए आपको आधार कार्ड और फोटो की आवश्यकता होगी। शुल्क ₹100 है।";
+        if(q.includes("आय") || q.includes("जाति") || q.includes("निवास")) res = "प्रमाण पत्र मात्र ₹80 में बनाए जाते हैं, 3-5 दिन का समय लगता है।";
 
-        msgBox.innerHTML += `<div style="margin-top:10px; color:var(--deep-blue);"><b>आप:</b> ${q}</div>`;
-        msgBox.innerHTML += `<div style="margin-top:5px; color:#d32f2f;"><b>AI:</b> ${reply}</div>`;
-        msgBox.scrollTop = msgBox.scrollHeight;
+        box.innerHTML += `<div style="margin-top:10px;"><b>आप:</b> ${q}</div>`;
+        box.innerHTML += `<div style="margin-top:5px; color:#d32f2f;"><b>AI:</b> ${res}</div>`;
+        box.scrollTop = box.scrollHeight;
         document.getElementById('ai-input').value = '';
     }
 
-    // 3. Admin View
+    // Admin Panel Access (Pin: 1234)
     function openAdmin() {
-        let pin = prompt("एडमिन पिन दर्ज करें:");
+        let pin = prompt("एडमिन सिक्योरिटी पिन डालें:");
         if(pin === "1234") {
-            document.getElementById('admin-panel').style.display = 'block';
-            let records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            let html = records.map(r => `<tr><td>${r.name}</td><td>${r.phone}</td><td>${r.work}</td><td>${r.date}</td></tr>`).join('');
-            document.getElementById('admin-list').innerHTML = html || "<tr><td colspan='4' align='center'>कोई डेटा नहीं है</td></tr>";
-        } else {
-            alert("गलत पिन!");
-        }
+            document.getElementById('admin-log').style.display = 'block';
+            let data = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+            let html = data.map(r => `<tr><td style="padding:10px; border-bottom:1px solid #eee;">${r.n}</td><td>${r.p}</td><td>${r.w}</td><td>${r.d}</td></tr>`).join('');
+            document.getElementById('admin-rows').innerHTML = html || "<tr><td colspan='4' align='center'>कोई डाटा नहीं है</td></tr>";
+        } else { alert("गलत पिन!"); }
     }
 </script>
 </body>
