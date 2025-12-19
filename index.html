@@ -3,183 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi - Official</title>
+    
+    <title>D.M Cyber Varanasi | Best Jan Seva Kendra in Rohania Varanasi</title>
+    <meta name="description" content="D.M Cyber Varanasi - मंडाव, रोहनिया में नंबर 1 जन सेवा केंद्र। पैन कार्ड, आय, जाति, निवास प्रमाण पत्र और सभी ऑनलाइन फॉर्म के लिए संपर्क करें।">
+    <meta name="keywords" content="D.M Cyber, DM Cyber Varanasi, Jan Seva Kendra Rohania, Online Form Varanasi, Pan Card Center Rohania, Dheeraj Maurya Cyber">
+    <meta name="author" content="Dheeraj Maurya">
+
     <style>
         :root { 
             --dark-blue: #002d5b; 
             --orange: #ff851b;
             --white: #ffffff;
-            --red-udhar: #d32f2f;
-            --light-gray: #f9f9f9;
+            --gray-bg: #f1f4f8;
+            --red-del: #e74c3c;
         }
         
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--white); color: #333; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background-color: var(--white); color: #333; }
 
-        /* HEADER & FOOTER */
-        header, footer { background-color: var(--dark-blue); text-align: center; padding: 40px 10px; color: white; border-bottom: 5px solid var(--orange); }
-        footer { border-top: 5px solid var(--orange); border-bottom: none; padding: 50px 20px; }
-        
-        .logo-space { width: 85px; height: 85px; background: white; border-radius: 50%; margin: 0 auto 15px; }
-        .dm-brand { font-size: 3em; font-weight: 900; margin: 0; line-height: 1; }
+        /* HEADER & LOGO */
+        header { 
+            background-color: var(--dark-blue); 
+            text-align: center; 
+            padding: 50px 15px; 
+            color: white;
+            border-bottom: 6px solid var(--orange);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .logo-box {
+            width: 90px; height: 90px; background: white; border-radius: 50%; 
+            margin: 0 auto 15px; display: flex; align-items: center; justify-content: center;
+            border: 4px solid var(--orange); font-size: 2.2em; font-weight: 900; color: var(--dark-blue);
+        }
+        .dm-brand { font-size: 3.5em; font-weight: 900; margin: 0; letter-spacing: -1px; }
         .dm-brand span { color: var(--orange); }
-        .tagline { font-size: 0.9em; margin: 8px 0; opacity: 0.9; font-style: italic; }
-        .owner { font-weight: bold; margin-bottom: 12px; }
-        .orange-label { background: var(--orange); color: white; padding: 8px 25px; border-radius: 25px; font-weight: bold; display: inline-block; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .owner-info { font-size: 1.1em; margin: 10px 0; opacity: 0.9; font-weight: bold; }
+        .orange-badge { 
+            background: var(--orange); color: white; padding: 10px 30px; 
+            border-radius: 50px; font-weight: bold; display: inline-block;
+            border: 2px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-top: 15px;
+        }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 25px 15px; }
 
-        /* ACTION CARD & BUTTONS */
-        .white-card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee; margin-top: -40px; }
-        .location { font-weight: bold; margin-bottom: 15px; color: #444; }
-        
-        .btn-flex { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-        .btn { border-radius: 25px; padding: 8px 18px; color: white; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); font-size: 0.85em; }
+        /* ACTION CARD */
+        .action-card { 
+            background: white; border-radius: 20px; padding: 25px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center;
+            border: 1px solid #eee; margin-top: -65px; position: relative; z-index: 5;
+        }
+        .loc-tag { font-weight: bold; color: #d32f2f; margin-bottom: 20px; font-size: 1.2em; }
+        .btn-flex { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .nav-btn { 
+            border-radius: 50px; padding: 12px 25px; color: white; border: none; 
+            font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
 
-        /* DUAL COLOR TITLES */
-        .dual-h { display: inline-block; background: linear-gradient(90deg, var(--dark-blue) 60%, var(--orange) 40%); color: white; padding: 10px 35px; border-radius: 50px; margin: 30px 0 15px; font-weight: bold; border: 2px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* FORM SECTION */
+        .form-section { 
+            background: var(--gray-bg); padding: 40px 20px; border-radius: 25px; 
+            border: 1px solid #ddd; margin: 50px 0; text-align: center;
+        }
+        .form-section h2 { color: var(--dark-blue); margin-top: 0; margin-bottom: 25px; }
+        .input-group { width: 100%; max-width: 450px; margin: 0 auto; }
+        .form-section input { 
+            width: 100%; padding: 15px; margin-bottom: 18px; border-radius: 12px; 
+            border: 2px solid #ccc; font-size: 1em; box-sizing: border-box;
+        }
+        .form-section input:focus { border-color: var(--orange); outline: none; }
+        .final-save-btn { 
+            background: var(--orange); color: white; width: 100%; padding: 18px; 
+            border: none; border-radius: 12px; font-weight: bold; font-size: 1.2em; 
+            cursor: pointer; box-shadow: 0 8px 20px rgba(255,133,27,0.3);
+        }
 
-        /* SERVICES GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
-        .box { background: white; padding: 15px; border-radius: 10px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center; border-bottom: 4px solid var(--orange); border-top: 1px solid #eee; }
+        /* GRID */
+        .section-title { 
+            display: inline-block; background: linear-gradient(90deg, var(--dark-blue) 60%, var(--orange) 40%); 
+            color: white; padding: 12px 45px; border-radius: 50px; margin: 40px 0 25px; 
+            font-weight: bold; border: 2px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 15px; }
+        .grid-item { 
+            background: white; padding: 20px; border-radius: 15px; font-weight: bold; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; 
+            border-bottom: 6px solid var(--orange); transition: 0.3s;
+        }
 
-        /* UDHAR SECTION */
-        .udhar-input-box { background: #fffafa; padding: 25px; border-radius: 15px; border: 2px dashed var(--red-udhar); margin: 30px 0; }
-        .udhar-input-box h3 { color: var(--red-udhar); margin-top: 0; text-align: center; }
-        .udhar-input-box input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
-        .save-btn { background: var(--red-udhar); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        /* ADMIN PANEL */
+        #admin-panel { 
+            display: none; background: white; padding: 30px; border: 4px solid var(--dark-blue); 
+            border-radius: 25px; margin-top: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        .search-bar { 
+            width: 100%; padding: 15px; margin-bottom: 25px; border-radius: 12px; 
+            border: 2px solid var(--dark-blue); font-size: 1.1em; box-sizing: border-box;
+        }
+        .table-scroll { overflow-x: auto; max-height: 500px; border-radius: 10px; border: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: var(--dark-blue); color: white; padding: 15px; text-align: left; position: sticky; top: 0; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-weight: bold; }
+        .delete-btn { background: var(--red-del); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; }
 
-        /* ADMIN TABLE */
-        #admin-panel { display: none; background: white; padding: 20px; border: 3px solid var(--dark-blue); border-radius: 15px; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: var(--dark-blue); color: white; padding: 10px; text-align: left; }
-        td { padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; font-size: 0.9em; }
-        .del-btn { background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
-
-        /* RATE TABLE */
-        .rate-wrap { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 1px solid #eee; }
-        .price { color: #d32f2f; text-align: right; }
+        footer { 
+            background-color: var(--dark-blue); color: white; 
+            padding: 60px 20px; text-align: center; border-top: 6px solid var(--orange);
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-space"></div>
+    <div class="logo-box">DM</div>
     <h1 class="dm-brand">D.M <span>Cyber</span></h1>
-    <p class="tagline">"आपकी सेवा, हमारी पहचान"</p>
-    <p class="owner">संचालक: धीरज मौर्या</p>
-    <div class="orange-label">वाराणसी का नंबर 1 जन सेवा केंद्र</div>
+    <p class="owner-info">संचालक: धीरज मौर्या</p>
+    <p>"आपकी सेवा, हमारी पहचान"</p>
+    <div class="orange-badge">वाराणसी का नंबर 1 जन सेवा केंद्र</div>
 </header>
 
 <div class="container">
-    <div class="white-card">
-        <div class="location">📍 मंडाव, रोहनिया, वाराणसी</div>
+    <div class="action-card">
+        <div class="loc-tag">📍 मंडाव, रोहनिया, वाराणसी</div>
         <div class="btn-flex">
-            <button class="btn" style="background:#001f3f;">📞 कॉल</button>
-            <button class="btn" style="background:#25d366;">💬 व्हाट्सप्प</button>
-            <button class="btn" style="background:#673ab7;">💳 पेमेंट</button>
-            <button class="btn" style="background:#d32f2f;">📕 उधार खाता</button>
-            <button class="btn" style="background:#333;" onclick="openAdmin()">⚙️ एडमिन</button>
+            <button class="nav-btn" style="background:#001f3f;" onclick="location.href='tel:8303585793'">📞 कॉल</button>
+            <button class="nav-btn" style="background:#25d366;" onclick="location.href='https://wa.me/918303585793'">💬 व्हाट्सप्प</button>
+            <button class="nav-btn" style="background:#673ab7;">💳 पेमेंट</button>
+            <button class="nav-btn" style="background:#333;" onclick="openAdmin()">⚙️ एडमिन</button>
         </div>
     </div>
 
-    <div class="udhar-input-box">
-        <h3>📕 उधार खाता एंट्री</h3>
-        <input type="text" id="u-name" placeholder="ग्राहक का नाम">
-        <input type="number" id="u-phone" placeholder="मोबाइल नंबर">
-        <input type="text" id="u-work" placeholder="काम का नाम">
-        <input type="date" id="u-date">
-        <button class="save-btn" onclick="saveUdhar()">रिकॉर्ड सुरक्षित करें</button>
+    <div class="form-section">
+        <h2>📝 फॉर्म अपडेट के लिए यहाँ भरें</h2>
+        <div class="input-group">
+            <input type="text" id="name" placeholder="ग्राहक का पूरा नाम">
+            <input type="number" id="phone" placeholder="मोबाइल नंबर">
+            <input type="text" id="work" placeholder="काम का नाम">
+            <input type="date" id="date">
+            <button class="final-save-btn" onclick="saveCustomerData()">डाटा सुरक्षित करें</button>
+        </div>
     </div>
 
-    <center><div class="dual-h">⭐ लोकप्रिय सेवाएँ</div></center>
+    <center><div class="section-title">⭐ लोकप्रिय सेवाएँ</div></center>
     <div class="grid">
-        <div class="box">आय प्रमाण पत्र</div>
-        <div class="box">जाति प्रमाण पत्र</div>
-        <div class="box">निवास प्रमाण पत्र</div>
-        <div class="box">पैन कार्ड</div>
-        <div class="box">आधार कार्ड</div>
-    </div>
-
-    <center><div class="dual-h">💰 रेट लिस्ट</div></center>
-    <div class="rate-wrap">
-        <table style="background: white;">
-            <thead><tr><th>सेवा का नाम</th><th style="text-align:right">शुल्क (₹)</th></tr></thead>
-            <tbody>
-                <tr><td>नया पैन कार्ड</td><td class="price">₹100</td></tr>
-                <tr><td>आय/जाति/निवास</td><td class="price">₹80</td></tr>
-            </tbody>
-        </table>
+        <div class="grid-item">आय प्रमाण पत्र</div>
+        <div class="grid-item">जाति प्रमाण पत्र</div>
+        <div class="grid-item">निवास प्रमाण पत्र</div>
+        <div class="grid-item">नया पैन कार्ड</div>
+        <div class="grid-item">आधार कार्ड</div>
+        <div class="grid-item">स्कॉलरशिप</div>
     </div>
 
     <div id="admin-panel">
-        <h3 style="color:var(--dark-blue); border-bottom:2px solid var(--orange);">📊 उधार लिस्ट (Admin)</h3>
-        <div style="overflow-x:auto;">
+        <h2 style="color:var(--dark-blue); text-align:center; margin-top:0;">📂 कंट्रोल पैनल</h2>
+        <input type="text" id="search" class="search-bar" placeholder="🔍 नाम या मोबाइल से खोजें..." onkeyup="searchData()">
+        
+        <div class="table-scroll">
             <table>
-                <thead><tr><th>नाम</th><th>मोबाइल</th><th>काम</th><th>तारीख</th><th>हटाएं</th></tr></thead>
-                <tbody id="udhar-list"></tbody>
+                <thead>
+                    <tr><th>नाम</th><th>मोबाइल</th><th>काम</th><th>तारीख</th><th>एक्शन</th></tr>
+                </thead>
+                <tbody id="master-rows"></tbody>
             </table>
         </div>
-        <button onclick="document.getElementById('admin-panel').style.display='none'" style="margin-top:15px; width:100%; padding:10px; background:#888; color:white; border:none; border-radius:8px;">बंद करें</button>
+        <button onclick="document.getElementById('admin-panel').style.display='none'" style="margin-top:20px; width:100%; padding:15px; background:#666; color:white; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">पैनल बंद करें</button>
     </div>
 </div>
 
 <footer>
-    <div style="font-weight: 900; font-size: 1.6em; margin-bottom: 10px;">D.M Cyber Varanasi</div>
-    <div>मंडाव, रोहनिया, वाराणसी | +91 8303585793</div>
-    <div style="opacity: 0.5; font-size: 0.7em; margin-top: 15px;">© 2025 | Security: Local DB & AI Protected</div>
+    <div style="font-weight: 900; font-size: 2em; margin-bottom: 10px;">D.M Cyber Varanasi</div>
+    <p>मंडाव, रोहनिया, वाराणसी | +91 8303585793</p>
+    <p style="opacity: 0.5;">जन सेवा केंद्र | ऑनलाइन फॉर्म | फोटोकॉपी | मनी ट्रांसफर</p>
 </footer>
 
 <script>
-    const DB_NAME = 'dm_cyber_final_udhar';
+    const MAIN_DB = 'dm_cyber_final_pro_db';
 
-    // Save Data
-    function saveUdhar() {
-        let n = document.getElementById('u-name').value;
-        let p = document.getElementById('u-phone').value;
-        let w = document.getElementById('u-work').value;
-        let d = document.getElementById('u-date').value;
+    function saveCustomerData() {
+        let n = document.getElementById('name').value;
+        let p = document.getElementById('phone').value;
+        let w = document.getElementById('work').value;
+        let d = document.getElementById('date').value;
 
-        if(!n || !p || !w || !d) { alert("पूरी जानकारी भरें!"); return; }
+        if(!n || !p || !w || !d) { alert("कृपया सभी जानकारी भरें!"); return; }
 
-        let list = JSON.parse(localStorage.getItem(DB_NAME) || '[]');
-        list.push({ id: Date.now(), n, p, w, d });
-        localStorage.setItem(DB_NAME, JSON.stringify(list));
+        let records = JSON.parse(localStorage.getItem(MAIN_DB) || '[]');
+        records.push({ id: Date.now(), n, p, w, d });
+        localStorage.setItem(MAIN_DB, JSON.stringify(records));
 
-        alert("रिकॉर्ड सेव हो गया!");
-        location.reload(); 
+        alert("डाटा सुरक्षित कर दिया गया है!");
+        location.reload();
     }
 
-    // Admin Access
     function openAdmin() {
-        let pin = prompt("Admin Pin:");
+        let pin = prompt("सिक्योरिटी पिन डालें:");
         if(pin === "1234") {
             document.getElementById('admin-panel').style.display = 'block';
-            loadUdhar();
+            refreshTable();
         } else { alert("गलत पिन!"); }
     }
 
-    // Load List
-    function loadUdhar() {
-        let list = JSON.parse(localStorage.getItem(DB_NAME) || '[]');
-        let rows = list.map(item => `
+    function refreshTable() {
+        let data = JSON.parse(localStorage.getItem(MAIN_DB) || '[]');
+        updateRows(data);
+    }
+
+    function updateRows(data) {
+        let rows = data.map(item => `
             <tr>
                 <td>${item.n}</td>
                 <td>${item.p}</td>
                 <td>${item.w}</td>
                 <td>${item.d}</td>
-                <td><button class="del-btn" onclick="deleteItem(${item.id})">X</button></td>
+                <td><button class="delete-btn" onclick="deleteEntry(${item.id})">डिलीट</button></td>
             </tr>
-        `).join('');
-        document.getElementById('udhar-list').innerHTML = rows || "<tr><td colspan='5' align='center'>कोई रिकॉर्ड नहीं है</td></tr>";
+        `).reverse().join('');
+        document.getElementById('master-rows').innerHTML = rows || "<tr><td colspan='5' align='center'>कोई डाटा नहीं है</td></tr>";
     }
 
-    // Delete Item
-    function deleteItem(id) {
+    function searchData() {
+        let term = document.getElementById('search').value.toLowerCase();
+        let data = JSON.parse(localStorage.getItem(MAIN_DB) || '[]');
+        let filtered = data.filter(r => r.n.toLowerCase().includes(term) || r.p.includes(term));
+        updateRows(filtered);
+    }
+
+    function deleteEntry(id) {
         if(confirm("डिलीट करें?")) {
-            let list = JSON.parse(localStorage.getItem(DB_NAME) || '[]');
-            let filtered = list.filter(i => i.id !== id);
-            localStorage.setItem(DB_NAME, JSON.stringify(filtered));
-            loadUdhar();
+            let data = JSON.parse(localStorage.getItem(MAIN_DB) || '[]');
+            let filtered = data.filter(r => r.id !== id);
+            localStorage.setItem(MAIN_DB, JSON.stringify(filtered));
+            refreshTable();
         }
     }
 </script>
