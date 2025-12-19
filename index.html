@@ -31,13 +31,14 @@
         /* GRIDS FOR MASTER CONTENT */
         .section-tag { background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%); color: white; padding: 10px 35px; border-radius: 50px; display: inline-block; margin: 35px 0 20px; font-weight: bold; border: 2px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-        .box { background: white; padding: 18px; border-radius: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.06); color: var(--dark-blue); border-bottom: 4px solid var(--orange); text-align: center; position: relative; }
+        .box { background: white; padding: 18px; border-radius: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.06); color: var(--dark-blue); border-bottom: 4px solid var(--orange); text-align: center; }
 
         /* ADMIN PANEL */
         #admin-panel { display: none; background: white; padding: 25px; border-radius: 20px; border: 5px solid var(--dark-blue); margin-top: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
         .admin-sec { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
-        .del-btn-master { position: absolute; top: -8px; right: -8px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer; font-size: 12px; display: none; }
-        .edit-active .del-btn-master { display: block; }
+        .manage-list { margin-top: 10px; max-height: 150px; overflow-y: auto; background: white; border-radius: 5px; border: 1px solid #ccc; padding: 5px; }
+        .manage-item { display: flex; justify-content: space-between; padding: 5px; border-bottom: 1px solid #eee; font-size: 0.9em; }
+        .del-text { color: red; cursor: pointer; font-weight: bold; }
 
         /* QR MODAL */
         #qr-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; }
@@ -91,23 +92,25 @@
         <h2 style="text-align:center; color:var(--dark-blue);">🛠️ मास्टर कंट्रोल पैनल</h2>
         
         <div class="admin-sec">
-            <h4>1. सेवा / फॉर्म जोड़ें</h4>
-            <input type="text" id="new-item-name" placeholder="नाम लिखें...">
+            <h4>1. सेवा / फॉर्म मैनेजमेंट</h4>
+            <input type="text" id="new-item-name" placeholder="नया नाम लिखें...">
             <select id="new-item-type">
                 <option value="service">लोकप्रिय सेवा</option>
                 <option value="form">महत्वपूर्ण फॉर्म</option>
             </select>
-            <button onclick="addMasterItem()" style="width:100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; margin-top:5px;">+ लिस्ट में जोड़ें</button>
+            <button onclick="addMasterItem()" style="width:100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; margin-top:5px;">+ जोड़ें</button>
+            <div class="manage-list" id="manage-items-list"></div>
         </div>
 
         <div class="admin-sec">
-            <h4>2. रेट लिस्ट में जोड़ें</h4>
+            <h4>2. रेट लिस्ट मैनेजमेंट</h4>
             <input type="text" id="new-rate-name" placeholder="सेवा का नाम">
             <input type="text" id="new-rate-price" placeholder="शुल्क (उदा: ₹100)">
-            <button onclick="addMasterRate()" style="width:100%; padding:10px; background:var(--dark-blue); color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; margin-top:5px;">+ रेट लिस्ट में जोड़ें</button>
+            <button onclick="addMasterRate()" style="width:100%; padding:10px; background:var(--dark-blue); color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; margin-top:5px;">+ रेट जोड़ें</button>
+            <div class="manage-list" id="manage-rates-list"></div>
         </div>
 
-        <button onclick="saveAndExit()" style="width:100%; padding:15px; background:green; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">✅ सब कुछ सुरक्षित करें और बाहर निकलें</button>
+        <button onclick="saveAndExit()" style="width:100%; padding:15px; background:green; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">✅ सुरक्षित करें और बाहर निकलें</button>
     </div>
 </div>
 
@@ -136,21 +139,25 @@
     };
 
     function renderMasterUI() {
-        document.getElementById('master-services').innerHTML = config.services.map((s, i) => 
-            `<div class="box">${s}<button class="del-btn-master" onclick="deleteMaster('services', ${i})">X</button></div>`).join('');
+        // Main Page Render
+        document.getElementById('master-services').innerHTML = config.services.map(s => `<div class="box">${s}</div>`).join('');
+        document.getElementById('master-forms').innerHTML = config.forms.map(f => `<div class="box">${f}</div>`).join('');
+        document.getElementById('master-rates').innerHTML = config.rates.map(r => 
+            `<tr><td style="padding:12px; border-bottom:1px solid #eee;">${r.n}</td><td align="right" style="padding:12px; border-bottom:1px solid #eee; color:red;">${r.p}</td></tr>`).join('');
+
+        // Admin Panel List Render (Management Section)
+        document.getElementById('manage-items-list').innerHTML = 
+            config.services.map((s, i) => `<div class="manage-item"><span>(सेवा) ${s}</span><span class="del-text" onclick="deleteMaster('services', ${i})">मिटाएं</span></div>`).join('') +
+            config.forms.map((f, i) => `<div class="manage-item"><span>(फॉर्म) ${f}</span><span class="del-text" onclick="deleteMaster('forms', ${i})">मिटाएं</span></div>`).join('');
         
-        document.getElementById('master-forms').innerHTML = config.forms.map((f, i) => 
-            `<div class="box">${f}<button class="del-btn-master" onclick="deleteMaster('forms', ${i})">X</button></div>`).join('');
-        
-        document.getElementById('master-rates').innerHTML = config.rates.map((r, i) => 
-            `<tr><td style="padding:12px; border-bottom:1px solid #eee;">${r.n} <button class="del-btn-master" style="position:relative; display:inline-block;" onclick="deleteMaster('rates', ${i})">X</button></td><td align="right" style="padding:12px; border-bottom:1px solid #eee; color:red;">${r.p}</td></tr>`).join('');
+        document.getElementById('manage-rates-list').innerHTML = 
+            config.rates.map((r, i) => `<div class="manage-item"><span>${r.n} (${r.p})</span><span class="del-text" onclick="deleteMaster('rates', ${i})">मिटाएं</span></div>`).join('');
     }
 
     function loginAdmin() {
         if(prompt("सिक्योरिटी पिन डालें:") === "1234") {
-            alert("System Secured & Synced!");
             document.getElementById('admin-panel').style.display = 'block';
-            document.body.classList.add('edit-active');
+            renderMasterUI();
             window.scrollTo(0, document.body.scrollHeight);
         } else { alert("गलत पिन!"); }
     }
@@ -176,8 +183,10 @@
     }
 
     function deleteMaster(key, index) {
-        config[key].splice(index, 1);
-        renderMasterUI();
+        if(confirm("क्या आप इसे हटाना चाहते हैं?")) {
+            config[key].splice(index, 1);
+            renderMasterUI();
+        }
     }
 
     function saveAndExit() {
