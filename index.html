@@ -39,7 +39,30 @@
 
         .title { background: var(--primary); color: white; padding: 8px 20px; border-radius: 5px; display: inline-block; margin: 25px 0 10px; box-shadow: 3px 3px 0 var(--accent); font-weight: bold; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        /* --- GRID SETTINGS UPDATED --- */
+        
+        /* लोकप्रिय सेवाएँ: 1 Line में 5 Items */
+        #vip-area { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 10px; 
+        }
+
+        /* महत्वपूर्ण फॉर्म: 1 Line में 3 Items */
+        #form-area { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+        }
+
+        /* Mobile Adjustments (ताकि फोन में पिचके नहीं) */
+        @media (max-width: 768px) {
+            #vip-area { grid-template-columns: repeat(2, 1fr); }
+            #form-area { grid-template-columns: 1fr; }
+        }
+
+        /* --- END GRID SETTINGS --- */
+
         .card { background: white; border-top: 4px solid var(--accent); padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; }
         
         .form-card { background: #e3f2fd; border-left: 5px solid var(--form); padding: 15px; border-radius: 8px; font-weight: bold; position: relative; }
@@ -101,11 +124,13 @@
     </div>
 
     <div class="title">⭐ लोकप्रिय सेवाएँ</div>
-    <div class="grid" id="vip-area"></div>
+    <!-- VIP Area: Will show 5 items per line -->
+    <div id="vip-area"></div>
     <center><button id="btn-add-vip" class="add-btn" onclick="addVip()">+ सेवा जोड़ें</button></center>
 
     <div class="title" style="background:var(--form);">📝 महत्वपूर्ण फॉर्म</div>
-    <div class="grid" id="form-area"></div>
+    <!-- Form Area: Will show 3 items per line -->
+    <div id="form-area"></div>
     <center><button id="btn-add-form" class="add-btn" style="background:var(--form);" onclick="addForm()">+ फॉर्म जोड़ें</button></center>
 
     <div class="title">💰 रेट लिस्ट</div>
@@ -227,133 +252,4 @@
             forms: document.getElementById('form-area').innerHTML,
             rates: document.getElementById('rate-table').innerHTML
         };
-        localStorage.setItem(DB_KEY, JSON.stringify(data));
-        alert('✅ डेटा सेव हो गया!');
-        location.reload();
-    }
-
-    // --- Dynamic Elements ---
-    function createDelBtn(parent) {
-        let btn = document.createElement('div');
-        btn.className = 'del-btn';
-        btn.innerText = 'X';
-        btn.onclick = function() { parent.remove(); };
-        btn.contentEditable = "false";
-        parent.appendChild(btn);
-        if(isAdmin) btn.style.display = 'flex';
-    }
-
-    function addVip() {
-        let d = document.createElement('div');
-        d.className = 'card editable-mode';
-        d.contentEditable = "true";
-        d.innerText = 'नई सेवा';
-        createDelBtn(d);
-        document.getElementById('vip-area').appendChild(d);
-    }
-
-    function addForm() {
-        let d = document.createElement('div');
-        d.className = 'form-card editable-mode';
-        d.contentEditable = "true";
-        d.innerText = 'नया फॉर्म';
-        createDelBtn(d);
-        document.getElementById('form-area').appendChild(d);
-    }
-
-    function addNews() {
-        let s = document.createElement('span');
-        s.className = 'news-item editable-mode';
-        s.contentEditable = "true";
-        s.innerText = 'नया अपडेट';
-        document.getElementById('news-text').appendChild(s);
-    }
-
-    function addRate() {
-        let r = document.getElementById('rate-table').insertRow();
-        r.innerHTML = `<td contenteditable="true" class="editable-mode">सेवा</td><td contenteditable="true" class="price editable-mode">₹00</td>`;
-        let d = r.insertCell();
-        d.innerHTML = '❌';
-        d.style.cursor = 'pointer';
-        d.style.color = 'red';
-        d.onclick = function(){ r.remove(); };
-    }
-
-    function changeImg() {
-        if(isAdmin) {
-            let u = prompt('फोटो लिंक डालें:');
-            if(u) document.getElementById('logo').src = u;
-        }
-    }
-
-    function togglePay() {
-        let m = document.getElementById('pay-modal');
-        m.style.display = (m.style.display == 'block') ? 'none' : 'block';
-    }
-
-    // --- Ledger System ---
-    function loadLedger() {
-        let arr = JSON.parse(localStorage.getItem(LEDGER_KEY) || '[]');
-        let h = '';
-        arr.forEach((item, i) => {
-            h += `<div class="ledger-item"><span>${item.n} (${item.d})</span><span>₹${item.a} <b style="color:red;cursor:pointer" onclick="delLedger(${i})">X</b></span></div>`;
-        });
-        document.getElementById('ledger-list').innerHTML = h || 'कोई उधार नहीं।';
-    }
-
-    function addLedger() {
-        let n = document.getElementById('l-name').value;
-        let a = document.getElementById('l-amt').value;
-        if(n && a) {
-            let arr = JSON.parse(localStorage.getItem(LEDGER_KEY) || '[]');
-            arr.push({n:n, a:a, d:new Date().toLocaleDateString()});
-            localStorage.setItem(LEDGER_KEY, JSON.stringify(arr));
-            document.getElementById('l-name').value='';
-            document.getElementById('l-amt').value='';
-            loadLedger();
-        }
-    }
-
-    function delLedger(i) {
-        if(confirm('हटाना है?')) {
-            let arr = JSON.parse(localStorage.getItem(LEDGER_KEY));
-            arr.splice(i,1);
-            localStorage.setItem(LEDGER_KEY, JSON.stringify(arr));
-            loadLedger();
-        }
-    }
-
-    // --- Init ---
-    window.onload = function() {
-        try {
-            let d = JSON.parse(localStorage.getItem(DB_KEY));
-            if(d) {
-                document.getElementById('owner').innerText = d.owner;
-                document.getElementById('desc').innerText = d.desc;
-                document.getElementById('addr').innerText = d.addr;
-                document.getElementById('mob').innerText = d.mob;
-                document.getElementById('upi').innerText = d.upi;
-                document.getElementById('logo').src = d.logo;
-                document.getElementById('news-text').innerHTML = d.news;
-                document.getElementById('vip-area').innerHTML = d.vip;
-                document.getElementById('form-area').innerHTML = d.forms;
-                document.getElementById('rate-table').innerHTML = d.rates;
-            } else {
-                // First Time Defaults
-                document.getElementById('vip-area').innerHTML = '<div class="card">आय / जाति</div><div class="card">पैन कार्ड</div>';
-                document.getElementById('rate-table').innerHTML = '<tr><td>आय / जाति</td><td class="price">₹100</td></tr>';
-            }
-            
-            // Re-attach delete logic for loaded items
-            if(d) {
-                document.querySelectorAll('.del-btn').forEach(b => b.remove()); // clean old buttons
-                document.querySelectorAll('.card, .form-card').forEach(el => createDelBtn(el));
-            }
-        } catch(e) {
-            console.log("Resetting data due to error");
-            localStorage.removeItem(DB_KEY);
-        }
-    };
-</script>
-</body>
-</html>
+        localStorage.setItem(DB_KEY, JSON.stringify(
