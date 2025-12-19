@@ -4,26 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="D.M Cyber - वाराणसी का सबसे विश्वसनीय जन सेवा केंद्र।">
-    <title>D.M Cyber - आपकी सेवा, हमारी पहचान</title>
+    <title>D.M Cyber - आपकी सेवा हमारी पहचान</title>
     
     <style>
-        :root { --primary: #001f3f; --accent: #ff851b; --bg: #f4f7f6; --success: #28a745; --form-color: #0074d9; }
+        :root { --primary: #001f3f; --accent: #ff851b !important; --bg: #f4f7f6; --success: #28a745; --form-color: #0074d9; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg); color: #333; padding-bottom: 80px; }
         
-        /* एडमिन और एडिटिंग स्टाइल */
-        #admin-notice { display: none; background: #d32f2f; color: white; text-align: center; padding: 10px; font-weight: bold; position: sticky; top: 0; z-index: 3000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .editing-active { border: 2px dashed var(--accent) !important; background: #fffde7 !important; outline: none; padding: 4px; border-radius: 4px; position: relative; cursor: text; }
+        #admin-notice { display: none; background: #d32f2f; color: white; text-align: center; padding: 8px; font-weight: bold; position: sticky; top: 0; z-index: 3000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
 
-        header { background: linear-gradient(135deg, var(--primary), #0074d9); color: white; padding: 40px 15px 80px; text-align: center; border-bottom: 5px solid var(--accent); position: relative; z-index: 1; }
-        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 10px; object-fit: cover; background: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.4); transition: transform 0.3s; }
+        /* Editing Styles - ORANGE FIXED */
+        .editing-active { 
+            border: 2px dashed var(--accent) !important; /* अब बॉर्डर ऑरेंज रहेगा */
+            background: #fff3e0 !important; /* हल्का ऑरेंज बैकग्राउंड */
+            outline: none; 
+            padding: 4px; 
+            border-radius: 4px; 
+            position: relative; 
+            cursor: text; 
+            min-height: 20px; 
+        }
+
+        header { background: linear-gradient(135deg, var(--primary), #0074d9); color: white; padding: 40px 15px 60px; text-align: center; border-bottom: 5px solid var(--accent); position: relative; z-index: 1; }
+        .profile-img { width: 115px; height: 115px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 10px; object-fit: cover; background: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
         .logo-text { font-size: 3.5em; font-weight: bold; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
         .logo-text span { color: var(--accent); }
         .owner-tag { background: var(--accent); padding: 6px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-top: 15px; }
 
-        .container { padding: 15px; max-width: 1100px; margin: auto; position: relative; z-index: 2; margin-top: -60px; }
+        .container { padding: 15px; max-width: 1100px; margin: auto; position: relative; z-index: 2; margin-top: -50px; }
         
         /* News Ticker Style */
-        .news-container { background: white; padding: 10px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid #d32f2f; display: flex; align-items: center; overflow: hidden; }
+        .news-container { background: white; padding: 10px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid #d32f2f; display: flex; align-items: center; overflow: hidden; margin-top: 10px; }
         .news-badge { background: #d32f2f; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px; white-space: nowrap; }
         marquee { font-weight: 500; color: #333; font-size: 1.1em; flex-grow: 1; display: flex; align-items: center; }
         .news-item { margin-right: 30px; display: inline-block; position: relative; }
@@ -32,29 +42,26 @@
         .main-card { background: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #ddd; }
 
         .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
-        .btn { text-decoration: none; padding: 12px 22px; border-radius: 30px; font-weight: bold; color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; font-size: 0.95em; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn { text-decoration: none; padding: 12px 22px; border-radius: 30px; font-weight: bold; color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-wa { background: #25D366; } .btn-call { background: var(--primary); } .btn-pay { background: #673ab7; } .btn-admin { background: #444; } .btn-ledger { background: #d32f2f; }
+        .btn:hover { transform: translateY(-2px); }
 
         .section-title { background: var(--primary); color: white; padding: 10px 22px; border-radius: 8px; margin: 30px 0 15px; display: inline-block; box-shadow: 3px 3px 0 var(--accent); font-weight: bold; font-size: 1.2em; }
         
-        /* VIP & Form Grid Styles */
+        /* Grid Styles */
         .vip-grid, .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 10px; }
-        
-        .vip-card { background: white; border-top: 4px solid var(--accent); padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-weight: bold; position: relative; }
+        .vip-card { background: white; border-top: 4px solid var(--accent); padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-weight: bold; color: #000; position: relative; }
         
         .form-card { background: #e3f2fd; border-left: 5px solid var(--form-color); padding: 15px; border-radius: 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: bold; position: relative; display: flex; flex-direction: column; justify-content: center; }
         .form-badge { font-size: 0.8em; color: var(--form-color); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;}
 
-        /* Rate Table */
         .rate-table { width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .rate-table td { border-bottom: 1px solid #eee; padding: 15px; }
+        .rate-table td { border-bottom: 1px solid #eee; padding: 14px; color: #000; }
         .price { color: #d32f2f; font-weight: bold; text-align: right; width: 100px; }
 
-        /* Delete Buttons (Hidden by default) */
+        /* Delete Buttons & Add Buttons */
         .del-btn-float { position: absolute; top: -8px; right: -8px; background: red; color: white; border-radius: 50%; width: 22px; height: 22px; text-align: center; line-height: 22px; cursor: pointer; font-size: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); display: none; z-index: 10; }
         .del-row-btn { display: none; color: red; cursor: pointer; margin-left: 10px; font-weight: bold; }
-
-        /* Add Buttons */
         .add-btn-style { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; margin-top: 15px; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.15); display: none; font-size: 0.9em; }
 
         /* Floating WhatsApp */
@@ -65,18 +72,24 @@
         #ledger-section { display: none; background: #fff; padding: 20px; border-radius: 20px; border: 2px solid #d32f2f; margin-top: 20px; }
         .ledger-row { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
 
+        /* Password Modal Style */
+        #password-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 5000; justify-content: center; align-items: center; }
+        .pwd-box { background: white; padding: 25px; border-radius: 15px; text-align: center; width: 300px; }
+        .pwd-input { padding: 10px; width: 80%; margin: 10px 0; border: 2px solid #ccc; border-radius: 5px; font-size: 18px; text-align: center; }
+
         footer { text-align: center; padding: 50px 15px; background: var(--primary); color: white; margin-top: 50px; }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false;"> 
 
 <div id="admin-notice">🛠️ एडमिन मोड चालू है | बदलाव के बाद 'सेव' बटन दबाएं</div>
 
 <header>
-    <img id="myLogo" src="https://via.placeholder.com/120?text=Logo" class="profile-img" onclick="changePhoto()" title="फोटो बदलने के लिए क्लिक करें">
+    <img id="myLogo" src="https://via.placeholder.com/115?text=D.M+LOGO" class="profile-img" onclick="changePhoto()">
     <div class="logo-text">D.M <span>Cyber</span></div>
-    <div class="owner-tag">संचालक: <span id="owner-name" class="editable">धीरज मौर्या</span></div>
-    <p id="site-desc" class="editable" style="margin-top:10px; opacity:0.9;">वाराणसी का नंबर 1 जन सेवा केंद्र</p>
+    <div class="tagline">"आपकी सेवा हमारी पहचान"</div>
+    <div class="owner-tag">संचालक: <span id="owner-name" class="editable">धीरज मौर्य</span></div>
+    <p id="site-desc" class="editable" style="margin-top:10px;">वाराणसी का नंबर 1 जन सेवा केंद्र | मण्डुआर, रोहनिया</p>
 </header>
 
 <div class="container">
@@ -93,18 +106,19 @@
     </div>
 
     <div class="main-card">
-        <p>📍 <strong id="addr" class="editable">Mandaw, Rohaniya, Varanasi</strong></p>
-        <p>📞 <span id="mob" class="editable">8303585793</span></p>
+        <p>📍 <strong id="addr" class="editable">Mandaw, Rohaniya, Varanasi (221108)</strong></p>
+        <p>📧 <span id="email" class="editable">Dmvns6565@gmail.com</span> | 📞 <span id="mob" class="editable">8303585793</span></p>
+        
         <div class="btn-group">
             <a href="tel:8303585793" class="btn btn-call">📞 कॉल</a>
             <a href="https://wa.me/918303585793" class="btn btn-wa">💬 व्हाट्सएप</a>
             <button onclick="togglePay()" class="btn btn-pay">💳 पेमेंट</button>
             <button onclick="openLedger()" class="btn btn-ledger">📒 उधार खाता</button>
-            <button id="admin-btn" onclick="handleAdmin()" class="btn btn-admin">⚙️ एडमिन पैनल</button>
+            <button id="admin-btn" onclick="requestAdmin()" class="btn btn-admin">⚙️ एडमिन पैनल</button>
         </div>
     </div>
 
-    <!-- VIP Services Section -->
+    <!-- VIP Services -->
     <div class="section-title">⭐ लोकप्रिय सेवाएँ</div>
     <div class="vip-grid" id="vip-section"></div>
     <div style="text-align:center;">
@@ -118,7 +132,7 @@
         <button id="add-form-btn" class="add-btn-style" style="background:var(--form-color);" onclick="addNewForm()">+ नया फॉर्म जोड़ें</button>
     </div>
 
-    <!-- Rate List Section -->
+    <!-- Rate List -->
     <div class="section-title">💰 सर्विस रेट लिस्ट</div>
     <table class="rate-table">
         <tbody id="rate-body"></tbody>
@@ -140,13 +154,24 @@
 
 <a href="https://wa.me/918303585793" class="float-wa"><span>💬 Chat Now</span></a>
 
+<!-- Secure Password Modal -->
+<div id="password-modal">
+    <div class="pwd-box">
+        <h3>🔒 एडमिन एक्सेस</h3>
+        <p>कृपया पिन दर्ज करें:</p>
+        <input type="password" id="admin-pin-input" class="pwd-input" placeholder="****" maxlength="4">
+        <br>
+        <button onclick="verifyPin()" style="background:var(--success); color:white; padding:10px 20px; border:none; border-radius:5px; margin-top:10px; cursor:pointer;">लॉगिन</button>
+        <button onclick="closePwdModal()" style="background:#d32f2f; color:white; padding:10px 20px; border:none; border-radius:5px; margin-top:10px; cursor:pointer;">रद्द करें</button>
+    </div>
+</div>
+
 <div id="pay-modal">
-    <h3 style="margin:0; color:#673ab7; border-bottom:2px solid #eee; padding-bottom:10px;">💳 पेमेंट जानकारी</h3>
+    <h3>💳 पेमेंट जानकारी</h3>
     <div style="padding:15px 0;">
         <p><strong>UPI ID:</strong> <span id="upi-id" class="editable">8303585793@okicici</span></p>
-        <p><strong>IFSC:</strong> <span id="ifsc" class="editable">SBIN0000</span></p>
     </div>
-    <button onclick="togglePay()" style="background:#673ab7; color:white; border:none; width:100%; padding:12px; border-radius:12px; font-weight:bold; cursor:pointer;">❌ बंद करें</button>
+    <button onclick="togglePay()" style="background:#673ab7; color:white; border:none; width:100%; padding:10px; border-radius:10px;">बंद करें</button>
 </div>
 
 <footer>
@@ -156,16 +181,48 @@
 
 <script>
     let isAdmin = false;
+    let pendingAction = null; // To store which action triggered the password
 
-    function handleAdmin() {
+    function requestAdmin() {
         if (!isAdmin) {
-            let pin = prompt("एडमिन पिन डालें (Default: 2525):");
-            if (pin === "2525") {
-                enterAdminMode();
-            } else { alert("गलत पिन!"); }
+            document.getElementById('password-modal').style.display = 'flex';
+            document.getElementById('admin-pin-input').value = '';
+            document.getElementById('admin-pin-input').focus();
+            pendingAction = 'admin';
         } else {
             saveAllData();
         }
+    }
+
+    function openLedger() {
+        if(document.getElementById('ledger-section').style.display === 'block') {
+            document.getElementById('ledger-section').style.display = 'none';
+            return;
+        }
+        document.getElementById('password-modal').style.display = 'flex';
+        document.getElementById('admin-pin-input').value = '';
+        document.getElementById('admin-pin-input').focus();
+        pendingAction = 'ledger';
+    }
+
+    function verifyPin() {
+        let pin = document.getElementById('admin-pin-input').value;
+        if (pin === "1234") {
+            closePwdModal();
+            if(pendingAction === 'admin') {
+                enterAdminMode();
+            } else if (pendingAction === 'ledger') {
+                document.getElementById('ledger-section').style.display = 'block';
+                displayLedger();
+            }
+        } else { 
+            alert("❌ गलत पिन!"); 
+            document.getElementById('admin-pin-input').value = '';
+        }
+    }
+
+    function closePwdModal() {
+        document.getElementById('password-modal').style.display = 'none';
     }
 
     function enterAdminMode() {
@@ -175,25 +232,22 @@
         btn.innerText = "💾 डेटा सेव करें";
         btn.style.background = "var(--success)";
         
-        // Show all Add Buttons
+        // Buttons Display
         document.getElementById('add-vip-btn').style.display = 'inline-block';
         document.getElementById('add-rate-btn').style.display = 'inline-block';
         document.getElementById('add-news-btn').style.display = 'inline-block';
-        document.getElementById('add-form-btn').style.display = 'inline-block'; // New
+        document.getElementById('add-form-btn').style.display = 'inline-block';
         
-        // Stop marquee for editing
         document.getElementById('news-marquee').stop();
 
-        // Make elements editable
+        // Editable ON
         document.querySelectorAll('.editable, #rate-body td, .vip-card, .form-card, .news-item').forEach(el => {
             el.contentEditable = "true";
             el.classList.add('editing-active');
         });
 
-        // Show Delete Buttons (Rate List)
+        // Delete Buttons
         document.querySelectorAll('.del-row-btn').forEach(el => el.style.display = "inline");
-
-        // Inject Delete Buttons for VIP, Forms, and News
         injectDeleteButtons('.vip-card');
         injectDeleteButtons('.form-card');
         injectDeleteButtons('.news-item');
@@ -213,16 +267,14 @@
         });
     }
 
-    // --- ADD FUNCTIONS ---
-
+    // Add Functions
     function addNewsItem() {
         let mq = document.getElementById('news-marquee');
         let span = document.createElement('span');
         span.className = 'news-item editing-active';
         span.contentEditable = "true";
-        span.innerText = "नया अपडेट यहाँ लिखें";
+        span.innerText = "नया अपडेट लिखें";
         mq.appendChild(span);
-        // Add delete button immediately
         injectDeleteButtons('.news-item');
     }
 
@@ -265,23 +317,14 @@
         m.style.display = (m.style.display === 'block') ? 'none' : 'block';
     }
 
-    // --- LEDGER & STORAGE ---
-
-    function openLedger() {
-        let pin = prompt("पिन डालें (Default: 1234):");
-        if(pin === "1234") {
-            document.getElementById('ledger-section').style.display = 'block';
-            displayLedger();
-        }
-    }
-
+    // Ledger Logic
     function saveUdhaar() {
         let n = document.getElementById('cust-name').value;
         let a = document.getElementById('cust-amt').value;
         if(n && a) {
-            let records = JSON.parse(localStorage.getItem('dm_ledger_v7') || "[]");
+            let records = JSON.parse(localStorage.getItem('dm_ledger_v9') || "[]");
             records.push({name: n, amt: a, date: new Date().toLocaleDateString()});
-            localStorage.setItem('dm_ledger_v7', JSON.stringify(records));
+            localStorage.setItem('dm_ledger_v9', JSON.stringify(records));
             document.getElementById('cust-name').value = '';
             document.getElementById('cust-amt').value = '';
             displayLedger();
@@ -289,7 +332,7 @@
     }
 
     function displayLedger() {
-        let records = JSON.parse(localStorage.getItem('dm_ledger_v7') || "[]");
+        let records = JSON.parse(localStorage.getItem('dm_ledger_v9') || "[]");
         let html = '';
         records.forEach((r, i) => {
             html += `<div class="ledger-row"><span><strong>${r.name}</strong> (${r.date})</span> <span>₹${r.amt} <span style="color:red;cursor:pointer;" onclick="deleteUdhaar(${i})">❌</span></span></div>`;
@@ -299,18 +342,17 @@
 
     function deleteUdhaar(i) {
         if(confirm('हटाना है?')) {
-            let records = JSON.parse(localStorage.getItem('dm_ledger_v7'));
+            let records = JSON.parse(localStorage.getItem('dm_ledger_v9'));
             records.splice(i, 1);
-            localStorage.setItem('dm_ledger_v7', JSON.stringify(records));
+            localStorage.setItem('dm_ledger_v9', JSON.stringify(records));
             displayLedger();
         }
     }
 
     function saveAllData() {
-        // Clean up UI junk
+        // Clean UI
         document.querySelectorAll('.del-btn-float').forEach(e => e.remove());
         document.querySelectorAll('.del-row-btn').forEach(e => e.style.display = "none");
-        
         document.querySelectorAll('[contenteditable]').forEach(el => {
             el.removeAttribute('contenteditable');
             el.classList.remove('editing-active');
@@ -322,44 +364,14 @@
         document.getElementById('add-news-btn').style.display = 'none';
         document.getElementById('add-form-btn').style.display = 'none';
         
-        // Restart Marquee
         document.getElementById('news-marquee').start();
 
         const config = {
             owner: document.getElementById('owner-name').innerText,
             desc: document.getElementById('site-desc').innerText,
             addr: document.getElementById('addr').innerText,
+            email: document.getElementById('email').innerText,
             mob: document.getElementById('mob').innerText,
-            newsHTML: document.getElementById('news-marquee').innerHTML, // Save full HTML of news
-            logo: document.getElementById('myLogo').src,
+            newsHTML: document.getElementById('news-marquee').innerHTML,
             vip: document.getElementById('vip-section').innerHTML,
-            forms: document.getElementById('form-section').innerHTML, // New Form Section
-            rates: document.getElementById('rate-body').innerHTML,
-            upi: document.getElementById('upi-id').innerText,
-            ifsc: document.getElementById('ifsc').innerText
-        };
-        localStorage.setItem('dm_cyber_config_v7', JSON.stringify(config));
-        
-        alert("✅ डेटा सेव हो गया!");
-        location.reload();
-    }
-
-    window.onload = function() {
-        const saved = JSON.parse(localStorage.getItem('dm_cyber_config_v7'));
-        if (saved) {
-            if(saved.owner) document.getElementById('owner-name').innerText = saved.owner;
-            if(saved.desc) document.getElementById('site-desc').innerText = saved.desc;
-            if(saved.addr) document.getElementById('addr').innerText = saved.addr;
-            if(saved.mob) document.getElementById('mob').innerText = saved.mob;
-            if(saved.newsHTML) document.getElementById('news-marquee').innerHTML = saved.newsHTML;
-            if(saved.logo) document.getElementById('myLogo').src = saved.logo;
-            if(saved.vip) document.getElementById('vip-section').innerHTML = saved.vip;
-            if(saved.forms) document.getElementById('form-section').innerHTML = saved.forms;
-            if(saved.rates) document.getElementById('rate-body').innerHTML = saved.rates;
-            if(saved.upi) document.getElementById('upi-id').innerText = saved.upi;
-            if(saved.ifsc) document.getElementById('ifsc').innerText = saved.ifsc;
-        } else {
-            // Default Data setup if fresh load
-            document.getElementById('news-marquee').innerHTML = '<span class="news-item">यूपी पुलिस भर्ती चालू है</span><span class="news-item">पैन कार्ड 2 दिन में</span>';
-            document.getElementById('vip-section').innerHTML = '<div class="vip-card">आय / जाति / निवास</div><div class="vip-card">आधार निकासी</div>';
-            document.getElementById('form-section').innerHTML = '<div class="form-card"><span class="form-badge
+            forms: document.getElementById('form-section').inne
