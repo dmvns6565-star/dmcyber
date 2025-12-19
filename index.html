@@ -5,188 +5,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D.M Cyber Varanasi - Official</title>
     <style>
-        /* 1. EXACT COLOR & BACKGROUND MATCH */
         :root { 
-            --main-blue: #004a99; 
-            --sky-blue: #007bff; 
+            --dark-blue: #004a99; 
             --orange: #ff851b;
-            --dark-navy: #001f3f;
+            --white: #ffffff;
+            --gray-bg: #f8f9fa;
         }
         
         body { 
-            font-family: 'Segoe UI', sans-serif; margin: 0; 
-            background: linear-gradient(180deg, var(--dark-navy) 0%, var(--sky-blue) 100%); 
-            background-attachment: fixed; min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            background-color: var(--white); /* बीच का हिस्सा सफेद */
+            color: #333;
         }
 
-        /* 2. HEADER AREA */
-        header { text-align: center; padding: 40px 10px; color: white; }
-        .logo-img { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 10px; }
-        .brand-name { font-size: 3em; font-weight: 900; margin: 0; text-transform: uppercase; }
-        .brand-name span { color: var(--orange); }
-        .tagline { font-size: 0.9em; font-style: italic; margin: 5px 0; opacity: 0.9; }
-        .orange-label { 
-            background: var(--orange); color: white; padding: 6px 20px; 
-            border-radius: 20px; font-weight: bold; display: inline-block;
-            border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin-top: 10px;
+        /* HEADER - DARK BLUE */
+        header { 
+            background-color: var(--dark-blue); 
+            text-align: center; 
+            padding: 40px 10px; 
+            color: white;
+            border-bottom: 5px solid var(--orange);
+        }
+        .logo-space { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 15px; }
+        .dm-brand { font-size: 3em; font-weight: 900; margin: 0; }
+        .dm-brand span { color: var(--orange); }
+        .sub-text { font-size: 0.9em; margin: 5px 0; opacity: 0.9; }
+        .owner-name { font-weight: bold; font-size: 1em; margin-bottom: 10px; }
+        .orange-btn-tag { 
+            background: var(--orange); color: white; padding: 8px 25px; 
+            border-radius: 25px; font-weight: bold; display: inline-block;
+            border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 0 15px 50px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 30px 15px; }
 
-        /* 3. LOCATION & BUTTON CARD (EXACT LOOK) */
-        .white-card { 
+        /* LOCATION CARD */
+        .loc-card { 
             background: white; border-radius: 15px; padding: 25px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: center;
-            border-top: 5px solid var(--orange); margin-top: -20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center;
+            border: 1px solid #eee; margin-bottom: 30px;
         }
-        .loc-text { font-weight: bold; margin-bottom: 20px; color: #333; font-size: 1.1em; }
-        
-        .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .icon-btn { 
-            border-radius: 25px; padding: 10px 22px; color: white; border: none; 
-            font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: 0.3s; font-size: 0.85em;
-        }
-        .icon-btn:hover { transform: translateY(-2px); }
-
-        /* 4. DUAL COLOR HEADINGS (BLUE & ORANGE) */
-        .heading-box { 
-            display: inline-block; background: var(--dark-navy); color: white; 
-            padding: 10px 40px; border-radius: 50px; margin: 30px 0 15px;
-            font-weight: bold; border: 2px solid white; font-size: 0.9em;
-            position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .heading-box::after {
-            content: ""; position: absolute; right: 0; top: 0; width: 40%; height: 100%;
-            background: var(--orange); z-index: -1;
-        }
-        .heading-box span { position: relative; z-index: 1; }
-
-        /* 5. SERVICES GRID WITH ORANGE BORDER */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        .grid-item { 
-            background: white; padding: 15px; border-radius: 12px; font-weight: bold; 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15); color: var(--dark-navy);
-            border-bottom: 4px solid var(--orange); font-size: 0.9em;
+        .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+        .action-btn { 
+            border-radius: 25px; padding: 10px 20px; color: white; border: none; 
+            font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px;
         }
 
-        /* 6. RATE TABLE (EXACT AS IMAGE) */
-        .table-box { width: 100%; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: var(--dark-navy); color: white; padding: 15px; text-align: left; }
-        td { padding: 15px; border-bottom: 1px solid #eee; font-weight: bold; font-size: 0.9em; }
-        .price { color: #d32f2f; text-align: right; font-weight: 800; }
+        /* DUAL COLOR HEADINGS */
+        .dual-title {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--dark-blue) 60%, var(--orange) 40%);
+            color: white; padding: 10px 35px; border-radius: 50px;
+            margin: 30px 0 20px; font-weight: bold; border: 2px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-        /* 7. SILENT FORM & AI */
-        .silent-area { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3); margin-top: 30px; }
-        .silent-area input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 10px; border: none; outline: none; box-sizing: border-box; }
-        .save-btn { background: var(--orange); color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        /* GRID ITEMS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 15px; }
+        .grid-box { 
+            background: white; padding: 15px; border-radius: 10px; font-weight: bold; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--dark-blue);
+            border-bottom: 4px solid var(--orange); text-align: center;
+            border-left: 1px solid #eee; border-right: 1px solid #eee;
+        }
 
-        .ai-fab { position: fixed; bottom: 25px; right: 25px; background: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid var(--orange); z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-        
-        /* 8. ADMIN PANEL */
-        #admin-view { display: none; background: white; padding: 20px; border-radius: 15px; margin-top: 20px; border: 4px solid var(--dark-navy); }
+        /* RATE TABLE */
+        .table-container { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th { background: var(--dark-blue); color: white; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-weight: bold; }
+        .price-text { color: red; text-align: right; }
+
+        /* SILENT RECORD FORM */
+        .silent-input-box { 
+            background: var(--gray-bg); padding: 30px; border-radius: 20px; 
+            border: 1px solid #ddd; margin: 40px 0; text-align: center;
+        }
+        .silent-input-box input { width: 90%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 1em; }
+        .save-data-btn { background: var(--orange); color: white; width: 90%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        /* FOOTER - DARK BLUE */
+        footer { 
+            background-color: var(--dark-blue); color: white; 
+            padding: 50px 20px; text-align: center; border-top: 5px solid var(--orange);
+        }
+
+        /* ADMIN SYSTEM */
+        #admin-panel { display: none; background: #fff; padding: 20px; border: 3px solid var(--dark-blue); margin-top: 20px; border-radius: 15px; }
+        .ai-assist-fab { position: fixed; bottom: 25px; right: 25px; background: white; width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 100; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-img"></div>
-    <h1 class="brand-name">D.M <span>Cyber</span></h1>
-    <div class="tagline">"आपकी सेवा, हमारी पहचान"</div>
-    <div class="orange-label">वाराणसी का नंबर 1 जन सेवा केंद्र</div>
+    <div class="logo-space"></div>
+    <h1 class="dm-brand">D.M <span>Cyber</span></h1>
+    <p class="sub-text">"आपकी सेवा, हमारी पहचान"</p>
+    <p class="owner-name">संचालक: धीरज मौर्या</p>
+    <div class="orange-btn-tag">वाराणसी का नंबर 1 जन सेवा केंद्र</div>
 </header>
 
 <div class="container">
-    <div class="white-card">
-        <div class="loc-text">📍 मंडाव, रोहनिया, वाराणसी</div>
+    <div class="loc-card">
+        <div style="font-weight: bold; font-size: 1.1em; color: #d32f2f;">📍 मंडाव, रोहनिया, वाराणसी</div>
         <div class="btn-flex">
-            <button class="icon-btn" style="background:#001f3f;">📞 कॉल</button>
-            <button class="icon-btn" style="background:#25d366;">💬 व्हाट्सप्प</button>
-            <button class="icon-btn" style="background:#673ab7;">💳 पेमेंट</button>
-            <button class="icon-btn" style="background:#d32f2f;">📕 उधार</button>
-            <button class="icon-btn" style="background:#333;" onclick="openAdmin()">⚙️ एडमिन</button>
+            <button class="action-btn" style="background:#001f3f;">📞 कॉल</button>
+            <button class="action-btn" style="background:#25d366;">💬 व्हाट्सप्प</button>
+            <button class="action-btn" style="background:#673ab7;">💳 पेमेंट</button>
+            <button class="action-btn" style="background:#333;" onclick="openAdmin()">⚙️ एडमिन</button>
         </div>
     </div>
 
-    <div class="silent-area">
-        <h4 style="color:white; text-align:center; margin-top:0;">📋 फॉर्म अपडेट के लिए विवरण भरें</h4>
-        <input type="text" id="cust-name" placeholder="ग्राहक का नाम">
-        <input type="number" id="cust-mob" placeholder="मोबाइल नंबर">
-        <input type="text" id="cust-task" placeholder="काम (उदा: पैन कार्ड)">
-        <button class="save-btn" onclick="saveData()">डेटा सुरक्षित करें</button>
+    <div class="silent-input-box">
+        <h3 style="margin-top:0; color:var(--dark-blue);">📝 फॉर्म अपडेट के लिए यहाँ भरें</h3>
+        <input type="text" id="cust-n" placeholder="ग्राहक का नाम">
+        <input type="number" id="cust-p" placeholder="मोबाइल नंबर">
+        <input type="text" id="cust-w" placeholder="काम का नाम (उदा: पैन कार्ड)">
+        <button class="save-data-btn" onclick="silentRecord()">डाटा सुरक्षित करें</button>
     </div>
 
-    <center><div class="heading-box"><span>★ लोकप्रिय सेवाएँ</span></div></center>
+    <center><div class="dual-title">⭐ लोकप्रिय सेवाएँ</div></center>
     <div class="grid">
-        <div class="grid-item">आय प्रमाण पत्र</div>
-        <div class="grid-item">जाति प्रमाण पत्र</div>
-        <div class="grid-item">निवास प्रमाण पत्र</div>
-        <div class="grid-item">पैन कार्ड</div>
-        <div class="grid-item">आधार कार्ड</div>
+        <div class="grid-box">आय प्रमाण पत्र</div>
+        <div class="grid-box">जाति प्रमाण पत्र</div>
+        <div class="grid-box">निवास प्रमाण पत्र</div>
+        <div class="grid-box">पैन कार्ड नया</div>
+        <div class="grid-box">आधार कार्ड</div>
     </div>
 
-    <center><div class="heading-box"><span>📒 रेट लिस्ट</span></div></center>
-    <div class="table-box">
-        <table id="rate-list">
+    <center><div class="dual-title">📋 महत्वपूर्ण फॉर्म</div></center>
+    <div class="grid">
+        <div class="grid-box">यूपी पुलिस भर्ती</div>
+        <div class="grid-box">स्कॉलरशिप फॉर्म</div>
+        <div class="grid-box">रेलवे भर्ती</div>
+    </div>
+
+    <center><div class="dual-title">💰 रेट लिस्ट</div></center>
+    <div class="table-container">
+        <table id="price-db">
             <thead><tr><th>सेवा का नाम</th><th style="text-align:right">शुल्क (₹)</th></tr></thead>
             <tbody>
-                <tr><td>नया पैन कार्ड</td><td class="price">₹100</td></tr>
-                <tr><td>आय/जाति/निवास</td><td class="price">₹80</td></tr>
-                <tr><td>आधार प्रिंट</td><td class="price">₹50</td></tr>
+                <tr><td>नया पैन कार्ड</td><td class="price-text">₹100</td></tr>
+                <tr><td>आय/जाति/निवास</td><td class="price-text">₹80</td></tr>
+                <tr><td>आधार प्रिंट</td><td class="price-text">₹50</td></tr>
             </tbody>
         </table>
     </div>
 
-    <div id="admin-view">
-        <h3 style="color:var(--dark-navy); border-bottom:3px solid var(--orange);">📊 कस्टमर रिकॉर्ड्स</h3>
-        <table style="width:100%; font-size:0.85em; text-align:left;">
-            <thead><tr style="background:#eee;"><th>नाम</th><th>नंबर</th><th>काम</th><th>तारीख</th></tr></thead>
+    <div id="admin-panel">
+        <h3 style="border-bottom:2px solid var(--orange);">📊 कस्टमर डाटाबेस</h3>
+        <table style="width:100%; font-size:0.8em; text-align:left;">
+            <thead><tr style="background:#eee;"><th>नाम</th><th>मोबाइल</th><th>काम</th><th>तारीख</th></tr></thead>
             <tbody id="db-rows"></tbody>
         </table>
-        <button onclick="document.getElementById('admin-view').style.display='none'" style="margin-top:10px; width:100%; padding:8px; background:#888; color:white; border:none; border-radius:5px;">Close</button>
+        <button onclick="document.getElementById('admin-panel').style.display='none'" style="margin-top:15px; width:100%; padding:8px; background:#888; color:white; border:none; border-radius:5px;">पैनल बंद करें</button>
     </div>
 </div>
 
-<div class="ai-fab" onclick="alert('AI Assistant: Main page se latest info scan kar raha hoon! Rates hamesha update rahenge.')">🤖</div>
+<div class="ai-assist-fab" onclick="alert('AI Assistant: Page Data Synced!')">🤖</div>
 
-<footer style="text-align:center; color:white; padding:40px; font-size:0.8em; opacity:0.8;">
-    <div style="font-weight:900; font-size:1.4em;">D.M Cyber Varanasi</div>
-    <div>+91 8303585793 | धीरज मौर्या</div>
-    <div style="margin-top:10px;">© 2025 | Security: SSL & AI Verified</div>
+<footer>
+    <div style="font-weight: 900; font-size: 1.6em; margin-bottom: 10px;">D.M Cyber Varanasi</div>
+    <div style="margin-bottom: 10px;">मंडाव, रोहनिया, वाराणसी | +91 8303585793</div>
+    <div style="opacity: 0.6; font-size: 0.8em;">© 2025 | Security: SSL & AI Verified Local Storage</div>
 </footer>
 
 <script>
-    const DB_NAME = 'dm_cyber_official_v1';
+    const STORAGE_KEY = 'dm_cyber_vfinal_db';
 
-    // 1. Silent Data Save
-    function saveData() {
-        let n = document.getElementById('cust-name').value;
-        let p = document.getElementById('cust-mob').value;
-        let t = document.getElementById('cust-task').value;
+    function silentRecord() {
+        let n = document.getElementById('cust-n').value;
+        let p = document.getElementById('cust-p').value;
+        let w = document.getElementById('cust-w').value;
         let d = new Date().toLocaleDateString();
 
         if(!n || !p) { alert("विवरण भरें!"); return; }
 
-        let records = JSON.parse(localStorage.getItem(DB_NAME) || '[]');
-        records.push({n, p, t, d});
-        localStorage.setItem(DB_NAME, JSON.stringify(records));
+        let records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        records.push({n, p, w, d});
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
 
-        alert("जानकारी अपडेट कर दी गई है।");
-        document.getElementById('cust-name').value = '';
-        document.getElementById('cust-mob').value = '';
-        document.getElementById('cust-task').value = '';
+        alert("जानकारी सुरक्षित कर दी गई है।");
+        document.getElementById('cust-n').value=''; document.getElementById('cust-p').value=''; document.getElementById('cust-w').value='';
     }
 
-    // 2. Admin Panel (Pin: 1234)
     function openAdmin() {
         let pin = prompt("Admin Pin:");
         if(pin === "1234") {
-            document.getElementById('admin-view').style.display = 'block';
-            let data = JSON.parse(localStorage.getItem(DB_NAME) || '[]');
-            let rows = data.map(r => `<tr><td>${r.n}</td><td>${r.p}</td><td>${r.t}</td><td>${r.d}</td></tr>`).join('');
-            document.getElementById('db-rows').innerHTML = rows || "<tr><td colspan='4' align='center'>No Data</td></tr>";
-        } else { alert("Wrong Pin!"); }
+            document.getElementById('admin-panel').style.display = 'block';
+            let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            let rows = data.map(r => `<tr><td>${r.n}</td><td>${r.p}</td><td>${r.w}</td><td>${r.d}</td></tr>`).join('');
+            document.getElementById('db-rows').innerHTML = rows || "<tr><td colspan='4' align='center'>कोई डाटा नहीं है</td></tr>";
+        } else { alert("गलत पिन!"); }
     }
 </script>
 </body>
