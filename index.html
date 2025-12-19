@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber - Varanasi No.1</title>
+    <title>D.M Cyber - वाराणसी का नंबर 1 केंद्र</title>
     
     <style>
         :root { 
             --primary: #001f3f; 
             --accent: #ff851b; 
-            --bg: #f4f7f6; 
+            --bg: #f4f7f6; /* पेज का बैकग्राउंड यहाँ फिक्स है */
             --success: #28a745; 
-            --form: #0074d9; 
             --danger: #d32f2f;
             --gradient: linear-gradient(135deg, #001f3f, #0074d9);
         }
         
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg) !important; color: #333; }
         .editable-mode { border: 2px dashed var(--accent) !important; background: #fff3e0 !important; outline: none !important; }
 
         header { 
@@ -33,7 +32,7 @@
         .tagline { font-size: 1.1em; font-style: italic; color: #e0e0e0; margin: 5px 0; }
         .best-label { background: var(--accent); color: white; padding: 4px 15px; border-radius: 50px; font-size: 0.85em; font-weight: bold; display: inline-block; margin-top: 10px; }
 
-        .container { max-width: 1000px; margin: -30px auto 40px; padding: 15px; position: relative; }
+        .container { max-width: 1000px; margin: -30px auto 40px; padding: 15px; position: relative; background-color: transparent; }
         
         .news-box { background: white; padding: 12px; border-radius: 10px; border-left: 6px solid var(--danger); display: flex; align-items: center; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .news-label { background: var(--danger); color: white; padding: 4px 10px; font-weight: bold; font-size: 0.8em; margin-right: 12px; border-radius: 5px; }
@@ -46,6 +45,7 @@
         .btn-pay { background: #673ab7; } 
         .btn-admin { background: #333; }
 
+        /* सभी टाइटल का कलर अब सेम है */
         .section-title { background: var(--primary); color: white; padding: 10px 25px; border-radius: 8px; display: inline-block; margin: 30px 0 15px; font-weight: bold; box-shadow: 4px 4px 0 var(--accent); }
 
         .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
@@ -56,7 +56,9 @@
         }
 
         .card { background: white; border-top: 4px solid var(--accent); padding: 18px; border-radius: 12px; text-align: center; font-weight: bold; box-shadow: 0 3px 8px rgba(0,0,0,0.08); position: relative; }
-        .form-card { background: #e3f2fd; border-left: 6px solid var(--form); padding: 20px; border-radius: 10px; font-weight: bold; position: relative; }
+        
+        /* महत्वपूर्ण फॉर्म का कार्ड स्टाइल */
+        .form-card { background: #ffffff; border-top: 4px solid var(--primary); padding: 20px; border-radius: 10px; font-weight: bold; position: relative; text-align: center; box-shadow: 0 3px 8px rgba(0,0,0,0.08); }
 
         /* Rate Table */
         .table-container { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 10px; }
@@ -68,7 +70,7 @@
         footer { background: var(--gradient); color: white; text-align: center; padding: 40px 15px 20px; margin-top: 50px; border-top: 5px solid var(--accent); }
 
         /* Admin Controls */
-        .add-btn { background: var(--success); color: white; border: none; padding: 10px 25px; border-radius: 50px; margin-top: 15px; cursor: pointer; display: none; font-weight: bold; }
+        .add-btn { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 50px; margin-top: 15px; cursor: pointer; display: none; font-weight: bold; border: 2px solid var(--accent); }
         .del-btn { position: absolute; top: -10px; right: -10px; background: var(--danger); color: white; border-radius: 50%; width: 25px; height: 25px; display: none; cursor: pointer; border: 2px solid white; justify-content: center; align-items: center; z-index: 5; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; }
@@ -93,14 +95,14 @@
 <div class="container">
     <div class="news-box">
         <div class="news-label">नया अपडेट</div>
-        <marquee id="news-text" class="edit">D.M Cyber (Varanasi) में आपका स्वागत है।</marquee>
+        <marquee id="news-text" class="edit">D.M Cyber (Varanasi) में आपका स्वागत है। सभी फॉर्म यहाँ भरे जाते हैं।</marquee>
     </div>
 
     <div class="main-card">
         <p>📍 <span id="addr" class="edit">मंडाव, रोहनिया, वाराणसी</span></p>
         <div class="btn-group">
-            <a href="tel:8303585793" class="btn btn-call">📞 कॉल</a>
-            <a href="https://wa.me/918303585793" class="btn btn-wa">💬 व्हाट्सप्प</a>
+            <a id="call-link" href="tel:8303585793" class="btn btn-call">📞 कॉल</a>
+            <a id="wa-link" href="https://wa.me/918303585793" class="btn btn-wa">💬 व्हाट्सप्प</a>
             <button onclick="togglePay()" class="btn btn-pay">💳 पेमेंट</button>
             <button id="main-admin-btn" onclick="askPin()" class="btn btn-admin">⚙️ एडमिन</button>
         </div>
@@ -116,29 +118,31 @@
     </div>
     <center><button class="add-btn" onclick="addBox('vip-area', 'card')">+ सेवा जोड़ें</button></center>
 
+    <center><div class="section-title">📝 महत्वपूर्ण फॉर्म</div></center>
+    <div class="grid-3" id="form-area">
+        <div class="form-card">UP पुलिस भर्ती</div>
+        <div class="form-card">रेलवे भर्ती</div>
+        <div class="form-card">स्कॉलरशिप</div>
+    </div>
+    <center><button class="add-btn" onclick="addBox('form-area', 'form-card')">+ फॉर्म जोड़ें</button></center>
+
     <center><div class="section-title">💰 रेट लिस्ट</div></center>
     <div class="table-container">
         <table>
-            <thead><tr><th>सेवा</th><th style="text-align:right">शुल्क</th></tr></thead>
+            <thead><tr><th>सेवा का नाम</th><th style="text-align:right">शुल्क (₹)</th></tr></thead>
             <tbody id="rate-body">
                 <tr><td>नया पैन कार्ड</td><td class="price">₹100</td></tr>
                 <tr><td>आय/जाति/निवास</td><td class="price">₹80</td></tr>
             </tbody>
         </table>
     </div>
-    <center><button class="add-btn" onclick="addRateRow()">+ रेट जोड़ें</button></center>
-
-    <center><div class="section-title" style="background:var(--form);">📝 महत्वपूर्ण फॉर्म</div></center>
-    <div class="grid-3" id="form-area">
-        <div class="form-card">UP पुलिस भर्ती</div>
-        <div class="form-card">रेलवे भर्ती</div>
-    </div>
-    <center><button class="add-btn" style="background:var(--form);" onclick="addBox('form-area', 'form-card')">+ फॉर्म जोड़ें</button></center>
+    <center><button class="add-btn" onclick="addRateRow()">+ नया रेट जोड़ें</button></center>
 </div>
 
 <footer>
     <div style="font-size: 1.5em; font-weight: bold;">D.M Cyber Varanasi</div>
-    <div>मंडाव, रोहनिया, वाराणसी | © 2025 सर्वाधिकार सुरक्षित</div>
+    <div class="tagline">आपका भरोसेमंद जन सेवा केन्द्र</div>
+    <div style="margin-top:10px;">मंडाव, रोहनिया, वाराणसी | © 2025 सर्वाधिकार सुरक्षित</div>
     <div style="margin-top:10px; font-size:0.8em; opacity:0.6;">Security: SSL & Anti-Theft Enabled</div>
 </footer>
 
@@ -156,12 +160,13 @@
 </div>
 
 <script>
-    const DB_KEY = 'dm_cyber_v4_final';
+    const DB_KEY = 'dm_cyber_v5_final_fix';
     let isAdmin = false;
 
     function askPin() {
         if(isAdmin) { saveData(); return; }
         document.getElementById('pin-modal').style.display = 'flex';
+        document.getElementById('sys-pin').value = "";
         document.getElementById('sys-pin').focus();
     }
 
@@ -199,7 +204,7 @@
             rates: document.getElementById('rate-body').innerHTML
         };
         localStorage.setItem(DB_KEY, JSON.stringify(data));
-        alert("डेटा सुरक्षित हो गया!");
+        alert("बदलाव सुरक्षित हो गए!");
         location.reload();
     }
 
@@ -225,8 +230,8 @@
         let upi = JSON.parse(localStorage.getItem(DB_KEY))?.upi || "8303585793@okicici";
         let qr = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=${upi}&pn=DMCyber`;
         document.getElementById('pay-content').innerHTML = `
-            <h3>💳 पेमेंट</h3>
-            <img src="${qr}" style="width:160px; border:5px solid white; border-radius:10px;">
+            <h3>💳 पेमेंट स्कैन करें</h3>
+            <img src="${qr}" style="width:160px; border:5px solid white; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
             <p>UPI ID: <b id="upi-id">${upi}</b></p>
             <button onclick="closeModal('pay-modal')" style="background:var(--danger); color:white; border:none; padding:8px 20px; border-radius:5px;">बंद करें</button>
         `;
@@ -236,7 +241,7 @@
 
     function changeImg() {
         if(isAdmin) {
-            let u = prompt("Photo URL:");
+            let u = prompt("फोटो का URL लिंक डालें:");
             if(u) document.getElementById('logo').src = u;
         }
     }
