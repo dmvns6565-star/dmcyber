@@ -26,33 +26,32 @@
         /* ACTION BOX */
         .action-box { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; margin-top: -40px; border: 1px solid #eee; position: relative; z-index: 10; }
         .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-        .btn { border-radius: 50px; padding: 12px 22px; color: white; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; }
+        .btn { border-radius: 50px; padding: 12px 22px; color: white; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        /* SECTION TAGS */
-        .section-tag { background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%); color: white; padding: 10px 35px; border-radius: 50px; display: inline-block; margin: 35px 0 20px; font-weight: bold; border: 2px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* CUSTOMER FORM */
+        .form-card { background: #f9f9f9; padding: 30px; border-radius: 20px; border: 1px solid #e0e0e0; margin: 40px 0; text-align: center; }
+        .form-card input, .form-card select, .form-card textarea { width: 100%; max-width: 600px; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #ccc; font-size: 1em; box-sizing: border-box; font-family: inherit; }
+        .submit-btn { background: var(--orange); color: white; width: 100%; max-width: 600px; padding: 16px; border: none; border-radius: 10px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
 
-        /* GRIDS FOR MASTER CONTENT */
+        /* GRIDS */
+        .section-tag { background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%); color: white; padding: 10px 35px; border-radius: 50px; display: inline-block; margin: 35px 0 20px; font-weight: bold; border: 2px solid white; }
         .grid-services { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
         .grid-forms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .box-item { background: white; padding: 18px; border-radius: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.06); color: var(--dark-blue); border-bottom: 4px solid var(--orange); text-align: center; }
+        .box { background: white; padding: 18px; border-radius: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.06); color: var(--dark-blue); border-bottom: 4px solid var(--orange); text-align: center; }
 
         /* ADMIN PANEL */
         #admin-panel { display: none; background: white; padding: 25px; border-radius: 20px; border: 5px solid var(--dark-blue); margin-top: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
-        .admin-sec { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
-        .manage-list { margin-top: 10px; max-height: 200px; overflow-y: auto; background: white; border: 1px solid #ccc; padding: 5px; border-radius: 8px; }
-        .manage-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; align-items: center; }
-        .del-btn { background: #ff4d4d; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+        .manage-list { margin-top: 10px; overflow-x: auto; background: white; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { background: var(--dark-blue); color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.9em; }
 
-        /* MOBILE FIX */
         @media (max-width: 768px) {
             .grid-services { grid-template-columns: repeat(2, 1fr); }
             .grid-forms { grid-template-columns: repeat(1, 1fr); }
         }
 
         #qr-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; }
-        .qr-card { background:white; padding:25px; border-radius:20px; text-align:center; }
-        footer { background-color: var(--dark-blue); color: white; padding: 50px 20px; text-align: center; border-top: 8px solid var(--orange); margin-top: 50px; }
         .ai-btn { position: fixed; bottom: 25px; right: 25px; background: white; width: 65px; height: 65px; border-radius: 50%; border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
@@ -81,6 +80,19 @@
         </div>
     </div>
 
+    <div class="form-card">
+        <h2 style="color:var(--dark-blue);">📝 फॉर्म अपडेट के लिए यहाँ भरें</h2>
+        <input type="text" id="c-name" placeholder="ग्राहक का नाम">
+        <input type="number" id="c-phone" placeholder="मोबाइल नंबर">
+        <input type="text" id="c-work" placeholder="काम का नाम (उदा: पैन कार्ड)">
+        <textarea id="c-quest" placeholder="आपका सवाल (यदि कोई हो तो यहाँ लिखें)" rows="2"></textarea>
+        <select id="c-mode">
+            <option value="General">सामान्य एंट्री</option>
+            <option value="Udhar">📕 उधार खाता</option>
+        </select>
+        <button class="submit-btn" onclick="saveCustomerEntry()">डाटा सुरक्षित करें</button>
+    </div>
+
     <center><div class="section-tag">⭐ लोकप्रिय सेवाएँ</div></center>
     <div class="grid-services" id="show-services"></div>
 
@@ -88,162 +100,109 @@
     <div class="grid-forms" id="show-forms"></div>
 
     <center><div class="section-tag">💰 रेट लिस्ट</div></center>
-    <table style="width:100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-        <thead><tr style="background:var(--dark-blue); color:white;">
-            <th style="padding:15px; text-align:left;">सेवा</th>
-            <th style="padding:15px; text-align:right;">शुल्क</th>
-        </tr></thead>
+    <table style="width:100%; background: white; border-radius: 10px; overflow: hidden;">
         <tbody id="show-rates"></tbody>
     </table>
 
     <div id="admin-panel">
-        <h2 style="text-align:center; color:var(--dark-blue);">🛠️ मास्टर कंट्रोल पैनल</h2>
-        
-        <div class="admin-sec">
-            <h4>1. दुकान की जानकारी</h4>
-            <input type="text" id="in-news" placeholder="न्यूज पट्टी संदेश">
-            <input type="text" id="in-title" placeholder="दुकान का नाम (HTML allowed)">
-            <input type="text" id="in-owner" placeholder="संचालक का नाम">
-            <input type="text" id="in-loc" placeholder="लोकेशन">
-            <input type="text" id="in-ai-msg" placeholder="AI का मुख्य संदेश (Yojna Update)">
+        <h2 style="text-align:center;">📊 मास्टर कंट्रोल पैनल</h2>
+        <div class="manage-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>नाम</th>
+                        <th>मोबाइल</th>
+                        <th>काम</th>
+                        <th>सवाल</th>
+                        <th>तारीख</th>
+                        <th>मिटाएं</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-data-rows"></tbody>
+            </table>
         </div>
-
-        <div class="admin-sec">
-            <h4>2. सेवा / फॉर्म मैनेजमेंट</h4>
-            <input type="text" id="in-item-name" placeholder="नाम लिखें">
-            <select id="in-item-type">
-                <option value="service">लोकप्रिय सेवा (5 per line)</option>
-                <option value="form">महत्वपूर्ण फॉर्म (3 per line)</option>
-            </select>
-            <button onclick="addMasterItem()" style="width:100%; padding:12px; background:green; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">+ लिस्ट में जोड़ें</button>
-            <div class="manage-list" id="list-items"></div>
-        </div>
-
-        <div class="admin-sec">
-            <h4>3. रेट लिस्ट मैनेजमेंट</h4>
-            <input type="text" id="in-rate-name" placeholder="सेवा का नाम">
-            <input type="text" id="in-rate-price" placeholder="शुल्क (उदा: ₹100)">
-            <button onclick="addMasterRate()" style="width:100%; padding:12px; background:var(--dark-blue); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">+ रेट जोड़ें</button>
-            <div class="manage-list" id="list-rates"></div>
-        </div>
-
-        <button onclick="saveAllMasterData()" style="width:100%; padding:20px; background:orange; color:white; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1.1em;">✅ सभी बदलाव सुरक्षित (SAVE) करें</button>
+        <button onclick="location.reload()" style="width:100%; padding:15px; margin-top:20px; background:#666; color:white; border:none; border-radius:10px; cursor:pointer;">पैनल बंद करें</button>
     </div>
 </div>
 
 <div class="ai-btn" onclick="askAI()">🤖</div>
-
-<div id="qr-modal" onclick="toggleQR()">
-    <div class="qr-card">
-        <h3>D.M Cyber Payments</h3>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8303585793@okbizaxis&pn=D.M%20Cyber&cu=INR">
-        <p><b>8303585793@okbizaxis</b></p>
-    </div>
-</div>
-
-<footer>
-    <h2>D.M Cyber Varanasi</h2>
-    <p>मंडाव, रोहनिया, वाराणसी | +91 8303585793</p>
-    <p>© 2025 | सुरक्षित डिजिटल सेवा केंद्र</p>
-</footer>
+<div id="qr-modal" onclick="toggleQR()"><div style="background:white; padding:20px; border-radius:20px; text-align:center;"><h3>D.M Cyber</h3><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8303585793@okbizaxis"></div></div>
 
 <script>
-    const MASTER_KEY = 'dm_cyber_vfinal_config';
-    let config = JSON.parse(localStorage.getItem(MASTER_KEY)) || {
-        news: "D.M Cyber वाराणसी में आपका स्वागत है। सभी फॉर्म यहाँ भरे जाते हैं।",
+    const CONFIG_KEY = 'dm_cyber_vfinal_config';
+    const DATA_KEY = 'dm_cyber_customer_data';
+
+    let config = JSON.parse(localStorage.getItem(CONFIG_KEY)) || {
+        news: "D.M Cyber वाराणसी में आपका स्वागत है।",
         title: "D.M <span>Cyber</span>",
         owner: "संचालक: धीरज मौर्या",
         loc: "📍 मंडाव, रोहनिया, वाराणसी",
-        aiMsg: "वर्तमान में यूपी पुलिस और रेलवे के फॉर्म भरे जा रहे हैं।",
-        services: ["आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण", "पैन कार्ड", "आधार कार्ड"],
+        services: ["आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण", "पैन कार्ड", "आधार"],
         forms: ["यूपी पुलिस", "रेलवे भर्ती", "स्कॉलरशिप"],
-        rates: [{n: "नया पैन कार्ड", p: "₹100"}, {n: "आय/जाति/निवास", p: "₹80"}]
+        rates: [{n:"पैन कार्ड", p:"₹100"}]
     };
 
-    function renderUI() {
-        // Front End Display
+    function render() {
         document.getElementById('disp-news').innerText = config.news;
         document.getElementById('disp-title').innerHTML = config.title;
         document.getElementById('disp-owner').innerText = config.owner;
         document.getElementById('disp-loc').innerText = config.loc;
+        document.getElementById('show-services').innerHTML = config.services.map(s => `<div class="box">${s}</div>`).join('');
+        document.getElementById('show-forms').innerHTML = config.forms.map(f => `<div class="box">${f}</div>`).join('');
+        document.getElementById('show-rates').innerHTML = config.rates.map(r => `<tr><td style="padding:10px; border-bottom:1px solid #eee;">${r.n}</td><td align="right" style="color:red; font-weight:bold;">${r.p}</td></tr>`).join('');
+    }
 
-        document.getElementById('show-services').innerHTML = config.services.map(s => `<div class="box-item">${s}</div>`).join('');
-        document.getElementById('show-forms').innerHTML = config.forms.map(f => `<div class="box-item">${f}</div>`).join('');
-        document.getElementById('show-rates').innerHTML = config.rates.map(r => `<tr><td style="padding:12px; border-bottom:1px solid #eee;">${r.n}</td><td align="right" style="padding:12px; border-bottom:1px solid #eee; color:red; font-weight:bold;">${r.p}</td></tr>`).join('');
+    function saveCustomerEntry() {
+        let n = document.getElementById('c-name').value;
+        let p = document.getElementById('c-phone').value;
+        let w = document.getElementById('c-work').value;
+        let q = document.getElementById('c-quest').value || "---";
+        let m = document.getElementById('c-mode').value;
+        let d = new Date().toLocaleDateString('hi-IN');
 
-        // Admin Management Lists
-        document.getElementById('list-items').innerHTML = 
-            config.services.map((s, i) => `<div class="manage-row"><span>(सेवा) ${s}</span><button class="del-btn" onclick="delMaster('services',${i})">मिटाएं</button></div>`).join('') +
-            config.forms.map((f, i) => `<div class="manage-row"><span>(फॉर्म) ${f}</span><button class="del-btn" onclick="delMaster('forms',${i})">मिटाएं</button></div>`).join('');
+        if(!n || !p) return alert("नाम और नंबर भरें!");
+
+        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
+        data.push({ id: Date.now(), n, p, w, q, m, d });
+        localStorage.setItem(DATA_KEY, JSON.stringify(data));
         
-        document.getElementById('list-rates').innerHTML = config.rates.map((r, i) => `<div class="manage-row"><span>${r.n} (${r.p})</span><button class="del-btn" onclick="delMaster('rates',${i})">मिटाएं</button></div>`).join('');
+        alert("डेटा सुरक्षित हो गया!");
+        document.getElementById('c-name').value = ''; document.getElementById('c-phone').value = '';
+        document.getElementById('c-work').value = ''; document.getElementById('c-quest').value = '';
     }
 
     function loginAdmin() {
-        if(prompt("सिक्योरिटी पिन डालें:") === "1234") {
+        if(prompt("पिन:") === "1234") {
             document.getElementById('admin-panel').style.display = 'block';
-            document.getElementById('in-news').value = config.news;
-            document.getElementById('in-title').value = config.title;
-            document.getElementById('in-owner').value = config.owner;
-            document.getElementById('in-loc').value = config.loc;
-            document.getElementById('in-ai-msg').value = config.aiMsg;
+            renderAdminData();
             window.scrollTo(0, document.body.scrollHeight);
-        } else { alert("गलत पिन!"); }
-    }
-
-    function addMasterItem() {
-        let n = document.getElementById('in-item-name').value;
-        let t = document.getElementById('in-item-type').value;
-        if(!n) return;
-        if(t === 'service') config.services.push(n); else config.forms.push(n);
-        document.getElementById('in-item-name').value = ''; renderUI();
-    }
-
-    function addMasterRate() {
-        let n = document.getElementById('in-rate-name').value;
-        let p = document.getElementById('in-rate-price').value;
-        if(!n || !p) return;
-        config.rates.push({n, p});
-        document.getElementById('in-rate-name').value = '';
-        document.getElementById('in-rate-price').value = ''; renderUI();
-    }
-
-    function delMaster(key, i) {
-        if(confirm("क्या आप इसे हटाना चाहते हैं?")) { config[key].splice(i, 1); renderUI(); }
-    }
-
-    function saveAllMasterData() {
-        config.news = document.getElementById('in-news').value;
-        config.title = document.getElementById('in-title').value;
-        config.owner = document.getElementById('in-owner').value;
-        config.loc = document.getElementById('in-loc').value;
-        config.aiMsg = document.getElementById('in-ai-msg').value;
-        localStorage.setItem(MASTER_KEY, JSON.stringify(config));
-        alert("सभी डाटा सुरक्षित कर दिया गया!");
-        location.reload();
-    }
-
-    function askAI() {
-        let q = prompt("नमस्ते! मैं AI असिस्टेंट हूँ। क्या जानना चाहते हैं? (लिखें: rate, Form, payment, या yojna)");
-        if(!q) return;
-        q = q.toLowerCase();
-        if(q.includes("rate") || q.includes("paisa") || q.includes("fee")) {
-            alert("💰 रेट लिस्ट:\n" + config.rates.map(r => `• ${r.n}: ${r.p}`).join('\n'));
-        } else if(q.includes("pay") || q.includes("barcode") || q.includes("pament")) {
-            toggleQR();
-        } else if(q.includes("yojna") || q.includes("form") || q.includes("kaam")) {
-            alert("📝 अपडेट:\n" + config.aiMsg);
-        } else {
-            alert("क्षमा करें, आप 'rate', 'payment' या 'yojna' लिखकर पूछें।");
         }
     }
 
-    function toggleQR() {
-        let m = document.getElementById('qr-modal');
-        m.style.display = (m.style.display === 'flex' ? 'none' : 'flex');
+    function renderAdminData() {
+        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
+        let rows = data.map((item, i) => `
+            <tr style="color: ${item.m === 'Udhar' ? 'red' : 'black'}">
+                <td>${item.n}</td><td>${item.p}</td><td>${item.w}</td>
+                <td style="font-style:italic; color:#555;">${item.q}</td><td>${item.d}</td>
+                <td><button onclick="deleteData(${item.id})" style="background:red; color:white; border:none; padding:5px; cursor:pointer;">X</button></td>
+            </tr>
+        `).reverse().join('');
+        document.getElementById('admin-data-rows').innerHTML = rows || "<tr><td colspan='6' align='center'>कोई डेटा नहीं है</td></tr>";
     }
 
-    renderUI();
+    function deleteData(id) {
+        if(confirm("मिटाएं?")) {
+            let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
+            localStorage.setItem(DATA_KEY, JSON.stringify(data.filter(x => x.id !== id)));
+            renderAdminData();
+        }
+    }
+
+    function toggleQR() { let m=document.getElementById('qr-modal'); m.style.display=(m.style.display==='flex'?'none':'flex'); }
+    function askAI() { alert("नमस्ते! दरें जानने के लिए 'rate' और पेमेंट के लिए 'payment' बटन दबाएं।"); }
+
+    render();
 </script>
 </body>
 </html>
