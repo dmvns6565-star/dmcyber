@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi - Official</title>
+    <title>D.M Cyber Varanasi - Master Setup</title>
     <style>
         :root {
             --orange: #ff7b00; --blue: #004a99; --dark: #001c3d;
@@ -13,251 +13,231 @@
             --bg: #0f172a; --txt: #ffffff; --card: #1e293b; --blue: #3b82f6;
         }
 
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: var(--txt); transition: 0.3s; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: var(--txt); transition: 0.3s; }
 
         /* HEADER */
         header { 
             background: linear-gradient(180deg, var(--blue), var(--dark)); 
-            color: white; text-align: center; padding: 50px 10px 90px; position: relative;
+            color: white; text-align: center; padding: 50px 10px 100px; position: relative;
             border-bottom: 8px solid var(--orange);
         }
         .logo-circle { 
-            width: 100px; height: 100px; background: white; border-radius: 50%; 
+            width: 110px; height: 110px; background: white; border-radius: 50%; 
             margin: 0 auto 15px; border: 4px solid var(--orange); display: flex; 
             align-items: center; justify-content: center; overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            box-shadow: 0 0 25px rgba(0,0,0,0.3);
         }
 
-        /* LIVE NEWS BAR - FRONT & CENTER */
+        /* LIVE NEWS BAR */
         .news-marquee { 
             background: var(--orange); color: white; padding: 12px 0; 
             font-weight: bold; position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-size: 1.1em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* ACTION BOX */
-        .action-wrapper { max-width: 900px; margin: -60px auto 20px; padding: 0 15px; position: relative; z-index: 100; }
-        .action-box { 
-            background: var(--card); border-radius: 20px; padding: 25px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-align: center; 
-            border: 2px solid var(--blue);
+        /* MAIN CONTAINER */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px 100px; }
+
+        /* ENTRY FORM BOX */
+        .form-card { 
+            background: var(--card); border-radius: 20px; padding: 30px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-top: -60px; 
+            position: relative; z-index: 100; border: 2px solid var(--blue);
         }
-        .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .btn { padding: 12px 18px; border-radius: 30px; color: white; text-decoration: none; font-size: 14px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; }
-        .btn:hover { transform: scale(1.05); }
-
-        /* GRIDS - AUTO ADJUST */
-        .container { max-width: 1150px; margin: 0 auto; padding: 20px 15px 100px; }
-        .sec-tag { background: var(--dark); color: var(--orange); padding: 10px 30px; border-radius: 50px; display: inline-block; margin: 40px 0 20px; font-weight: bold; border: 2px solid var(--orange); text-transform: uppercase; }
         
-        /* 5 per row for Services */
-        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
-        /* 3 per row for Forms */
-        .grid-forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        
-        .box-card { background: var(--card); padding: 25px 15px; border-radius: 15px; text-align: center; font-weight: bold; border-bottom: 5px solid var(--blue); box-shadow: 0 5px 15px rgba(0,0,0,0.05); color: var(--blue); transition: 0.3s; }
-        .box-card:hover { border-bottom-color: var(--orange); background: var(--blue); color: white; }
+        /* GRID SETTINGS */
+        .sec-tag { background: var(--dark); color: var(--orange); padding: 12px 35px; border-radius: 50px; display: inline-block; margin: 40px 0 20px; font-weight: 900; border: 2px solid var(--orange); text-transform: uppercase; }
+        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
+        .grid-forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .box-card { background: var(--card); padding: 25px 15px; border-radius: 15px; text-align: center; font-weight: bold; border-bottom: 5px solid var(--blue); box-shadow: 0 5px 15px rgba(0,0,0,0.05); color: var(--blue); transition: 0.3s; cursor: default; }
 
-        /* PANTROL PENAL (ADMIN) */
-        #admin-panel { display: none; background: var(--card); padding: 25px; border: 5px solid var(--orange); border-radius: 25px; margin-top: 30px; }
-        .admin-sec { background: rgba(0,0,0,0.03); padding: 15px; border-radius: 15px; margin-bottom: 20px; border-left: 6px solid var(--blue); }
-        .manage-list { max-height: 200px; overflow-y: auto; background: white; padding: 10px; border-radius: 10px; color: #333; border: 1px solid #ddd; margin-top: 10px; }
-        .list-item { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; align-items: center; }
-        
-        input, select, textarea { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #ccc; box-sizing: border-box; background: var(--card); color: var(--txt); }
+        /* BUTTONS */
+        .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
+        .btn { padding: 12px 20px; border-radius: 30px; color: white; text-decoration: none; font-size: 14px; font-weight: bold; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .submit-btn { background: linear-gradient(to right, var(--orange), #ff5500); color: white; width: 100%; padding: 18px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1em; margin-top: 10px; transition: 0.3s; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,123,0,0.4); }
 
-        /* AI & QR */
-        .ai-btn { position: fixed; bottom: 25px; right: 25px; background: var(--orange); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; cursor: pointer; z-index: 2000; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 3px solid white; }
-        #ai-box { display: none; position: fixed; bottom: 100px; right: 25px; width: 320px; height: 450px; background: var(--card); border: 2px solid var(--blue); border-radius: 20px; flex-direction: column; overflow: hidden; z-index: 2000; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        /* INPUT STYLES */
+        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ccc; box-sizing: border-box; background: var(--card); color: var(--txt); font-size: 16px; }
 
-        @media (max-width: 768px) {
-            .grid-services { grid-template-columns: repeat(2, 1fr); }
-            .grid-forms { grid-template-columns: 1fr; }
-        }
+        /* ADMIN PANEL */
+        #admin-panel { display: none; background: var(--card); padding: 30px; border: 6px double var(--orange); border-radius: 25px; margin-top: 30px; }
+        .admin-sec { background: rgba(0,0,0,0.03); padding: 20px; border-radius: 15px; margin-bottom: 20px; border-left: 6px solid var(--blue); }
+        .manage-list { max-height: 250px; overflow-y: auto; background: white; padding: 10px; border-radius: 10px; color: #333; border: 1px solid #ddd; }
+
+        /* MODALS & AI */
+        .ai-btn { position: fixed; bottom: 25px; right: 25px; background: var(--orange); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; cursor: pointer; z-index: 2000; border: 3px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        #qr-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; }
     </style>
 </head>
 <body data-theme="light">
 
 <header>
-    <button onclick="toggleTheme()" style="position:absolute; top:20px; right:20px; background:var(--orange); border:none; color:white; padding:10px; border-radius:50%; cursor:pointer; font-size:20px;">🌓</button>
+    <button onclick="toggleTheme()" style="position:absolute; top:20px; right:20px; background:var(--orange); border:none; color:white; padding:10px; border-radius:50%; cursor:pointer;">🌓</button>
     <div class="logo-circle"><img id="d-logo" src="" style="width:85%;"></div>
-    <h1 style="margin:0; font-size: 2.2em;">D.M <span style="color:var(--orange);">CYBER</span> VARANASI</h1>
-    <p style="margin:5px 0; opacity: 0.9;">Digital Services & Online Solutions</p>
+    <h1 style="margin:0; font-size: 2.3em;">D.M <span style="color:var(--orange);">CYBER</span> VARANASI</h1>
+    <p style="margin:8px 0; opacity: 0.9; font-weight: 500;">Best Digital Center for Online Forms, Pan Card, and CSC Services.</p>
 </header>
 
 <div class="news-marquee">
-    <marquee id="d-news" scrollamount="7"></marquee>
-</div>
-
-<div class="action-wrapper">
-    <div class="action-box">
-        <div class="btn-flex">
-            <a id="d-call" class="btn" style="background:var(--dark);">📞 Call Now</a>
-            <a id="d-wa" class="btn" style="background:#25d366;">💬 WhatsApp</a>
-            <button class="btn" style="background:#6a1b9a;" onclick="toggleQR()">💳 Scan & Pay</button>
-            <button class="btn" style="background:#444;" onclick="openAdmin()">⚙️ Panel</button>
-        </div>
-    </div>
+    <marquee id="d-news" scrollamount="6">D.M Cyber Varanasi mein aapka swagat hai...</marquee>
 </div>
 
 <div class="container">
-    <div class="admin-sec" style="background: var(--card); border: 2px solid var(--blue); padding: 25px;">
-        <h3 style="text-align:center; color:var(--blue); margin-top:0;">📝 Online Work Order</h3>
-        <input type="text" id="c-name" placeholder="Grahak ka Naam">
-        <input type="text" id="c-work" placeholder="Kaam ki Jankari (e.g. Pan Card)">
-        <button onclick="saveClient()" style="background:var(--orange); color:white; width:100%; padding:16px; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:16px;">Save & Send Notification</button>
+    <div class="form-card">
+        <div class="btn-flex">
+            <a id="d-call" class="btn" style="background:var(--dark);">📞 Call Now</a>
+            <a id="d-wa" class="btn" style="background:#25d366;">💬 WhatsApp</a>
+            <button class="btn" style="background:#6a1b9a;" onclick="toggleQR()">💳 Pay Online</button>
+            <button class="btn" style="background:#444;" onclick="openAdmin()">⚙️ Admin</button>
+        </div>
+
+        <h2 style="color:var(--blue); text-align: center; margin-top:0;">📝 सेवा/फॉर्म अपडेट के लिए यहाँ भरें</h2>
+        
+        <input type="text" id="c-name" placeholder="ग्राहक का नाम (Name)">
+        <input type="number" id="c-phone" placeholder="मोबाइल नंबर (Mobile)">
+        <input type="text" id="c-work" placeholder="काम का नाम (जैसे: पैन कार्ड)">
+        
+        <select id="c-mode" onchange="toggleFormFields()">
+            <option value="General">✅ सामान्य एंट्री (Paid)</option>
+            <option value="Udhar">📕 उधार खाता (Ledger)</option>
+        </select>
+        
+        <input type="number" id="c-amt" placeholder="कितना उधार बाकी है? (₹)" style="display:none; border: 2px solid #ff4444;">
+        <textarea id="c-quest" placeholder="आपका सवाल या कोई विशेष निर्देश (Optional)" rows="2"></textarea>
+        
+        <button class="submit-btn" onclick="saveCustomerEntry()">डाटा सुरक्षित करें & भेजें</button>
     </div>
 
     <center><div class="sec-tag">⭐ Our Services</div></center>
     <div class="grid-services" id="srv-display"></div>
 
-    <center><div class="sec-tag">📋 Active Gov. Forms</div></center>
+    <center><div class="sec-tag">📋 Active Forms</div></center>
     <div class="grid-forms" id="frm-display"></div>
 
     <center><div class="sec-tag">💰 Rate List</div></center>
     <div id="rate-display" style="background:var(--card); border-radius:15px; padding:15px; border: 1px solid #ddd;"></div>
 
     <div id="admin-panel">
-        <h2 style="text-align:center; color:var(--orange); border-bottom: 2px solid #eee; padding-bottom:10px;">🛠 Pantrol Penal (Admin)</h2>
-        
+        <h2 style="text-align:center; color:var(--orange);">🛠 Control Panel</h2>
         <div class="admin-sec">
             <h4>1. Website Profile</h4>
-            <input type="text" id="in-logo" placeholder="Logo Image Link">
-            <input type="text" id="in-news" placeholder="Scrolling News Text">
-            <input type="text" id="in-phone" placeholder="Mobile Number">
-            <input type="text" id="in-upi" placeholder="UPI ID (for QR)">
-            <input type="text" id="in-pin" placeholder="Set New Admin PIN">
+            <input type="text" id="in-logo" placeholder="Logo Link">
+            <input type="text" id="in-news" placeholder="News Text">
+            <input type="text" id="in-phone" placeholder="Phone Number">
+            <input type="text" id="in-upi" placeholder="UPI ID">
+            <input type="text" id="in-pin" placeholder="Admin PIN">
         </div>
-
         <div class="admin-sec">
-            <h4>2. Sewa & Form Management</h4>
-            <input type="text" id="in-item-name" placeholder="Service/Form Name">
+            <h4>2. Seva/Form List</h4>
+            <input type="text" id="in-item-name" placeholder="Name">
             <select id="in-item-type">
-                <option value="services">Service (Box Grid)</option>
-                <option value="forms">Government Form (Wide Grid)</option>
+                <option value="services">Service</option>
+                <option value="forms">Form</option>
             </select>
-            <button onclick="addItem()" style="background:green; color:white; padding:12px; width:100%; border:none; border-radius:8px; cursor:pointer;">+ Add Item</button>
-            <div class="manage-list" id="list-items"></div>
+            <button onclick="addItem()" style="background:green; color:white; border:none; padding:10px; width:100%; border-radius:5px;">Add</button>
+            <div class="manage-list" id="list-items" style="margin-top:10px;"></div>
         </div>
-
         <div class="admin-sec">
-            <h4>3. Rate List Update</h4>
-            <input type="text" id="in-rate-name" placeholder="Work Name">
-            <input type="text" id="in-rate-price" placeholder="Price (₹)">
-            <button onclick="addRate()" style="background:var(--blue); color:white; padding:12px; width:100%; border:none; border-radius:8px; cursor:pointer;">+ Set Rate</button>
-            <div class="manage-list" id="list-rates"></div>
-        </div>
-
-        <div class="admin-sec">
-            <h4>4. Client Data Ledger</h4>
+            <h4>3. Client Data & Udhar Ledger</h4>
             <div class="manage-list" id="list-data"></div>
         </div>
-
-        <button onclick="saveAll()" style="background:var(--orange); color:white; width:100%; padding:20px; font-weight:bold; border:none; border-radius:15px; cursor:pointer; font-size:1.2em; box-shadow: 0 5px 15px rgba(255,123,0,0.4);">💾 SAVE & PUBLISH CHANGES</button>
-        <button onclick="location.reload()" style="width:100%; margin-top:15px; background:#666; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer;">Close Without Saving</button>
+        <button onclick="saveAll()" style="background:var(--orange); color:white; width:100%; padding:20px; font-weight:bold; border:none; border-radius:10px; cursor:pointer;">💾 SAVE EVERYTHING</button>
     </div>
 </div>
-
-<footer style="background:#00152b; color:white; text-align:center; padding:50px 20px; border-top:8px solid var(--orange);">
-    <h2 style="margin:0; color:var(--orange);">D.M Cyber Varanasi</h2>
-    <p>Mandav, Rohaniya, Varanasi | Mob: <span id="f-phone"></span></p>
-    <p style="font-size:12px; opacity:0.6; margin-top:20px;">© 2025 Powered by DM Master System</p>
-</footer>
 
 <div class="ai-btn" onclick="toggleAI()">🤖</div>
-<div id="ai-box">
-    <div style="background:var(--blue); color:white; padding:15px; font-weight:bold; display:flex; justify-content:space-between;">DM AI Assistant <span onclick="toggleAI()" style="cursor:pointer;">×</span></div>
-    <div id="ai-chat" style="flex:1; overflow-y:auto; padding:15px; background:var(--bg); display:flex; flex-direction:column; gap:10px;"></div>
-    <div style="display:flex; padding:10px; background:white;">
-        <input type="text" id="ai-in" placeholder="Ask Rate or Service..." style="margin:0; border-radius:10px 0 0 10px;">
-        <button onclick="askAI()" style="background:var(--orange); color:white; border:none; padding:0 15px; border-radius:0 10px 10px 0;">➤</button>
-    </div>
-</div>
-
-<div id="qr-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;" onclick="this.style.display='none'">
-    <div style="background:white; padding:30px; border-radius:25px; text-align:center; border:5px solid var(--orange);" onclick="event.stopPropagation()">
-        <h3 style="color:var(--dark); margin-bottom:15px;">D.M Cyber Payments</h3>
+<div id="qr-modal" onclick="this.style.display='none'">
+    <div style="background:white; padding:30px; border-radius:20px; text-align:center;" onclick="event.stopPropagation()">
+        <h3>Scan to Pay</h3>
         <div id="qr-img"></div>
-        <p id="upi-txt" style="font-weight:bold; color:var(--blue); margin-top:15px; border: 1px dashed #ccc; padding: 5px;"></p>
-        <small style="color:red;">Scan to Pay Securely</small>
+        <p id="upi-txt" style="font-weight:bold; color:var(--blue);"></p>
     </div>
 </div>
 
 <script>
-    const STORAGE_KEY = 'dm_master_v100_final';
-    let db = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+    const STORAGE = 'dm_master_v300';
+    let db = JSON.parse(localStorage.getItem(STORAGE)) || {
         logo: "https://i.postimg.cc/7f7ae7/image.png",
         news: "D.M Cyber Varanasi: Best Digital Center for Online Forms, Pan Card, and CSC Services.",
         phone: "8303585793",
         upi: "dm0827717@ybl",
         pin: "4321",
         services: ["Pan Card", "Aadhar Update", "Income Cert", "Domicile Cert", "Caste Cert"],
-        forms: ["UP Police Bharti 2025", "SSC GD Constable", "UP Scholarship"],
+        forms: ["UP Police Recruitment", "SSC GD Online", "Scholarship Form"],
         rates: [{n:"Pan Card", p:"200"}, {n:"Income Cert", p:"100"}],
         clients: []
     };
+
+    function toggleFormFields() {
+        const mode = document.getElementById('c-mode').value;
+        document.getElementById('c-amt').style.display = (mode === 'Udhar') ? 'block' : 'none';
+    }
 
     function render() {
         document.getElementById('d-logo').src = db.logo;
         document.getElementById('d-news').innerText = db.news;
         document.getElementById('d-call').href = "tel:" + db.phone;
-        document.getElementById('d-wa').href = "https://wa.me/91" + db.phone + "?text=Hello Dheeraj Bhaiya";
-        document.getElementById('f-phone').innerText = db.phone;
+        document.getElementById('d-wa').href = "https://wa.me/91" + db.phone;
         
         document.getElementById('srv-display').innerHTML = db.services.map(s => `<div class="box-card">${s}</div>`).join('');
         document.getElementById('frm-display').innerHTML = db.forms.map(f => `<div class="box-card" style="border-left:5px solid var(--orange);">${f}</div>`).join('');
-        document.getElementById('rate-display').innerHTML = db.rates.map(r => `<div style="display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #eee;"><b>${r.n}</b> <span style="color:var(--orange); font-weight:bold;">₹${r.p}</span></div>`).join('');
+        document.getElementById('rate-display').innerHTML = db.rates.map(r => `<div style="display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #eee;"><b>${r.n}</b> <span>₹${r.p}</span></div>`).join('');
 
-        // Admin Prefills
+        // Pre-fill Admin
         document.getElementById('in-logo').value = db.logo;
         document.getElementById('in-news').value = db.news;
         document.getElementById('in-phone').value = db.phone;
         document.getElementById('in-upi').value = db.upi;
         document.getElementById('in-pin').value = db.pin;
 
-        // Admin Lists
-        document.getElementById('list-items').innerHTML = db.services.map((s,i)=>`<div class="list-item">S: ${s} <button onclick="del('services',${i})" style="color:red;">Del</button></div>`).join('') + db.forms.map((f,i)=>`<div class="list-item">F: ${f} <button onclick="del('forms',${i})" style="color:red;">Del</button></div>`).join('');
-        document.getElementById('list-rates').innerHTML = db.rates.map((r,i)=>`<div class="list-item">${r.n}: ₹${r.p} <button onclick="del('rates',${i})" style="color:red;">Del</button></div>`).join('');
-        document.getElementById('list-data').innerHTML = db.clients.map((c,i)=>`<div style="font-size:12px; border-bottom:1px solid #ddd; padding:10px;"><b>${c.n}</b> | ${c.w} | ${c.t} <button onclick="del('clients',${i})" style="float:right;">Del</button></div>`).reverse().join('');
+        // Ledger List in Admin
+        document.getElementById('list-data').innerHTML = db.clients.map((c,i)=>`
+            <div style="padding:10px; border-bottom:1px solid #ddd; background:${c.m==='Udhar'?'#fff0f0':'#f0fff0'}">
+                <b>${c.n}</b> (${c.ph})<br>Work: ${c.w} | ${c.m==='Udhar'?'❌ Udhar: ₹'+c.a:'✅ Paid'}
+                <button onclick="del('clients',${i})" style="float:right; color:red;">Del</button>
+            </div>
+        `).reverse().join('');
+    }
+
+    function saveCustomerEntry() {
+        const name = document.getElementById('c-name').value;
+        const phone = document.getElementById('c-phone').value;
+        const work = document.getElementById('c-work').value;
+        const mode = document.getElementById('c-mode').value;
+        const amt = document.getElementById('c-amt').value;
+
+        if(!name || !phone) return;
+
+        db.clients.push({n:name, ph:phone, w:work, m:mode, a:amt, t:new Date().toLocaleString()});
+        localStorage.setItem(STORAGE, JSON.stringify(db));
+        
+        alert("Data Saved Successfully!");
+        let waMsg = `*D.M Cyber Varanasi*%0A*Customer:* ${name}%0A*Work:* ${work}%0A*Status:* ${mode === 'Udhar' ? 'Udhar (₹'+amt+')' : 'Paid'}`;
+        window.open(`https://wa.me/91${db.phone}?text=${waMsg}`);
+        location.reload();
+    }
+
+    function openAdmin() {
+        let p = prompt("Admin PIN:");
+        if(p === db.pin) document.getElementById('admin-panel').style.display = 'block';
     }
 
     function toggleTheme() { document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark'; }
 
-    function openAdmin() {
-        let p = prompt("Enter Master PIN:");
-        if(p === db.pin) {
-            document.getElementById('admin-panel').style.display = 'block';
-            window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
-        }
-        // No alert if PIN is wrong as requested
-    }
-
-    function saveClient() {
-        let n = document.getElementById('c-name').value;
-        let w = document.getElementById('c-work').value;
-        if(n && w) {
-            db.clients.push({n:n, w:w, t:new Date().toLocaleString()});
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
-            render();
-            let msg = `New Client: ${n}%0AWork: ${w}`;
-            window.open(`https://wa.me/91${db.phone}?text=${msg}`);
-            document.getElementById('c-name').value=""; document.getElementById('c-work').value="";
-        }
+    function toggleQR() {
+        document.getElementById('qr-modal').style.display = 'flex';
+        document.getElementById('upi-txt').innerText = db.upi;
+        document.getElementById('qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=${db.upi}&pn=DMCyber">`;
     }
 
     function addItem() {
         let n = document.getElementById('in-item-name').value;
         let t = document.getElementById('in-item-type').value;
-        if(n) { db[t].push(n); render(); document.getElementById('in-item-name').value=""; }
+        if(n) { db[t].push(n); render(); }
     }
 
-    function addRate() {
-        let n = document.getElementById('in-rate-name').value;
-        let p = document.getElementById('in-rate-price').value;
-        if(n && p) { db.rates.push({n:n, p:p}); render(); document.getElementById('in-rate-name').value=""; document.getElementById('in-rate-price').value="";}
-    }
-
-    function del(k,i) { if(confirm("Delete this?")) { db[k].splice(i,1); render(); } }
+    function del(k,i) { db[k].splice(i,1); render(); }
 
     function saveAll() {
         db.logo = document.getElementById('in-logo').value;
@@ -265,49 +245,8 @@
         db.phone = document.getElementById('in-phone').value;
         db.upi = document.getElementById('in-upi').value;
         db.pin = document.getElementById('in-pin').value;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
-        alert("Success! System Updated."); location.reload();
-    }
-
-    function toggleQR() {
-        let m = document.getElementById('qr-modal');
-        m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
-        document.getElementById('upi-txt').innerText = db.upi;
-        document.getElementById('qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${db.upi}&pn=DMCyberVaranasi">`;
-    }
-
-    function toggleAI() {
-        let b = document.getElementById('ai-box');
-        b.style.display = b.style.display === 'flex' ? 'none' : 'flex';
-        if(!document.getElementById('ai-chat').innerHTML) {
-            document.getElementById('ai-chat').innerHTML = `<div style="background:#ddd; padding:10px; border-radius:10px; align-self:flex-start;">Namaste! Main DM Assistant hoon. Rates ya Services ke bare mein poochein.</div>`;
-        }
-    }
-
-    function askAI() {
-        let i = document.getElementById('ai-in');
-        let chat = document.getElementById('ai-chat');
-        if(!i.value) return;
-        
-        let userVal = i.value.toLowerCase();
-        chat.innerHTML += `<div style="background:var(--blue); color:white; padding:10px; border-radius:10px; align-self:flex-end;">${i.value}</div>`;
-        
-        let res = "Main abhi is par jankari juta raha hoon, please Call karein.";
-        
-        if(userVal.includes("rate") || userVal.includes("charge")) {
-            res = "Hamari Rate List:<br>" + db.rates.map(r=>`${r.n}: ₹${r.p}`).join('<br>');
-        } else if(userVal.includes("service") || userVal.includes("sewa")) {
-            res = "Hum ye kaam karte hain: " + db.services.join(", ");
-        } else {
-            let found = db.rates.find(r => userVal.includes(r.n.toLowerCase()));
-            if(found) res = `${found.n} ka rate ₹${found.p} hai.`;
-        }
-        
-        setTimeout(()=> {
-            chat.innerHTML += `<div style="background:#eee; color:#333; padding:10px; border-radius:10px; align-self:flex-start;">${res}</div>`;
-            chat.scrollTop = chat.scrollHeight;
-        }, 400);
-        i.value = "";
+        localStorage.setItem(STORAGE, JSON.stringify(db));
+        location.reload();
     }
 
     render();
