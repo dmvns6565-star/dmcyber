@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi - Master Setup</title>
+    <title>D.M Cyber Varanasi - AI Master Setup</title>
     <style>
         :root { --dark-blue: #004a99; --orange: #ff851b; --white: #ffffff; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--white); color: #333; overflow-x: hidden; }
@@ -27,33 +27,31 @@
         .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
         .btn { border-radius: 50px; padding: 12px 22px; color: white; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
-        /* FORM */
-        .form-card { background: #f9f9f9; padding: 30px; border-radius: 20px; border: 1px solid #e0e0e0; margin: 40px 0; text-align: center; }
-        .form-card input, .form-card select, .form-card textarea { width: 100%; max-width: 600px; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #ccc; font-size: 1em; box-sizing: border-box; }
-        .submit-btn { background: var(--orange); color: white; width: 100%; max-width: 600px; padding: 16px; border: none; border-radius: 10px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
-
-        /* GRIDS (5 for services, 3 for forms) */
+        /* GRIDS */
         .section-tag { background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%); color: white; padding: 10px 35px; border-radius: 50px; display: inline-block; margin: 35px 0 20px; font-weight: bold; border: 2px solid white; }
         .grid-services { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
         .grid-forms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .box { background: white; padding: 18px; border-radius: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.06); color: var(--dark-blue); border-bottom: 4px solid var(--orange); text-align: center; }
 
-        /* RATE TABLE */
-        .rate-table { width: 100%; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: 10px; }
-        .rate-table th { background: var(--dark-blue); color: white; padding: 15px; text-align: left; }
-        .rate-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        /* AI CHATBOT FLOATING UI */
+        .ai-chat-btn { position: fixed; bottom: 25px; right: 25px; background: var(--dark-blue); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2000; box-shadow: 0 5px 20px rgba(0,0,0,0.3); color: white; font-size: 30px; border: 3px solid var(--orange); }
+        #ai-window { display: none; position: fixed; bottom: 100px; right: 25px; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 2000; overflow: hidden; border: 1px solid #ddd; }
+        .ai-head { background: var(--dark-blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
+        .ai-body { height: 300px; overflow-y: auto; padding: 15px; background: #f9f9f9; font-size: 0.9em; }
+        .ai-input-area { display: flex; border-top: 1px solid #eee; }
+        .ai-input-area input { flex: 1; border: none; padding: 12px; outline: none; }
+        .ai-input-area button { background: var(--orange); color: white; border: none; padding: 10px 15px; cursor: pointer; }
+
+        /* MODAL */
+        #qr-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center; }
 
         /* ADMIN PANEL */
         #admin-panel { display: none; background: white; padding: 25px; border-radius: 20px; border: 5px solid var(--dark-blue); margin-top: 30px; }
         .admin-sec { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
-        .manage-list { margin-top: 10px; max-height: 250px; overflow-y: auto; background: white; border: 1px solid #ccc; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
-        th { background: #eee; padding: 8px; }
-        td { padding: 8px; border-bottom: 1px solid #eee; text-align: center; }
-
-        /* FOOTER */
-        footer { background-color: var(--dark-blue); color: white; padding: 50px 20px; text-align: center; border-top: 8px solid var(--orange); margin-top: 50px; }
-
+        .manage-list { margin-top: 10px; max-height: 200px; overflow-y: auto; background: white; border: 1px solid #ccc; }
+        
+        footer { background-color: var(--dark-blue); color: white; padding: 40px 20px; text-align: center; border-top: 8px solid var(--orange); margin-top: 50px; }
+        
         @media (max-width: 768px) { .grid-services { grid-template-columns: repeat(2, 1fr); } .grid-forms { grid-template-columns: repeat(1, 1fr); } }
     </style>
 </head>
@@ -64,7 +62,7 @@
     <marquee id="disp-news"></marquee>
 </div>
 
-<header id="main-header">
+<header>
     <div class="white-circle"><img src="https://i.postimg.cc/7f7ae7/image.png" style="width:80%;"></div>
     <h1 class="dm-brand" id="disp-title"></h1>
     <p class="owner-info" id="disp-owner"></p>
@@ -73,30 +71,13 @@
 
 <div class="container">
     <div class="action-box">
-        <div id="disp-loc" style="font-weight: bold; color: #d32f2f;"></div>
+        <div id="disp-loc" style="font-weight: bold; color: #d32f2f; margin-bottom:10px;"></div>
         <div class="btn-flex">
             <button class="btn" style="background:#001c3d;" onclick="window.open('tel:8303585793')">📞 कॉल</button>
             <button class="btn" style="background:#25d366;" onclick="window.open('https://wa.me/918303585793')">💬 व्हाट्सप्प</button>
             <button class="btn" style="background:#6a1b9a;" onclick="toggleQR()">💳 पेमेंट</button>
             <button class="btn" style="background:#333;" onclick="loginAdmin()">⚙️ एडमिन</button>
         </div>
-    </div>
-
-    <div class="form-card">
-        <h2 style="color:var(--dark-blue);">📝 सेवा/फॉर्म अपडेट के लिए यहाँ भरें</h2>
-        <input type="text" id="c-name" placeholder="ग्राहक का नाम">
-        <input type="number" id="c-phone" placeholder="मोबाइल नंबर">
-        <input type="text" id="c-work" placeholder="काम का नाम">
-        
-        <select id="c-mode" onchange="toggleFormFields()">
-            <option value="General">सामान्य एंट्री</option>
-            <option value="Udhar">📕 उधार खाता</option>
-        </select>
-        
-        <textarea id="c-quest" placeholder="आपका सवाल (यदि कोई हो)"></textarea>
-        <input type="number" id="c-amt" placeholder="उधार राशि (₹)" style="display:none;">
-        
-        <button class="submit-btn" onclick="saveCustomerEntry()">डाटा सुरक्षित करें</button>
     </div>
 
     <center><div class="section-tag">⭐ लोकप्रिय सेवाएँ</div></center>
@@ -106,71 +87,76 @@
     <div class="grid-forms" id="show-forms"></div>
 
     <center><div class="section-tag">💰 रेट लिस्ट (Fees)</div></center>
-    <table class="rate-table">
-        <thead><tr style="background:var(--dark-blue); color:white;"><th>सेवा का नाम</th><th style="text-align:right;">शुल्क (Price)</th></tr></thead>
+    <table style="width:100%; background:white; border-radius:10px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.05);">
+        <thead><tr style="background:var(--dark-blue); color:white;"><th style="padding:15px; text-align:left;">सेवा</th><th style="padding:15px; text-align:right;">शुल्क</th></tr></thead>
         <tbody id="show-rates"></tbody>
     </table>
 
     <div id="admin-panel">
         <h2 style="text-align:center;">📊 मास्टर कंट्रोल पैनल</h2>
-        
         <div class="admin-sec">
-            <h4>1. Website Info (Header/Footer/News)</h4>
-            <input type="text" id="in-title" placeholder="Shop Name (e.g. D.M Cyber)">
-            <input type="text" id="in-news" placeholder="Scrolling News Text">
+            <h4>1. Website Control</h4>
+            <input type="text" id="in-title" placeholder="Shop Title (HTML)">
+            <input type="text" id="in-news" placeholder="Scrolling News">
             <input type="text" id="in-owner" placeholder="Owner Name">
-            <input type="text" id="in-loc" placeholder="Shop Address">
-            <input type="text" id="in-upi" placeholder="UPI ID (for Payment)">
-            <input type="text" id="in-pin" placeholder="Admin Login PIN">
+            <input type="text" id="in-loc" placeholder="Address">
+            <input type="text" id="in-upi" placeholder="UPI ID">
+            <input type="text" id="in-pin" placeholder="Login PIN">
         </div>
-
         <div class="admin-sec">
-            <h4>2. Manage Lists (Services, Forms, Rates)</h4>
-            <input type="text" id="in-item-name" placeholder="Item Name">
-            <select id="in-item-type" onchange="document.getElementById('in-item-price').style.display=(this.value==='rate'?'block':'none')">
-                <option value="service">Service (5 Grid)</option>
-                <option value="form">Form (3 Grid)</option>
+            <h4>2. Manage Services/Rates</h4>
+            <input type="text" id="in-item-name" placeholder="Name">
+            <select id="in-item-type">
+                <option value="service">Service (Grid 5)</option>
+                <option value="form">Form (Grid 3)</option>
                 <option value="rate">Rate List Row</option>
             </select>
-            <input type="text" id="in-item-price" placeholder="Price (₹)" style="display:none;">
-            <button onclick="addItem()" style="width:100%; background:green; color:white; border:none; padding:10px; margin-top:5px; cursor:pointer;">+ Add to List</button>
+            <input type="text" id="in-item-price" placeholder="Price (₹)">
+            <button onclick="addItem()" style="width:100%; background:green; color:white; padding:10px; margin-top:5px; border:none; cursor:pointer;">Add Item</button>
             <div class="manage-list" id="admin-list-view"></div>
         </div>
-
-        <div class="admin-sec">
-            <h4>3. Customer Records & WhatsApp Remand</h4>
-            <div class="manage-list">
-                <table>
-                    <thead><tr><th>Naam</th><th>Kaam</th><th>Sawal/Amt</th><th>Mode</th><th>WA</th><th>X</th></tr></thead>
-                    <tbody id="admin-db-view"></tbody>
-                </table>
-            </div>
-        </div>
-
         <button onclick="saveMasterConfig()" style="width:100%; padding:20px; background:orange; color:white; font-weight:bold; cursor:pointer; border:none; border-radius:10px;">✅ SAVE EVERYTHING</button>
     </div>
 </div>
 
-<footer id="main-footer">
+<div class="ai-chat-btn" onclick="toggleAI()">🤖</div>
+<div id="ai-window">
+    <div class="ai-head">DM Cyber AI Assistant <span onclick="toggleAI()" style="cursor:pointer;">✖</span></div>
+    <div class="ai-body" id="ai-messages">
+        <div style="background:#e3f2fd; padding:10px; border-radius:10px; margin-bottom:10px;">नमस्ते! मैं DM Cyber का AI हूँ। आप मुझसे किसी भी काम का <b>रेट</b>, <b>पेमेंट QR</b> या <b>नई योजना</b> के बारे में पूछ सकते हैं।</div>
+    </div>
+    <div class="ai-input-area">
+        <input type="text" id="ai-input" placeholder="यहाँ लिखें (जैसे: Pan card rate)">
+        <button onclick="handleAI()">पहुंचें</button>
+    </div>
+</div>
+
+<div id="qr-modal" onclick="toggleQR()">
+    <div style="background:white; padding:20px; border-radius:20px; text-align:center;">
+        <h3>D.M Cyber Varanasi</h3>
+        <div id="qrcode-container"></div>
+        <p id="qr-upi-text" style="font-weight:bold; color:var(--dark-blue);"></p>
+    </div>
+</div>
+
+<footer>
     <h2 id="foot-title"></h2>
     <p id="foot-loc"></p>
     <p>© 2025 | सुरक्षित डिजिटल सेवा केंद्र</p>
 </footer>
 
 <script>
-    const CONFIG_KEY = 'dm_master_cfg';
-    const DATA_KEY = 'dm_master_data';
-
+    const CONFIG_KEY = 'dm_master_v2_cfg';
     let config = JSON.parse(localStorage.getItem(CONFIG_KEY)) || {
         title: "D.M <span>Cyber</span>",
-        news: "D.M Cyber वाराणसी में आपका स्वागत है।",
+        news: "यूपी पुलिस और स्कॉलरशिप के फॉर्म भरे जा रहे हैं।",
         owner: "संचालक: धीरज मौर्या",
         loc: "📍 मंडाव, रोहनिया, वाराणसी",
         upi: "8303585793@okbizaxis",
         pin: "1234",
         services: ["आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण", "पैन कार्ड", "आधार"],
         forms: ["यूपी पुलिस", "रेलवे भर्ती", "स्कॉलरशिप"],
-        rates: [{n:"नया पैन कार्ड", p:"₹100"}, {n:"आय प्रमाण", p:"₹80"}]
+        rates: [{n:"नया पैन कार्ड", p:"₹200"}, {n:"पैन कार्ड सुधार", p:"₹200"}, {n:"तत्काल पैन कार्ड", p:"₹300"}]
     };
 
     function renderUI() {
@@ -183,42 +169,57 @@
 
         document.getElementById('show-services').innerHTML = config.services.map(s => `<div class="box">${s}</div>`).join('');
         document.getElementById('show-forms').innerHTML = config.forms.map(f => `<div class="box">${f}</div>`).join('');
-        document.getElementById('show-rates').innerHTML = config.rates.map(r => `<tr><td>${r.n}</td><td align="right" style="color:red; font-weight:bold;">${r.p}</td></tr>`).join('');
+        document.getElementById('show-rates').innerHTML = config.rates.map(r => `<tr><td style="padding:12px;">${r.n}</td><td align="right" style="color:red; font-weight:bold;">${r.p}</td></tr>`).join('');
 
-        // Admin List View
         let listHtml = "";
         config.services.forEach((s,i) => listHtml += `<div style="padding:5px; border-bottom:1px solid #eee;">(S) ${s} <b style="color:red; float:right; cursor:pointer;" onclick="removeItem('services',${i})">X</b></div>`);
         config.forms.forEach((f,i) => listHtml += `<div style="padding:5px; border-bottom:1px solid #eee;">(F) ${f} <b style="color:red; float:right; cursor:pointer;" onclick="removeItem('forms',${i})">X</b></div>`);
         config.rates.forEach((r,i) => listHtml += `<div style="padding:5px; border-bottom:1px solid #eee;">(R) ${r.n} - ${r.p} <b style="color:red; float:right; cursor:pointer;" onclick="removeItem('rates',${i})">X</b></div>`);
         document.getElementById('admin-list-view').innerHTML = listHtml;
-
-        renderAdminTable();
     }
 
-    function toggleFormFields() {
-        let mode = document.getElementById('c-mode').value;
-        document.getElementById('c-quest').style.display = (mode === 'Udhar') ? 'none' : 'block';
-        document.getElementById('c-amt').style.display = (mode === 'Udhar') ? 'block' : 'none';
+    function toggleAI() { 
+        let win = document.getElementById('ai-window');
+        win.style.display = (win.style.display === 'block') ? 'none' : 'block';
     }
 
-    function addItem() {
-        let type = document.getElementById('in-item-type').value;
-        let name = document.getElementById('in-item-name').value;
-        if(!name) return;
-        if(type === 'service') config.services.push(name);
-        else if(type === 'form') config.forms.push(name);
-        else {
-            let price = document.getElementById('in-item-price').value;
-            config.rates.push({n: name, p: '₹' + price});
+    function handleAI() {
+        let input = document.getElementById('ai-input').value.toLowerCase();
+        let box = document.getElementById('ai-messages');
+        if(!input) return;
+
+        box.innerHTML += `<div style="text-align:right; margin-bottom:10px;"><b>आप:</b> ${input}</div>`;
+        let reply = "क्षमा करें, मुझे समझ नहीं आया। आप 'रेट', 'पेमेंट' या 'योजना' पूछ सकते हैं।";
+
+        if(input.includes('pan') || input.includes('पैन')) {
+            reply = "<b>पैन कार्ड रेट लिस्ट:</b><br>1. नया पैन: ₹200<br>2. पैन सुधार: ₹200<br>3. तत्काल पैन: ₹300";
+        } else if(input.includes('rate') || input.includes('रेट')) {
+            reply = "<b>रेट लिस्ट:</b><br>" + config.rates.map(r=>`${r.n}: ${r.p}`).join('<br>');
+        } else if(input.includes('pay') || input.includes('payment') || input.includes('qr') || input.includes('बारकोड')) {
+            reply = "पेमेंट के लिए यह बारकोड स्कैन करें।";
+            toggleQR();
+        } else if(input.includes('yojna') || input.includes('योजना') || input.includes('update')) {
+            reply = "<b>ताज़ा अपडेट:</b> " + config.news;
         }
-        document.getElementById('in-item-name').value = '';
-        renderUI();
+
+        box.innerHTML += `<div style="background:#e8f5e9; padding:10px; border-radius:10px; margin-bottom:10px;"><b>AI:</b> ${reply}</div>`;
+        document.getElementById('ai-input').value = "";
+        box.scrollTop = box.scrollHeight;
     }
 
-    function removeItem(key, index) { config[key].splice(index, 1); renderUI(); }
+    function toggleQR() {
+        let modal = document.getElementById('qr-modal');
+        if(modal.style.display === 'flex') { modal.style.display = 'none'; }
+        else {
+            modal.style.display = 'flex';
+            document.getElementById('qr-upi-text').innerText = config.upi;
+            let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${config.upi}&pn=DM%20Cyber&cu=INR`;
+            document.getElementById('qrcode-container').innerHTML = `<img src="${qrUrl}" style="width:200px;">`;
+        }
+    }
 
     function loginAdmin() {
-        if(prompt("Admin PIN Daalein:") === config.pin) {
+        if(prompt("Enter Admin PIN:") === config.pin) {
             document.getElementById('admin-panel').style.display = 'block';
             document.getElementById('in-title').value = config.title;
             document.getElementById('in-news').value = config.news;
@@ -227,8 +228,21 @@
             document.getElementById('in-upi').value = config.upi;
             document.getElementById('in-pin').value = config.pin;
             window.scrollTo(0, document.body.scrollHeight);
-        } else { alert("Galat PIN!"); }
+        } else { alert("Wrong PIN"); }
     }
+
+    function addItem() {
+        let type = document.getElementById('in-item-type').value;
+        let name = document.getElementById('in-item-name').value;
+        let price = document.getElementById('in-item-price').value;
+        if(!name) return;
+        if(type==='service') config.services.push(name);
+        else if(type==='form') config.forms.push(name);
+        else config.rates.push({n: name, p: '₹'+price});
+        renderUI();
+    }
+
+    function removeItem(k, i) { config[k].splice(i,1); renderUI(); }
 
     function saveMasterConfig() {
         config.title = document.getElementById('in-title').value;
@@ -239,43 +253,6 @@
         config.pin = document.getElementById('in-pin').value;
         localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
         location.reload();
-    }
-
-    function saveCustomerEntry() {
-        let n = document.getElementById('c-name').value;
-        let p = document.getElementById('c-phone').value;
-        let w = document.getElementById('c-work').value;
-        let m = document.getElementById('c-mode').value;
-        let val = (m === 'Udhar') ? "₹" + document.getElementById('c-amt').value : document.getElementById('c-quest').value;
-
-        if(!n || !p) return alert("Naam aur No. bharna zaroori hai!");
-        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
-        data.push({ id: Date.now(), n, p, w, q: val || "---", m });
-        localStorage.setItem(DATA_KEY, JSON.stringify(data));
-        alert("Data Safe!"); location.reload();
-    }
-
-    function renderAdminTable() {
-        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
-        document.getElementById('admin-db-view').innerHTML = data.map(item => `
-            <tr style="color:${item.m==='Udhar'?'red':'black'}">
-                <td>${item.n}</td><td>${item.w}</td><td>${item.q}</td><td>${item.m}</td>
-                <td><button onclick="window.open('https://wa.me/91${item.p}?text=Namaste%20${item.n},%20DM%20Cyber%20Varanasi.%20Work:%20${item.w},%20Status:%20${item.q}')" style="background:#25d366; color:white; border:none; border-radius:4px; cursor:pointer;">WA</button></td>
-                <td><b style="color:red; cursor:pointer;" onclick="deleteData(${item.id})">X</b></td>
-            </tr>
-        `).reverse().join('');
-    }
-
-    function deleteData(id) {
-        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
-        localStorage.setItem(DATA_KEY, JSON.stringify(data.filter(x => x.id !== id)));
-        renderAdminTable();
-    }
-
-    function toggleQR() {
-        let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${config.upi}&pn=DM%20Cyber&cu=INR`;
-        let win = window.open("", "Payment", "width=300,height=400");
-        win.document.write(`<div style="text-align:center; font-family:sans-serif;"><h3>D.M Cyber</h3><img src="${qrUrl}"><p><b>UPI: ${config.upi}</b></p></div>`);
     }
 
     renderUI();
