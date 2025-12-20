@@ -3,250 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi - Master Setup</title>
+    <title>D.M Cyber Varanasi - Official</title>
     <style>
-        :root {
-            --orange: #ff7b00; --blue: #004a99; --dark: #001c3d;
-            --bg: #f4f7f6; --txt: #1a1a1a; --card: #ffffff;
-        }
-        [data-theme="dark"] {
-            --bg: #0f172a; --txt: #ffffff; --card: #1e293b; --blue: #3b82f6;
-        }
-
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: var(--txt); transition: 0.3s; }
+        :root { --dark-blue: #004a99; --orange: #ff851b; --white: #ffffff; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg); color: #333; overflow-x: hidden; }
 
         /* HEADER */
-        header { 
-            background: linear-gradient(180deg, var(--blue), var(--dark)); 
-            color: white; text-align: center; padding: 50px 10px 100px; position: relative;
-            border-bottom: 8px solid var(--orange);
-        }
-        .logo-circle { 
-            width: 110px; height: 110px; background: white; border-radius: 50%; 
-            margin: 0 auto 15px; border: 4px solid var(--orange); display: flex; 
-            align-items: center; justify-content: center; overflow: hidden;
-            box-shadow: 0 0 25px rgba(0,0,0,0.3);
-        }
+        header { background-color: var(--dark-blue); text-align: center; padding: 45px 10px 80px; color: white; border-bottom: 8px solid var(--orange); position: relative; }
+        .white-circle { width: 110px; height: 110px; background: white; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 4px solid var(--orange); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .dm-brand { font-size: 2.8em; font-weight: 900; margin: 0; letter-spacing: 1px; }
+        .dm-brand span { color: var(--orange); }
+        .orange-pill-new { border: 3px solid #ff851b; padding: 10px 30px; background: white; color: #ff851b; font-weight: bold; border-radius: 50px; display: inline-block; margin-top: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        /* LIVE NEWS BAR */
-        .news-marquee { 
-            background: var(--orange); color: white; padding: 12px 0; 
-            font-weight: bold; position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
+        /* NEWS */
+        .news-container { background: #fff; border: 2px solid #ddd; margin: -20px auto 10px; max-width: 900px; display: flex; border-radius: 50px; overflow: hidden; height: 45px; align-items: center; position: relative; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .news-label { background: #d32f2f; color: white; padding: 0 20px; font-weight: bold; height: 100%; display: flex; align-items: center; white-space: nowrap; }
+        marquee { font-weight: 500; color: var(--dark-blue); }
 
-        /* MAIN CONTAINER */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px 100px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px 15px 100px; }
 
         /* ENTRY FORM BOX */
-        .form-card { 
-            background: var(--card); border-radius: 20px; padding: 30px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-top: -60px; 
-            position: relative; z-index: 100; border: 2px solid var(--blue);
-        }
-        
-        /* GRID SETTINGS */
-        .sec-tag { background: var(--dark); color: var(--orange); padding: 12px 35px; border-radius: 50px; display: inline-block; margin: 40px 0 20px; font-weight: 900; border: 2px solid var(--orange); text-transform: uppercase; }
-        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
-        .grid-forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .box-card { background: var(--card); padding: 25px 15px; border-radius: 15px; text-align: center; font-weight: bold; border-bottom: 5px solid var(--blue); box-shadow: 0 5px 15px rgba(0,0,0,0.05); color: var(--blue); transition: 0.3s; cursor: default; }
+        .action-box { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 2px solid var(--dark-blue); margin-bottom: 30px; }
+        input, select, textarea { width: 100%; padding: 14px; margin: 8px 0; border-radius: 10px; border: 1px solid #ccc; box-sizing: border-box; font-size: 16px; font-family: inherit; }
+        .submit-btn { background: var(--orange); color: white; width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.1em; transition: 0.3s; }
+        .submit-btn:hover { background: #e67600; transform: translateY(-2px); }
 
-        /* BUTTONS */
-        .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
-        .btn { padding: 12px 20px; border-radius: 30px; color: white; text-decoration: none; font-size: 14px; font-weight: bold; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-        .submit-btn { background: linear-gradient(to right, var(--orange), #ff5500); color: white; width: 100%; padding: 18px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1em; margin-top: 10px; transition: 0.3s; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,123,0,0.4); }
-
-        /* INPUT STYLES */
-        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ccc; box-sizing: border-box; background: var(--card); color: var(--txt); font-size: 16px; }
+        /* GRIDS */
+        .section-tag { background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%); color: white; padding: 10px 35px; border-radius: 50px; display: inline-block; margin: 30px 0 15px; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        .grid-forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+        .box { background: white; padding: 20px 10px; border-radius: 12px; font-weight: bold; box-shadow: 0 3px 10px rgba(0,0,0,0.05); color: var(--dark-blue); border-bottom: 5px solid var(--orange); text-align: center; transition: 0.3s; }
+        .box:hover { transform: translateY(-5px); background: var(--dark-blue); color: white; }
 
         /* ADMIN PANEL */
-        #admin-panel { display: none; background: var(--card); padding: 30px; border: 6px double var(--orange); border-radius: 25px; margin-top: 30px; }
-        .admin-sec { background: rgba(0,0,0,0.03); padding: 20px; border-radius: 15px; margin-bottom: 20px; border-left: 6px solid var(--blue); }
-        .manage-list { max-height: 250px; overflow-y: auto; background: white; padding: 10px; border-radius: 10px; color: #333; border: 1px solid #ddd; }
+        #admin-panel { display: none; background: #fff; padding: 25px; border-radius: 20px; border: 5px double var(--dark-blue); margin-top: 30px; }
+        .admin-sec { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
+        .manage-list { background: white; border: 1px solid #eee; padding: 10px; border-radius: 8px; max-height: 200px; overflow-y: auto; }
 
-        /* MODALS & AI */
-        .ai-btn { position: fixed; bottom: 25px; right: 25px; background: var(--orange); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; cursor: pointer; z-index: 2000; border: 3px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        /* AI ASSISTANT */
+        .ai-chat-btn { position: fixed; bottom: 25px; right: 25px; background: var(--dark-blue); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2000; box-shadow: 0 8px 25px rgba(0,0,0,0.3); color: white; font-size: 30px; border: 3px solid var(--orange); }
+        #ai-window { display: none; position: fixed; bottom: 100px; right: 25px; width: 330px; background: white; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.3); z-index: 2000; overflow: hidden; border: 2px solid var(--dark-blue); flex-direction: column; }
+        .ai-head { background: var(--dark-blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .ai-body { height: 300px; overflow-y: auto; padding: 15px; background: #f4f7f6; display: flex; flex-direction: column; gap: 10px; }
+        .ai-msg { padding: 10px 15px; border-radius: 15px; max-width: 80%; font-size: 14px; line-height: 1.4; }
+        .bot { background: white; border-left: 5px solid var(--orange); align-self: flex-start; color: #333; }
+        .user { background: var(--dark-blue); color: white; align-self: flex-end; }
+
         #qr-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; }
+
+        footer { background: var(--dark-blue); color: white; padding: 40px 20px; text-align: center; border-top: 8px solid var(--orange); margin-top: 50px; }
+        @media (max-width: 768px) { .grid-services { grid-template-columns: repeat(2, 1fr); } .grid-forms { grid-template-columns: 1fr; } }
     </style>
 </head>
-<body data-theme="light">
+<body>
 
 <header>
-    <button onclick="toggleTheme()" style="position:absolute; top:20px; right:20px; background:var(--orange); border:none; color:white; padding:10px; border-radius:50%; cursor:pointer;">🌓</button>
-    <div class="logo-circle"><img id="d-logo" src="" style="width:85%;"></div>
-    <h1 style="margin:0; font-size: 2.3em;">D.M <span style="color:var(--orange);">CYBER</span> VARANASI</h1>
-    <p style="margin:8px 0; opacity: 0.9; font-weight: 500;">Best Digital Center for Online Forms, Pan Card, and CSC Services.</p>
+    <div class="white-circle"><img id="disp-logo" src="" style="width:85%;"></div>
+    <h1 class="dm-brand">D.M <span>CYBER</span></h1>
+    <p style="font-weight: bold; margin: 5px 0;">D.M Cyber Varanasi: Best Digital Center for Online Forms, Pan Card, and CSC Services.</p>
+    <div class="orange-pill-new">वाराणसी का भरोसेमंद डिजिटल केंद्र</div>
 </header>
 
-<div class="news-marquee">
-    <marquee id="d-news" scrollamount="6">D.M Cyber Varanasi mein aapka swagat hai...</marquee>
+<div class="news-container">
+    <div class="news-label">नया अपडेट 🔥</div>
+    <marquee id="disp-news"></marquee>
 </div>
 
 <div class="container">
-    <div class="form-card">
-        <div class="btn-flex">
-            <a id="d-call" class="btn" style="background:var(--dark);">📞 Call Now</a>
-            <a id="d-wa" class="btn" style="background:#25d366;">💬 WhatsApp</a>
-            <button class="btn" style="background:#6a1b9a;" onclick="toggleQR()">💳 Pay Online</button>
-            <button class="btn" style="background:#444;" onclick="openAdmin()">⚙️ Admin</button>
-        </div>
-
-        <h2 style="color:var(--blue); text-align: center; margin-top:0;">📝 सेवा/फॉर्म अपडेट के लिए यहाँ भरें</h2>
+    <div class="action-box">
+        <h2 style="color:var(--dark-blue); margin-top:0;">📝 सेवा/फॉर्म अपडेट के लिए यहाँ भरें</h2>
+        <input type="text" id="cust-n" placeholder="ग्राहक का नाम (Name)">
+        <input type="number" id="cust-p" placeholder="मोबाइल नंबर (Mobile)">
+        <input type="text" id="cust-w" placeholder="काम का नाम (जैसे: पैन कार्ड)">
         
-        <input type="text" id="c-name" placeholder="ग्राहक का नाम (Name)">
-        <input type="number" id="c-phone" placeholder="मोबाइल नंबर (Mobile)">
-        <input type="text" id="c-work" placeholder="काम का नाम (जैसे: पैन कार्ड)">
-        
-        <select id="c-mode" onchange="toggleFormFields()">
-            <option value="General">✅ सामान्य एंट्री (Paid)</option>
+        <select id="cust-m" onchange="toggleUdhar()">
+            <option value="Paid">✅ नकद भुगतान (Paid)</option>
             <option value="Udhar">📕 उधार खाता (Ledger)</option>
         </select>
         
-        <input type="number" id="c-amt" placeholder="कितना उधार बाकी है? (₹)" style="display:none; border: 2px solid #ff4444;">
-        <textarea id="c-quest" placeholder="आपका सवाल या कोई विशेष निर्देश (Optional)" rows="2"></textarea>
+        <input type="number" id="cust-a" placeholder="उधार राशि लिखें (₹)" style="display:none; border: 2px solid #d32f2f;">
+        <textarea id="cust-q" placeholder="आपका सवाल (यदि कोई हो)"></textarea>
         
-        <button class="submit-btn" onclick="saveCustomerEntry()">डाटा सुरक्षित करें & भेजें</button>
+        <button class="submit-btn" onclick="saveCustomer()">डाटा सुरक्षित करें & भेजें</button>
+        
+        <div class="btn-flex">
+            <button class="btn" style="background:#001c3d;" onclick="window.open('tel:8303585793')">📞 कॉल करें</button>
+            <button class="btn" style="background:#25d366;" onclick="window.open('https://wa.me/918303585793')">💬 व्हाट्सप्प</button>
+            <button class="btn" style="background:#6a1b9a;" onclick="openQR()">💳 पेमेंट QR</button>
+            <button class="btn" style="background:#444;" onclick="loginAdmin()">⚙️ एडमिन</button>
+        </div>
     </div>
 
-    <center><div class="sec-tag">⭐ Our Services</div></center>
-    <div class="grid-services" id="srv-display"></div>
+    <center><div class="section-tag">⭐ लोकप्रिय सेवाएँ</div></center>
+    <div class="grid-services" id="show-services"></div>
 
-    <center><div class="sec-tag">📋 Active Forms</div></center>
-    <div class="grid-forms" id="frm-display"></div>
+    <center><div class="section-tag">📋 महत्वपूर्ण फॉर्म</div></center>
+    <div class="grid-forms" id="show-forms"></div>
 
-    <center><div class="sec-tag">💰 Rate List</div></center>
-    <div id="rate-display" style="background:var(--card); border-radius:15px; padding:15px; border: 1px solid #ddd;"></div>
+    <center><div class="section-tag">💰 रेट लिस्ट</div></center>
+    <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #ddd;">
+        <table style="width:100%; border-collapse: collapse;">
+            <tbody id="show-rates"></tbody>
+        </table>
+    </div>
 
     <div id="admin-panel">
-        <h2 style="text-align:center; color:var(--orange);">🛠 Control Panel</h2>
+        <h2 style="text-align:center; color:var(--dark-blue);">📊 एडमिन कंट्रोल सेंटर</h2>
         <div class="admin-sec">
-            <h4>1. Website Profile</h4>
+            <h4>1. प्रोफाइल सेटिंग्स</h4>
             <input type="text" id="in-logo" placeholder="Logo Link">
-            <input type="text" id="in-news" placeholder="News Text">
-            <input type="text" id="in-phone" placeholder="Phone Number">
-            <input type="text" id="in-upi" placeholder="UPI ID">
-            <input type="text" id="in-pin" placeholder="Admin PIN">
+            <input type="text" id="in-news" placeholder="Scrolling News">
+            <input type="text" id="in-upi" placeholder="UPI ID (e.g. name@upi)">
+            <input type="text" id="in-pin" placeholder="Set New PIN">
         </div>
         <div class="admin-sec">
-            <h4>2. Seva/Form List</h4>
-            <input type="text" id="in-item-name" placeholder="Name">
+            <h4>2. सेवा / फॉर्म मैनेजमेंट</h4>
+            <input type="text" id="in-item-name" placeholder="Item Name">
             <select id="in-item-type">
-                <option value="services">Service</option>
-                <option value="forms">Form</option>
+                <option value="service">Service (5 Grid)</option>
+                <option value="form">Form (Wide Grid)</option>
             </select>
-            <button onclick="addItem()" style="background:green; color:white; border:none; padding:10px; width:100%; border-radius:5px;">Add</button>
+            <button onclick="addItem()" style="width:100%; padding:12px; background:green; color:white; border:none; border-radius:8px;">+ लिस्ट में जोड़ें</button>
             <div class="manage-list" id="list-items" style="margin-top:10px;"></div>
         </div>
         <div class="admin-sec">
-            <h4>3. Client Data & Udhar Ledger</h4>
+            <h4>3. ग्राहक डाटा & उधार लेजर</h4>
             <div class="manage-list" id="list-data"></div>
         </div>
-        <button onclick="saveAll()" style="background:var(--orange); color:white; width:100%; padding:20px; font-weight:bold; border:none; border-radius:10px; cursor:pointer;">💾 SAVE EVERYTHING</button>
+        <button onclick="saveAdminChanges()" style="width:100%; padding:20px; background:var(--orange); color:white; font-weight:bold; cursor:pointer; border:none; border-radius:10px; font-size:1.2em;">✅ सभी बदलाव सुरक्षित करें</button>
     </div>
 </div>
 
-<div class="ai-btn" onclick="toggleAI()">🤖</div>
+<div class="ai-chat-btn" onclick="toggleAI()">🤖</div>
+<div id="ai-window">
+    <div class="ai-head">DM Cyber Assistant <span onclick="toggleAI()" style="cursor:pointer;">✖</span></div>
+    <div class="ai-body" id="ai-body"></div>
+    <div style="display:flex; border-top:1px solid #ddd;">
+        <input type="text" id="ai-in" placeholder="पूछें रेट या सेवा..." style="margin:0; border:none; border-radius:0;">
+        <button onclick="askAI()" style="background:var(--orange); color:white; border:none; padding:10px 20px;">➤</button>
+    </div>
+</div>
+
 <div id="qr-modal" onclick="this.style.display='none'">
     <div style="background:white; padding:30px; border-radius:20px; text-align:center;" onclick="event.stopPropagation()">
-        <h3>Scan to Pay</h3>
+        <h3 style="margin-top:0;">D.M Cyber Varanasi</h3>
         <div id="qr-img"></div>
-        <p id="upi-txt" style="font-weight:bold; color:var(--blue);"></p>
+        <p id="upi-label" style="font-weight:bold; color:var(--dark-blue); margin:15px 0;"></p>
+        <button class="submit-btn" onclick="document.getElementById('qr-modal').style.display='none'">बंद करें</button>
     </div>
 </div>
 
+<footer>
+    <h2>D.M Cyber Varanasi</h2>
+    <p>संचालक: धीरज मौर्या | वाराणसी, उत्तर प्रदेश</p>
+    <p>© 2025 | Built for D.M Cyber Master Setup</p>
+</footer>
+
 <script>
-    const STORAGE = 'dm_master_v300';
-    let db = JSON.parse(localStorage.getItem(STORAGE)) || {
+    const KEY = 'dm_cyber_v5_final';
+    let config = JSON.parse(localStorage.getItem(KEY)) || {
         logo: "https://i.postimg.cc/7f7ae7/image.png",
-        news: "D.M Cyber Varanasi: Best Digital Center for Online Forms, Pan Card, and CSC Services.",
+        news: "D.M Cyber वाराणसी में आपका स्वागत है। सभी फॉर्म उचित रेट पर भरे जाते हैं।",
         phone: "8303585793",
         upi: "dm0827717@ybl",
         pin: "4321",
-        services: ["Pan Card", "Aadhar Update", "Income Cert", "Domicile Cert", "Caste Cert"],
-        forms: ["UP Police Recruitment", "SSC GD Online", "Scholarship Form"],
-        rates: [{n:"Pan Card", p:"200"}, {n:"Income Cert", p:"100"}],
-        clients: []
+        services: ["पैन कार्ड", "आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण"],
+        forms: ["यूपी पुलिस भर्ती", "स्कॉलरशिप फॉर्म"],
+        rates: [{n:"पैन कार्ड", p:"₹200"}, {n:"आय प्रमाण", p:"₹100"}],
+        db: []
     };
 
-    function toggleFormFields() {
-        const mode = document.getElementById('c-mode').value;
-        document.getElementById('c-amt').style.display = (mode === 'Udhar') ? 'block' : 'none';
-    }
-
     function render() {
-        document.getElementById('d-logo').src = db.logo;
-        document.getElementById('d-news').innerText = db.news;
-        document.getElementById('d-call').href = "tel:" + db.phone;
-        document.getElementById('d-wa').href = "https://wa.me/91" + db.phone;
+        document.getElementById('disp-logo').src = config.logo;
+        document.getElementById('disp-news').innerText = config.news;
+        document.getElementById('show-services').innerHTML = config.services.map(s => `<div class="box">${s}</div>`).join('');
+        document.getElementById('show-forms').innerHTML = config.forms.map(f => `<div class="box" style="border-left:5px solid var(--orange);">${f}</div>`).join('');
+        document.getElementById('show-rates').innerHTML = config.rates.map(r => `<tr><td style="padding:15px; border-bottom:1px solid #eee; font-weight:500;">${r.n}</td><td align="right" style="padding:15px; border-bottom:1px solid #eee; color:#d32f2f; font-weight:bold;">${r.p}</td></tr>`).join('');
         
-        document.getElementById('srv-display').innerHTML = db.services.map(s => `<div class="box-card">${s}</div>`).join('');
-        document.getElementById('frm-display').innerHTML = db.forms.map(f => `<div class="box-card" style="border-left:5px solid var(--orange);">${f}</div>`).join('');
-        document.getElementById('rate-display').innerHTML = db.rates.map(r => `<div style="display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #eee;"><b>${r.n}</b> <span>₹${r.p}</span></div>`).join('');
-
-        // Pre-fill Admin
-        document.getElementById('in-logo').value = db.logo;
-        document.getElementById('in-news').value = db.news;
-        document.getElementById('in-phone').value = db.phone;
-        document.getElementById('in-upi').value = db.upi;
-        document.getElementById('in-pin').value = db.pin;
-
-        // Ledger List in Admin
-        document.getElementById('list-data').innerHTML = db.clients.map((c,i)=>`
-            <div style="padding:10px; border-bottom:1px solid #ddd; background:${c.m==='Udhar'?'#fff0f0':'#f0fff0'}">
-                <b>${c.n}</b> (${c.ph})<br>Work: ${c.w} | ${c.m==='Udhar'?'❌ Udhar: ₹'+c.a:'✅ Paid'}
-                <button onclick="del('clients',${i})" style="float:right; color:red;">Del</button>
-            </div>
-        `).reverse().join('');
+        document.getElementById('list-items').innerHTML = config.services.map((s,i)=>`<div style="display:flex; justify-content:space-between; padding:5px;"><span>(S) ${s}</span><button onclick="del('services',${i})">X</button></div>`).join('') + config.forms.map((f,i)=>`<div style="display:flex; justify-content:space-between; padding:5px;"><span>(F) ${f}</span><button onclick="del('forms',${i})">X</button></div>`).join('');
+        document.getElementById('list-data').innerHTML = config.db.map((d,i)=>`<div style="font-size:12px; border-bottom:1px solid #ddd; padding:8px; background:${d.m==='Udhar'?'#fff0f0':'#f0fff0'}"><b>${d.n}</b> | ${d.w} | ${d.m==='Udhar'?'❌ ₹'+d.a:'✅ Paid'} <button onclick="del('db',${i})" style="float:right;">Del</button></div>`).reverse().join('');
+        
+        document.getElementById('in-logo').value = config.logo;
+        document.getElementById('in-news').value = config.news;
+        document.getElementById('in-upi').value = config.upi;
+        document.getElementById('in-pin').value = config.pin;
     }
 
-    function saveCustomerEntry() {
-        const name = document.getElementById('c-name').value;
-        const phone = document.getElementById('c-phone').value;
-        const work = document.getElementById('c-work').value;
-        const mode = document.getElementById('c-mode').value;
-        const amt = document.getElementById('c-amt').value;
+    function toggleUdhar() {
+        document.getElementById('cust-a').style.display = (document.getElementById('cust-m').value === 'Udhar') ? 'block' : 'none';
+    }
 
-        if(!name || !phone) return;
+    function saveCustomer() {
+        let n = document.getElementById('cust-n').value;
+        let p = document.getElementById('cust-p').value;
+        let w = document.getElementById('cust-w').value;
+        let m = document.getElementById('cust-m').value;
+        let a = document.getElementById('cust-a').value;
+        if(!n || !p) return alert("कृपया नाम और नंबर भरें!");
 
-        db.clients.push({n:name, ph:phone, w:work, m:mode, a:amt, t:new Date().toLocaleString()});
-        localStorage.setItem(STORAGE, JSON.stringify(db));
+        config.db.push({n:n, ph:p, w:w, m:m, a:a, t:new Date().toLocaleString()});
+        localStorage.setItem(KEY, JSON.stringify(config));
         
-        alert("Data Saved Successfully!");
-        let waMsg = `*D.M Cyber Varanasi*%0A*Customer:* ${name}%0A*Work:* ${work}%0A*Status:* ${mode === 'Udhar' ? 'Udhar (₹'+amt+')' : 'Paid'}`;
-        window.open(`https://wa.me/91${db.phone}?text=${waMsg}`);
+        alert("डाटा सुरक्षित!");
+        window.open(`https://wa.me/918303585793?text=*New Order*%0AClient: ${n}%0AWork: ${w}%0AStatus: ${m==='Udhar'?'Udhar ₹'+a:'Paid'}`);
         location.reload();
     }
 
-    function openAdmin() {
-        let p = prompt("Admin PIN:");
-        if(p === db.pin) document.getElementById('admin-panel').style.display = 'block';
-    }
-
-    function toggleTheme() { document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark'; }
-
-    function toggleQR() {
-        document.getElementById('qr-modal').style.display = 'flex';
-        document.getElementById('upi-txt').innerText = db.upi;
-        document.getElementById('qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=${db.upi}&pn=DMCyber">`;
+    function loginAdmin() {
+        // Silent PIN Security: No alert on wrong pin
+        if(prompt("Admin PIN:") === config.pin) {
+            document.getElementById('admin-panel').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight);
+        }
     }
 
     function addItem() {
         let n = document.getElementById('in-item-name').value;
         let t = document.getElementById('in-item-type').value;
-        if(n) { db[t].push(n); render(); }
+        if(n) { config[t==='service'?'services':'forms'].push(n); render(); }
     }
 
-    function del(k,i) { db[k].splice(i,1); render(); }
+    function del(k,i) { if(confirm("Delete?")) { config[k].splice(i,1); render(); } }
 
-    function saveAll() {
-        db.logo = document.getElementById('in-logo').value;
-        db.news = document.getElementById('in-news').value;
-        db.phone = document.getElementById('in-phone').value;
-        db.upi = document.getElementById('in-upi').value;
-        db.pin = document.getElementById('in-pin').value;
-        localStorage.setItem(STORAGE, JSON.stringify(db));
-        location.reload();
+    function saveAdminChanges() {
+        config.logo = document.getElementById('in-logo').value;
+        config.news = document.getElementById('in-news').value;
+        config.upi = document.getElementById('in-upi').value;
+        config.pin = document.getElementById('in-pin').value;
+        localStorage.setItem(KEY, JSON.stringify(config));
+        alert("Saved!"); location.reload();
+    }
+
+    function openQR() {
+        document.getElementById('qr-modal').style.display = 'flex';
+        document.getElementById('upi-label').innerText = config.upi;
+        document.getElementById('qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${config.upi}&pn=DMCyber">`;
+    }
+
+    function toggleAI() {
+        let w = document.getElementById('ai-window');
+        w.style.display = w.style.display === 'flex' ? 'none' : 'flex';
+        if(w.style.display === 'flex' && !document.getElementById('ai-body').innerHTML) {
+            addMsg("नमस्ते! मैं DM Assistant हूँ। आप मुझसे रेट, फॉर्म या सेवाओं के बारे में पूछ सकते हैं।", 'bot');
+        }
+    }
+
+    function addMsg(txt, type) {
+        let b = document.getElementById('ai-body');
+        let m = document.createElement('div');
+        m.className = "ai-msg " + type;
+        m.innerHTML = (type==='bot'?'🤖 ':'') + txt;
+        b.appendChild(m); b.scrollTop = b.scrollHeight;
+    }
+
+    function askAI() {
+        let i = document.getElementById('ai-in');
+        if(!i.value) return;
+        let msg = i.value.toLowerCase();
+        addMsg(i.value, 'user');
+        i.value = "";
+        
+        let res = "क्षमा करें, इसके बारे में जानकारी नहीं है। कृपया धीरज जी को कॉल करें।";
+        if(msg.includes("सेवा")) res = "हमारी सेवाएँ: " + config.services.join(", ");
+        if(msg.includes("फॉर्म")) res = "अभी ये फॉर्म भरे जा रहे हैं: " + config.forms.join(", ");
+        if(msg.includes("रेट") || msg.includes("चार्ज")) res = "रेट लिस्ट:<br>" + config.rates.map(r=>`${r.n}: ${r.p}`).join('<br>');
+        if(msg.includes("पेमेंट") || msg.includes("qr")) { res = "पेमेंट के लिए QR कोड स्क्रीन पर है।"; openQR(); }
+        
+        setTimeout(()=> addMsg(res, 'bot'), 500);
     }
 
     render();
