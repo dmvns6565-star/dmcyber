@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi - AI Super Master</title>
+    <title>D.M Cyber Varanasi - AI Master Setup</title>
     <style>
         :root { --dark-blue: #004a99; --orange: #ff851b; --white: #ffffff; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--white); color: #333; overflow-x: hidden; }
 
         /* SCROLLING NEWS */
         .news-container { background: #fff; border: 2px solid #ddd; margin: 10px auto; max-width: 900px; display: flex; border-radius: 8px; overflow: hidden; height: 40px; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -14,7 +14,7 @@
 
         /* HEADER */
         header { background-color: var(--dark-blue); text-align: center; padding: 45px 10px; color: white; border-bottom: 8px solid var(--orange); position: relative; }
-        .white-circle { width: 110px; height: 110px; background: white; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid var(--orange); }
+        .white-circle { width: 100px; height: 100px; background: white; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid var(--orange); }
         .dm-brand { font-size: 3.2em; font-weight: 900; margin: 0; }
         .dm-brand span { color: var(--orange); }
         .owner-info { font-weight: bold; font-size: 1.1em; margin: 10px 0; }
@@ -32,8 +32,8 @@
         .btn-flex { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
         .btn { border-radius: 50px; padding: 12px 22px; color: white; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
-        /* ENTRY FORM */
-        .entry-sec { background: white; padding: 25px; border-radius: 15px; border: 1px solid #ddd; margin-top: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* ENTRY FORM (DUKANDARI) */
+        .entry-sec { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px dashed var(--dark-blue); margin-top: 30px; }
         input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
 
         /* GRIDS */
@@ -42,16 +42,20 @@
         .grid-forms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .box { background: white; padding: 18px; border-radius: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.06); color: var(--dark-blue); border-bottom: 4px solid var(--orange); text-align: center; }
 
-        /* AI CHATBOT */
+        /* AI CHATBOT FLOATING UI */
         .ai-chat-btn { position: fixed; bottom: 25px; right: 25px; background: var(--dark-blue); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2000; box-shadow: 0 5px 20px rgba(0,0,0,0.3); color: white; font-size: 30px; border: 3px solid var(--orange); }
         #ai-window { display: none; position: fixed; bottom: 100px; right: 25px; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 2000; overflow: hidden; border: 1px solid #ddd; }
         .ai-head { background: var(--dark-blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
         .ai-body { height: 300px; overflow-y: auto; padding: 15px; background: #f9f9f9; font-size: 0.9em; }
+        .ai-input-area { display: flex; border-top: 1px solid #eee; }
+        .ai-input-area input { flex: 1; border: none; padding: 12px; outline: none; }
+        .ai-input-area button { background: var(--orange); color: white; border: none; padding: 10px 15px; cursor: pointer; }
 
         /* ADMIN PANEL */
         #admin-panel { display: none; background: white; padding: 25px; border-radius: 20px; border: 5px solid var(--dark-blue); margin-top: 30px; }
         .admin-sec { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
-        
+        .manage-list { margin-top: 10px; max-height: 250px; overflow-y: auto; background: white; border: 1px solid #ccc; font-size: 0.85em; }
+
         #qr-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center; }
         footer { background-color: var(--dark-blue); color: white; padding: 40px 20px; text-align: center; border-top: 8px solid var(--orange); margin-top: 50px; }
 
@@ -89,16 +93,17 @@
     </div>
 
     <div class="entry-sec">
-        <h3 style="text-align:center; color:var(--dark-blue); margin-top:0;">📝 ग्राहक एंट्री (Digital Register)</h3>
+        <h2 style="color:var(--dark-blue);">📝 फॉर्म अपडेट के लिए यहाँ भरें</h2>
         <input type="text" id="c-name" placeholder="ग्राहक का नाम">
         <input type="number" id="c-phone" placeholder="मोबाइल नंबर">
-        <input type="text" id="c-work" placeholder="काम (जैसे: पैन कार्ड)">
+        <input type="text" id="c-work" placeholder="काम का नाम">
+        <textarea id="c-quest" placeholder="आपका सवाल (यदि कोई हो)"></textarea>
         <select id="c-mode">
-            <option value="Paid">✅ Paid (नकद)</option>
-            <option value="Udhar">📕 Udhar (उधार)</option>
+            <option value="General">सामान्य एंट्री</option>
+            <option value="Udhar">📕 उधार खाता</option>
         </select>
-        <input type="number" id="c-amt" placeholder="Amount (₹)">
-        <button onclick="saveEntry()" style="width:100%; padding:15px; background:var(--orange); color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">डाटा सेव करें</button>
+        <input type="number" id="c-amt" placeholder="राशि (Amount ₹)">
+        <button onclick="saveEntry()" style="width:100%; padding:15px; background:var(--orange); color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">डाटा सुरक्षित करें</button>
     </div>
 
     <center><div class="section-tag">⭐ लोकप्रिय सेवाएँ</div></center>
@@ -116,28 +121,42 @@
     <div id="admin-panel">
         <h2 style="text-align:center;">📊 मास्टर कंट्रोल पैनल</h2>
         <div class="admin-sec">
-            <h4>1. Website Settings</h4>
-            <input type="text" id="in-title" placeholder="Shop Name">
+            <h4>1. Website Control</h4>
+            <input type="text" id="in-title" placeholder="Shop Title (HTML)">
             <input type="text" id="in-news" placeholder="Scrolling News">
             <input type="text" id="in-owner" placeholder="Owner Name">
             <input type="text" id="in-loc" placeholder="Address">
             <input type="text" id="in-upi" placeholder="UPI ID">
-            <input type="text" id="in-pin" placeholder="Admin PIN">
+            <input type="text" id="in-pin" placeholder="Login PIN">
         </div>
+        
         <div class="admin-sec">
-            <h4>2. Data Control</h4>
-            <button onclick="exportExcel()" style="background:green; color:white; padding:10px; border:none; width:100%; cursor:pointer; margin-bottom:10px;">📊 Download Excel Report</button>
-            <div id="admin-list-view" style="max-height:200px; overflow-y:auto; background:white; border:1px solid #ccc; font-size:0.8em;"></div>
+            <h4>2. Data Control (Udhar/Income)</h4>
+            <button onclick="exportExcel()" style="background:green; color:white; padding:10px; border:none; width:100%; cursor:pointer; margin-bottom:10px; font-weight:bold;">📊 EXPORT TO EXCEL</button>
+            <div class="manage-list" id="admin-db-view"></div>
         </div>
-        <button onclick="saveMasterConfig()" style="width:100%; padding:20px; background:orange; color:white; font-weight:bold; cursor:pointer; border:none; border-radius:10px;">✅ SAVE ALL CHANGES</button>
+
+        <div class="admin-sec">
+            <h4>3. Manage Services/Rates</h4>
+            <input type="text" id="in-item-name" placeholder="Name">
+            <select id="in-item-type">
+                <option value="service">Service (Grid 5)</option>
+                <option value="form">Form (Grid 3)</option>
+                <option value="rate">Rate List Row</option>
+            </select>
+            <input type="text" id="in-item-price" placeholder="Price (₹)">
+            <button onclick="addItem()" style="width:100%; background:var(--dark-blue); color:white; padding:10px; margin-top:5px; border:none; cursor:pointer;">Add New Item</button>
+            <div class="manage-list" id="admin-list-view"></div>
+        </div>
+        <button onclick="saveMasterConfig()" style="width:100%; padding:20px; background:orange; color:white; font-weight:bold; cursor:pointer; border:none; border-radius:10px;">✅ SAVE ALL SETTINGS</button>
     </div>
 </div>
 
 <div class="ai-chat-btn" onclick="toggleAI()">🤖</div>
 <div id="ai-window">
-    <div class="ai-head">DM Cyber AI Bot <span onclick="toggleAI()" style="cursor:pointer;">✖</span></div>
+    <div class="ai-head">DM Cyber AI Assistant <span onclick="toggleAI()" style="cursor:pointer;">✖</span></div>
     <div class="ai-body" id="ai-messages">
-        <div style="background:#e3f2fd; padding:10px; border-radius:10px; margin-bottom:10px;">नमस्ते! मैं AI हूँ। आप मुझसे <b>रेट</b>, <b>QR</b> या <b>नई योजना</b> पूछें।</div>
+        <div style="background:#e3f2fd; padding:10px; border-radius:10px; margin-bottom:10px;">नमस्ते! मैं DM Cyber का AI हूँ। रेट, पेमेंट या योजना पूछें।</div>
     </div>
     <div class="ai-input-area">
         <input type="text" id="ai-input" placeholder="जैसे: Pan rate">
@@ -160,19 +179,19 @@
 </footer>
 
 <script>
-    const CFG_KEY = 'dm_super_vFinal_cfg';
-    const DB_KEY = 'dm_super_vFinal_db';
+    const CONFIG_KEY = 'dm_master_v3_cfg';
+    const DB_KEY = 'dm_master_v3_db';
 
-    let config = JSON.parse(localStorage.getItem(CFG_KEY)) || {
+    let config = JSON.parse(localStorage.getItem(CONFIG_KEY)) || {
         title: "D.M <span>Cyber</span>",
-        news: "आय, जाति, निवास और पैन कार्ड के लिए संपर्क करें।",
+        news: "यूपी पुलिस और स्कॉलरशिप के फॉर्म भरे जा रहे हैं।",
         owner: "संचालक: धीरज मौर्या",
         loc: "📍 मंडाव, रोहनिया, वाराणसी",
         upi: "8303585793@okbizaxis",
         pin: "1234",
-        services: ["आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण", "नया पैन कार्ड", "आधार अपडेट"],
-        forms: ["यूपी पुलिस", "स्कॉलरशिप", "एसएससी जीडी"],
-        rates: [{n:"नया पैन कार्ड", p:"₹200"}, {n:"पैन सुधार", p:"₹200"}, {n:"तत्काल पैन", p:"₹300"}]
+        services: ["आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण", "पैन कार्ड", "आधार"],
+        forms: ["यूपी पुलिस", "रेलवे भर्ती", "स्कॉलरशिप"],
+        rates: [{n:"नया पैन कार्ड", p:"₹200"}, {n:"पैन कार्ड सुधार", p:"₹200"}, {n:"तत्काल पैन कार्ड", p:"₹300"}]
     };
 
     function renderUI() {
@@ -186,18 +205,25 @@
         document.getElementById('show-services').innerHTML = config.services.map(s => `<div class="box">${s}</div>`).join('');
         document.getElementById('show-forms').innerHTML = config.forms.map(f => `<div class="box">${f}</div>`).join('');
         document.getElementById('show-rates').innerHTML = config.rates.map(r => `<tr><td style="padding:12px;">${r.n}</td><td align="right" style="color:red; font-weight:bold;">${r.p}</td></tr>`).join('');
+
+        let listHtml = "";
+        config.services.forEach((s,i) => listHtml += `<div style="padding:8px; border-bottom:1px solid #eee;">(S) ${s} <b style="color:red; float:right; cursor:pointer;" onclick="removeItem('services',${i})">Hatao</b></div>`);
+        config.forms.forEach((f,i) => listHtml += `<div style="padding:8px; border-bottom:1px solid #eee;">(F) ${f} <b style="color:red; float:right; cursor:pointer;" onclick="removeItem('forms',${i})">Hatao</b></div>`);
+        config.rates.forEach((r,i) => listHtml += `<div style="padding:8px; border-bottom:1px solid #eee;">(R) ${r.n} - ${r.p} <b style="color:red; float:right; cursor:pointer;" onclick="removeItem('rates',${i})">Hatao</b></div>`);
+        document.getElementById('admin-list-view').innerHTML = listHtml;
         
         updateStats();
     }
 
+    // DUKANDARI LOGIC
     function saveEntry() {
         let n = document.getElementById('c-name').value, a = document.getElementById('c-amt').value,
-            p = document.getElementById('c-phone').value, w = document.getElementById('c-work').value, m = document.getElementById('c-mode').value;
-        if(!n || !a) return alert("नाम और पैसे भरें!");
+            w = document.getElementById('c-work').value, m = document.getElementById('c-mode').value;
+        if(!n || !a) return alert("नाम और पैसा भरें!");
         let db = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
-        db.push({ id: Date.now(), date: new Date().toLocaleDateString(), n, p, w, m, a: parseInt(a) });
+        db.push({ id: Date.now(), d: new Date().toLocaleDateString(), n, w, m, a: parseInt(a) });
         localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert("डेटा सुरक्षित हुआ!"); location.reload();
+        alert("Entry Saved!"); location.reload();
     }
 
     function updateStats() {
@@ -207,10 +233,10 @@
         document.getElementById('stat-paid').innerText = paid;
         document.getElementById('stat-udhar').innerText = udhar;
 
-        document.getElementById('admin-list-view').innerHTML = db.map(i => `
-            <div style="padding:8px; border-bottom:1px solid #eee; color:${i.m==='Udhar'?'red':'black'}">
-                ${i.date} | ${i.n} | ₹${i.a} | ${i.m} 
-                <b onclick="deleteEntry(${i.id})" style="color:red; float:right; cursor:pointer;">X</b>
+        document.getElementById('admin-db-view').innerHTML = db.map(i => `
+            <div style="padding:10px; border-bottom:1px solid #ddd; color:${i.m==='Udhar'?'red':'black'}">
+                <b>${i.n}</b> - ${i.w} | ₹${i.a} (${i.m}) 
+                <b onclick="deleteEntry(${i.id})" style="color:red; float:right; cursor:pointer;">❌</b>
             </div>
         `).reverse().join('');
     }
@@ -221,39 +247,66 @@
         updateStats();
     }
 
-    function toggleAI() { let w = document.getElementById('ai-window'); w.style.display = (w.style.display==='block'?'none':'block'); }
+    function exportExcel() {
+        let db = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+        let csv = "Date,Customer,Work,Amount,Status\n" + db.map(e => `${e.d},${e.n},${e.w},${e.a},${e.m}`).join("\n");
+        let blob = new Blob([csv], {type: 'text/csv'});
+        let a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='DM_Cyber_Records.csv'; a.click();
+    }
+
+    // ORIGINAL UI LOGIC
+    function toggleAI() { let win = document.getElementById('ai-window'); win.style.display = (win.style.display === 'block') ? 'none' : 'block'; }
 
     function handleAI() {
         let input = document.getElementById('ai-input').value.toLowerCase(), box = document.getElementById('ai-messages');
+        if(!input) return;
         box.innerHTML += `<div style="text-align:right; margin:5px;"><b>You:</b> ${input}</div>`;
-        let reply = "Rate, QR, ya Yojna poochiye.";
+        let reply = "Rate, Payment, ya Yojna poochiye.";
         if(input.includes('pan') || input.includes('पैन')) {
-            reply = "<b>PAN Rate:</b> Naya ₹200, Sudhar ₹200, Tatkal ₹300.";
+            reply = "<b>पैन कार्ड रेट:</b> नया ₹200, सुधार ₹200, तत्काल ₹300.";
         } else if(input.includes('pay') || input.includes('qr')) {
             reply = "QR Code khul raha hai..."; toggleQR();
-        } else if(input.includes('yojna') || input.includes('update')) {
-            reply = "<b>Latest:</b> " + config.news;
+        } else if(input.includes('yojna') || input.includes('योजना')) {
+            reply = "<b>अपडेट:</b> " + config.news;
         }
         box.innerHTML += `<div style="background:#e8f5e9; padding:10px; border-radius:10px; margin:5px;"><b>AI:</b> ${reply}</div>`;
         document.getElementById('ai-input').value = ""; box.scrollTop = box.scrollHeight;
     }
 
     function toggleQR() {
-        let m = document.getElementById('qr-modal');
-        if(m.style.display==='flex') m.style.display='none';
+        let modal = document.getElementById('qr-modal');
+        if(modal.style.display === 'flex') { modal.style.display = 'none'; }
         else {
-            m.style.display='flex';
+            modal.style.display = 'flex';
             document.getElementById('qr-upi-text').innerText = config.upi;
             document.getElementById('qrcode-container').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${config.upi}&pn=DMCyber" style="width:200px;">`;
         }
     }
 
     function loginAdmin() {
-        if(prompt("Admin PIN:") === config.pin) {
+        if(prompt("Enter PIN:") === config.pin) {
             document.getElementById('admin-panel').style.display = 'block';
             document.getElementById('income-dash').style.display = 'grid';
-        }
+            document.getElementById('in-title').value = config.title;
+            document.getElementById('in-news').value = config.news;
+            document.getElementById('in-owner').value = config.owner;
+            document.getElementById('in-loc').value = config.loc;
+            document.getElementById('in-upi').value = config.upi;
+            document.getElementById('in-pin').value = config.pin;
+            window.scrollTo(0, document.body.scrollHeight);
+        } else { alert("Wrong PIN"); }
     }
+
+    function addItem() {
+        let type = document.getElementById('in-item-type').value, name = document.getElementById('in-item-name').value, price = document.getElementById('in-item-price').value;
+        if(!name) return;
+        if(type==='service') config.services.push(name);
+        else if(type==='form') config.forms.push(name);
+        else config.rates.push({n: name, p: '₹'+price});
+        renderUI();
+    }
+
+    function removeItem(k, i) { config[k].splice(i,1); renderUI(); }
 
     function saveMasterConfig() {
         config.title = document.getElementById('in-title').value;
@@ -262,14 +315,8 @@
         config.loc = document.getElementById('in-loc').value;
         config.upi = document.getElementById('in-upi').value;
         config.pin = document.getElementById('in-pin').value;
-        localStorage.setItem(CFG_KEY, JSON.stringify(config));
+        localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
         location.reload();
-    }
-
-    function exportExcel() {
-        let db = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
-        let csv = "Date,Name,Work,Amount,Status\n" + db.map(e => `${e.date},${e.n},${e.w},${e.a},${e.m}`).join("\n");
-        let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'})); a.download='DMCyber_Records.csv'; a.click();
     }
 
     renderUI();
