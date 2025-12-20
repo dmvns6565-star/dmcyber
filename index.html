@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi - Best Service Center</title>
+    <title>D.M Cyber Varanasi - Master Setup</title>
     <style>
         :root { --dark-blue: #004a99; --orange: #ff851b; --white: #ffffff; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--white); color: #333; overflow-x: hidden; }
@@ -32,7 +32,7 @@
         .form-card input, .form-card select, .form-card textarea { width: 100%; max-width: 600px; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #ccc; font-size: 1em; box-sizing: border-box; }
         .submit-btn { background: var(--orange); color: white; width: 100%; max-width: 600px; padding: 16px; border: none; border-radius: 10px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
 
-        /* GRIDS (Line changes as requested) */
+        /* GRIDS (5 for services, 3 for forms) */
         .section-tag { background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%); color: white; padding: 10px 35px; border-radius: 50px; display: inline-block; margin: 35px 0 20px; font-weight: bold; border: 2px solid white; }
         .grid-services { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
         .grid-forms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
@@ -45,18 +45,20 @@
         table { width: 100%; border-collapse: collapse; }
         th { background: var(--dark-blue); color: white; padding: 10px; font-size: 0.8em; }
         td { padding: 10px; border-bottom: 1px solid #eee; font-size: 0.85em; }
-        .del-btn { color: red; cursor: pointer; font-weight: bold; border: none; background: none; }
-        
-        .tab-btn { padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; background: #eee; border-radius: 5px; margin-right: 5px; }
-        .tab-btn.active { background: var(--dark-blue); color: white; }
 
+        /* FOOTER */
+        footer { background-color: var(--dark-blue); color: white; padding: 50px 20px; text-align: center; border-top: 8px solid var(--orange); margin-top: 50px; }
+        footer h2 { font-size: 2.2em; font-weight: 900; margin-bottom: 10px; }
+        footer p { opacity: 0.8; margin: 5px 0; }
+
+        /* AI BUTTON & MODALS */
+        .ai-btn { position: fixed; bottom: 25px; right: 25px; background: white; width: 65px; height: 65px; border-radius: 50%; border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-size: 30px; }
+        #qr-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; }
+        
         @media (max-width: 768px) {
             .grid-services { grid-template-columns: repeat(2, 1fr); }
             .grid-forms { grid-template-columns: repeat(1, 1fr); }
         }
-
-        #qr-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; }
-        .ai-btn { position: fixed; bottom: 25px; right: 25px; background: white; width: 65px; height: 65px; border-radius: 50%; border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -114,64 +116,78 @@
 
     <div id="admin-panel">
         <h2 style="text-align:center;">📊 मास्टर कंट्रोल पैनल</h2>
-        
         <div class="admin-sec">
-            <h4>1. वेबसाइट जानकारी बदलें</h4>
-            <input type="text" id="in-news" placeholder="न्यूज पट्टी">
-            <input type="text" id="in-title" placeholder="दुकान का नाम">
-            <input type="text" id="in-owner" placeholder="संचालक">
-            <input type="text" id="in-loc" placeholder="लोकेशन">
-            <input type="text" id="in-ai" placeholder="AI संदेश">
+            <h4>1. Website & Security Control</h4>
+            <input type="text" id="in-news" placeholder="News scrolling text">
+            <input type="text" id="in-title" placeholder="Shop Name">
+            <input type="text" id="in-owner" placeholder="Owner Name">
+            <input type="text" id="in-loc" placeholder="Address/Location">
+            <input type="text" id="in-ai" placeholder="AI Message">
+            <hr>
+            <label><b>UPI ID (for QR):</b></label>
+            <input type="text" id="in-upi" placeholder="e.g. 8303585793@okaxis">
+            <label><b>Login PIN:</b></label>
+            <input type="text" id="in-pin" placeholder="New Admin PIN">
         </div>
 
         <div class="admin-sec">
-            <h4>2. सेवा / फॉर्म / रेट मैनेजमेंट</h4>
-            <input type="text" id="in-item" placeholder="नाम">
+            <h4>2. Manage Services / Forms / Rates</h4>
+            <input type="text" id="in-item" placeholder="Name">
             <select id="in-type">
-                <option value="service">सेवा (5 per line)</option>
-                <option value="form">फॉर्म (3 per line)</option>
-                <option value="rate">रेट लिस्ट में जोड़ें</option>
+                <option value="service">Service (5/line)</option>
+                <option value="form">Form (3/line)</option>
+                <option value="rate">Rate List</option>
             </select>
-            <input type="text" id="in-price" placeholder="रेट (सिर्फ रेट लिस्ट के लिए)" style="display:none;">
-            <button onclick="addMasterItem()" style="width:100%; padding:10px; background:green; color:white; border:none; cursor:pointer;">+ लिस्ट में जोड़ें</button>
+            <input type="text" id="in-price" placeholder="Price (₹)" style="display:none;">
+            <button onclick="addMasterItem()" style="width:100%; padding:10px; background:green; color:white; border:none; cursor:pointer; font-weight:bold;">+ Add to List</button>
             <div class="manage-list" id="list-items-admin"></div>
         </div>
 
         <div class="admin-sec">
-            <h4>3. ग्राहक डेटा और उधार खाता</h4>
-            <div style="margin-bottom:10px;">
-                <button id="tab-gen" class="tab-btn active" onclick="switchDataTab('General')">सभी डेटा</button>
-                <button id="tab-udh" class="tab-btn" onclick="switchDataTab('Udhar')">सिर्फ उधार</button>
-            </div>
+            <h4>3. Customer Data & Udhar</h4>
             <div class="manage-list">
                 <table>
-                    <thead><tr><th>नाम</th><th>मोबाइल</th><th>काम</th><th>सवाल</th><th>तारीख</th><th>X</th></tr></thead>
+                    <thead><tr><th>Naam</th><th>Kaam</th><th>Sawal</th><th>Status</th><th>Date</th><th>X</th></tr></thead>
                     <tbody id="list-data-admin"></tbody>
                 </table>
             </div>
         </div>
-
-        <button onclick="saveAndReload()" style="width:100%; padding:20px; background:orange; color:white; font-weight:bold; cursor:pointer; border:none; border-radius:10px;">✅ सभी बदलाव सुरक्षित (SAVE) करें</button>
+        <button onclick="saveAndReload()" style="width:100%; padding:20px; background:orange; color:white; font-weight:bold; cursor:pointer; border:none; border-radius:10px;">✅ SAVE EVERYTHING</button>
     </div>
 </div>
 
 <div class="ai-btn" onclick="askAI()">🤖</div>
-<div id="qr-modal" onclick="toggleQR()"><div style="background:white; padding:20px; border-radius:20px; text-align:center;"><h3>D.M Cyber</h3><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8303585793@okbizaxis"></div></div>
+
+<div id="qr-modal" onclick="toggleQR()">
+    <div style="background:white; padding:20px; border-radius:20px; text-align:center;">
+        <h3 id="qr-shop-name">D.M Cyber</h3>
+        <div id="qrcode-container"></div>
+        <p id="qr-upi-display" style="font-weight:bold; color:var(--dark-blue);"></p>
+        <p style="font-size:0.8em; color:gray;">UPI Payment is Secure</p>
+    </div>
+</div>
+
+<footer>
+    <h2 id="foot-title">D.M Cyber Varanasi</h2>
+    <p id="foot-loc">मंडाव, रोहनिया, वाराणसी | +91 8303585793</p>
+    <p>© 2025 | सुरक्षित डिजिटल सेवा केंद्र</p>
+</footer>
 
 <script>
-    const CONFIG_KEY = 'dm_cyber_v_final_config';
-    const DATA_KEY = 'dm_cyber_v_final_data';
-    let currentDataTab = 'General';
+    const CONFIG_KEY = 'dm_cyber_v_ultimate_cfg';
+    const DATA_KEY = 'dm_cyber_v_ultimate_data';
 
     let config = JSON.parse(localStorage.getItem(CONFIG_KEY)) || {
         news: "D.M Cyber वाराणसी में आपका स्वागत है।",
         title: "D.M <span>Cyber</span>",
         owner: "संचालक: धीरज मौर्या",
         loc: "📍 मंडाव, रोहनिया, वाराणसी",
-        ai: "अभी पुलिस और रेलवे के फॉर्म चालू हैं।",
+        ai: "अभी यूपी पुलिस और स्कॉलरशिप के फॉर्म चालू हैं।",
+        upi: "8303585793@okbizaxis",
+        pin: "1234",
         services: ["आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण", "पैन कार्ड", "आधार"],
         forms: ["यूपी पुलिस", "रेलवे भर्ती", "स्कॉलरशिप"],
-        rates: [{n:"पैन कार्ड", p:"₹100"}]
+        rates: [{n:"नया पैन कार्ड", p:"₹100"}]
     };
 
     function renderUI() {
@@ -179,88 +195,51 @@
         document.getElementById('disp-title').innerHTML = config.title;
         document.getElementById('disp-owner').innerText = config.owner;
         document.getElementById('disp-loc').innerText = config.loc;
+        document.getElementById('foot-title').innerText = config.title.replace(/<[^>]*>/g, '');
+        document.getElementById('foot-loc').innerText = config.loc;
 
         document.getElementById('show-services').innerHTML = config.services.map(s => `<div class="box">${s}</div>`).join('');
         document.getElementById('show-forms').innerHTML = config.forms.map(f => `<div class="box">${f}</div>`).join('');
         document.getElementById('show-rates').innerHTML = config.rates.map(r => `<tr><td style="padding:12px;">${r.n}</td><td align="right" style="color:red; font-weight:bold;">${r.p}</td></tr>`).join('');
 
-        // Admin Management Lists
         document.getElementById('list-items-admin').innerHTML = 
-            config.services.map((s,i)=>`<div style="display:flex; justify-content:space-between; padding:5px; border-bottom:1px solid #eee;"><span>(S) ${s}</span><b class="del-btn" onclick="delConfig('services',${i})">X</b></div>`).join('') +
-            config.forms.map((f,i)=>`<div style="display:flex; justify-content:space-between; padding:5px; border-bottom:1px solid #eee;"><span>(F) ${f}</span><b class="del-btn" onclick="delConfig('forms',${i})">X</b></div>`).join('') +
-            config.rates.map((r,i)=>`<div style="display:flex; justify-content:space-between; padding:5px; border-bottom:1px solid #eee;"><span>(R) ${r.n}</span><b class="del-btn" onclick="delConfig('rates',${i})">X</b></div>`).join('');
+            config.services.map((s,i)=>`<div style="padding:5px; border-bottom:1px solid #eee;">(S) ${s} <b style="color:red; float:right; cursor:pointer;" onclick="delCfg('services',${i})">X</b></div>`).join('') +
+            config.forms.map((f,i)=>`<div style="padding:5px; border-bottom:1px solid #eee;">(F) ${f} <b style="color:red; float:right; cursor:pointer;" onclick="delCfg('forms',${i})">X</b></div>`).join('') +
+            config.rates.map((r,i)=>`<div style="padding:5px; border-bottom:1px solid #eee;">(R) ${r.n} <b style="color:red; float:right; cursor:pointer;" onclick="delCfg('rates',${i})">X</b></div>`).join('');
         
-        renderDataList();
+        renderAdminData();
     }
 
     document.getElementById('in-type').onchange = function() {
         document.getElementById('in-price').style.display = (this.value === 'rate') ? 'block' : 'none';
     };
 
-    function saveCustomerEntry() {
-        let n = document.getElementById('c-name').value;
-        let p = document.getElementById('c-phone').value;
-        let w = document.getElementById('c-work').value;
-        let q = document.getElementById('c-quest').value || "---";
-        let m = document.getElementById('c-mode').value;
-        if(!n || !p) return alert("नाम और नंबर भरें!");
-        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
-        data.push({ id: Date.now(), n, p, w, q, m, d: new Date().toLocaleDateString('hi-IN') });
-        localStorage.setItem(DATA_KEY, JSON.stringify(data));
-        alert("डेटा सुरक्षित हो गया!");
-        location.reload();
-    }
-
     function loginAdmin() {
-        if(prompt("पिन:") === "1234") {
+        let p = prompt("Admin PIN Daalein:");
+        if(p === config.pin) {
             document.getElementById('admin-panel').style.display = 'block';
             document.getElementById('in-news').value = config.news;
             document.getElementById('in-title').value = config.title;
             document.getElementById('in-owner').value = config.owner;
             document.getElementById('in-loc').value = config.loc;
             document.getElementById('in-ai').value = config.ai;
+            document.getElementById('in-upi').value = config.upi;
+            document.getElementById('in-pin').value = config.pin;
             window.scrollTo(0, document.body.scrollHeight);
-        }
+        } else { alert("Galat PIN!"); }
     }
 
     function addMasterItem() {
-        let type = document.getElementById('in-type').value;
-        let name = document.getElementById('in-item').value;
-        if(!name) return;
-        if(type === 'service') config.services.push(name);
-        else if(type === 'form') config.forms.push(name);
+        let t = document.getElementById('in-type').value;
+        let n = document.getElementById('in-item').value;
+        if(!n) return;
+        if(t==='service') config.services.push(n);
+        else if(t==='form') config.forms.push(n);
         else {
-            let price = document.getElementById('in-price').value;
-            if(price) config.rates.push({n: name, p: price});
+            let pr = document.getElementById('in-price').value;
+            if(pr) config.rates.push({n: n, p: '₹'+pr.replace('₹','')});
         }
-        document.getElementById('in-item').value = '';
-        document.getElementById('in-price').value = '';
-        renderUI();
-    }
-
-    function switchDataTab(tab) {
-        currentDataTab = tab;
-        document.getElementById('tab-gen').classList.toggle('active', tab==='General');
-        document.getElementById('tab-udh').classList.toggle('active', tab==='Udhar');
-        renderDataList();
-    }
-
-    function renderDataList() {
-        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
-        let filtered = (currentDataTab === 'Udhar') ? data.filter(x => x.m === 'Udhar') : data;
-        document.getElementById('list-data-admin').innerHTML = filtered.map(item => `
-            <tr style="color:${item.m==='Udhar'?'red':'black'}">
-                <td>${item.n}</td><td>${item.p}</td><td>${item.w}</td><td>${item.q}</td><td>${item.d}</td>
-                <td><b class="del-btn" onclick="delData(${item.id})">X</b></td>
-            </tr>
-        `).reverse().join('');
-    }
-
-    function delConfig(key, i) { config[key].splice(i, 1); renderUI(); }
-    function delData(id) {
-        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
-        localStorage.setItem(DATA_KEY, JSON.stringify(data.filter(x => x.id !== id)));
-        renderDataList();
+        document.getElementById('in-item').value = ''; renderUI();
     }
 
     function saveAndReload() {
@@ -269,13 +248,63 @@
         config.owner = document.getElementById('in-owner').value;
         config.loc = document.getElementById('in-loc').value;
         config.ai = document.getElementById('in-ai').value;
+        config.upi = document.getElementById('in-upi').value;
+        config.pin = document.getElementById('in-pin').value;
         localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
-        alert("बदलाव सुरक्षित हो गए!");
         location.reload();
     }
 
-    function toggleQR() { let m=document.getElementById('qr-modal'); m.style.display=(m.style.display==='flex'?'none':'flex'); }
-    function askAI() { let q = prompt("नमस्ते! क्या जानना चाहते हैं? (rate / payment / yojna)"); if(q.includes('rate')) alert(config.rates.map(r=>`${r.n}: ${r.p}`).join('\n')); else if(q.includes('pay')) toggleQR(); else alert(config.ai); }
+    function saveCustomerEntry() {
+        let n = document.getElementById('c-name').value;
+        let p = document.getElementById('c-phone').value;
+        let w = document.getElementById('c-work').value;
+        let q = document.getElementById('c-quest').value || "---";
+        let m = document.getElementById('c-mode').value;
+        if(!n || !p) return alert("Naam aur No. bharna zaroori hai!");
+        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
+        data.push({ id: Date.now(), n, p, w, q, m, d: new Date().toLocaleDateString('hi-IN') });
+        localStorage.setItem(DATA_KEY, JSON.stringify(data));
+        alert("Entry Saved!");
+        location.reload();
+    }
+
+    function renderAdminData() {
+        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
+        document.getElementById('list-data-admin').innerHTML = data.map(item => `
+            <tr style="color:${item.m==='Udhar'?'red':'black'}">
+                <td>${item.n}</td><td>${item.w}</td><td>${item.q}</td><td>${item.m}</td><td>${item.d}</td>
+                <td><b style="color:red; cursor:pointer;" onclick="delData(${item.id})">X</b></td>
+            </tr>
+        `).reverse().join('');
+    }
+
+    function delCfg(k, i) { config[k].splice(i,1); renderUI(); }
+    function delData(id) {
+        let data = JSON.parse(localStorage.getItem(DATA_KEY) || '[]');
+        localStorage.setItem(DATA_KEY, JSON.stringify(data.filter(x => x.id !== id)));
+        renderAdminData();
+    }
+
+    function toggleQR() {
+        let m = document.getElementById('qr-modal');
+        if(m.style.display === 'flex') { m.style.display = 'none'; } 
+        else {
+            m.style.display = 'flex';
+            document.getElementById('qr-shop-name').innerText = config.title.replace(/<[^>]*>/g, '');
+            document.getElementById('qr-upi-display').innerText = config.upi;
+            let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${config.upi}&pn=DM%20Cyber&cu=INR`;
+            document.getElementById('qrcode-container').innerHTML = `<img src="${qrUrl}" alt="Pay">`;
+        }
+    }
+
+    function askAI() {
+        let q = prompt("Kaise madad karun? (Rate / Payment / Update)");
+        if(!q) return;
+        let query = q.toLowerCase();
+        if(query.includes('rate')) alert(config.rates.map(r=>`${r.n}: ${r.p}`).join('\n'));
+        else if(query.includes('pay')) toggleQR();
+        else alert(config.ai);
+    }
 
     renderUI();
 </script>
