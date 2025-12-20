@@ -129,19 +129,26 @@
         </div>
 
         <div class="admin-sec">
-            <h4>2. Manage Services & Rates</h4>
-            <div style="display:flex; gap:5px; flex-wrap:wrap;">
-                <input type="text" id="in-item-name" placeholder="Item Name" style="flex:2;">
-                <input type="text" id="in-item-price" placeholder="Price (for Rates only)" style="flex:1;">
-                <select id="in-item-type" style="flex:1;">
-                    <option value="service">Service</option>
-                    <option value="form">Form</option>
-                    <option value="rate">Rate</option>
-                </select>
-                <button onclick="addItem()" style="background:green; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">+ Add</button>
-            </div>
-            <div id="admin-list-view" class="data-table-container" style="max-height:200px; padding:10px; background:white;"></div>
+            <h4>2. सेवा / फॉर्म मैनेजमेंट</h4>
+            <input type="text" id="in-item-name" placeholder="नाम लिखें">
+            <select id="in-item-type">
+                <option value="service">लोकप्रिय सेवा (5 per line)</option>
+                <option value="form">महत्वपूर्ण फॉर्म (3 per line)</option>
+            </select>
+            <button onclick="addMasterItem()" style="width:100%; padding:12px; background:green; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">+ लिस्ट में जोड़ें</button>
+            <div class="manage-list" id="list-items"></div>
         </div>
+
+        <div class="admin-sec">
+            <h4>3. रेट लिस्ट मैनेजमेंट</h4>
+            <input type="text" id="in-rate-name" placeholder="सेवा का नाम">
+            <input type="text" id="in-rate-price" placeholder="शुल्क (उदा: ₹100)">
+            <button onclick="addMasterRate()" style="width:100%; padding:12px; background:var(--dark-blue); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">+ रेट जोड़ें</button>
+            <div class="manage-list" id="list-rates"></div>
+        </div>
+
+        <button onclick="saveAllMasterData()" style="width:100%; padding:20px; background:orange; color:white; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1.1em;">✅ सभी बदलाव सुरक्षित (SAVE) करें</button>
+    </div>
 
         <div class="admin-sec">
             <h4>3. Customer Data & Udhar Ledger</h4>
@@ -344,3 +351,4 @@
 </script>
 </body>
 </html>
+
