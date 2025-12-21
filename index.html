@@ -35,7 +35,7 @@
         #form-area { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
         @media (max-width: 768px) { #vip-area { grid-template-columns: repeat(2, 1fr); } #form-area { grid-template-columns: 1fr; } }
 
-        /* --- NEW ADMIN PANAL STYLES --- */
+        /* --- ADMIN PANEL --- */
         #admin-panel { display: none; background: #fff; padding: 25px; border-radius: 20px; border: 8px double var(--dark-blue); margin-top: 30px; }
         .admin-sec { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 2px solid #ddd; margin-bottom: 20px; }
         .admin-sec h3 { margin: 0 0 15px; color: var(--dark-blue); border-bottom: 2px solid var(--orange); font-size: 24px; }
@@ -51,18 +51,18 @@
         
         .search-box { background: #fff3e0; border: 3px solid var(--orange) !important; padding: 15px; font-size: 20px; font-weight: bold; margin-bottom: 20px; }
 
-        /* --- FIXED AI Assistant Styles --- */
+        /* --- AI CHAT SYSTEM (RECHECKED) --- */
         #ai-btn { position: fixed; bottom: 30px; right: 30px; background: var(--dark-blue); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 1000; border: 3px solid var(--orange); }
         #ai-chat { display: none; position: fixed; bottom: 100px; right: 30px; width: 320px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1001; overflow: hidden; border: 2px solid var(--dark-blue); }
-        .ai-head { background: var(--dark-blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
+        .ai-head { background: var(--dark-blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
         .ai-body { height: 300px; overflow-y: auto; padding: 15px; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
-        .ai-msg { padding: 8px 12px; border-radius: 10px; font-size: 14px; max-width: 80%; line-height: 1.4; }
-        .bot-msg { background: #e0f2f1; align-self: flex-start; border: 1px solid #b2dfdb; color: #004d40; }
-        .user-msg { background: var(--orange); color: white; align-self: flex-end; }
-        .ai-input-box { display: flex; border-top: 1px solid #ddd; }
-        .ai-input-box input { border: none; padding: 12px; flex: 1; border-radius: 0; margin: 0; }
-        .ai-input-box button { background: var(--dark-blue); color: white; border: none; padding: 0 15px; cursor: pointer; }
-        
+        .ai-msg { padding: 10px 15px; border-radius: 15px; max-width: 85%; font-size: 14px; line-height: 1.4; }
+        .bot { background: #e1f5fe; align-self: flex-start; color: #01579b; border: 1px solid #b3e5fc; }
+        .user { background: var(--orange); align-self: flex-end; color: white; }
+        .ai-input-area { display: flex; border-top: 1px solid #ddd; background: white; }
+        .ai-input-area input { border: none; padding: 12px; flex: 1; border-radius: 0; margin: 0; outline: none; }
+        .ai-input-area button { background: var(--dark-blue); color: white; border: none; padding: 0 15px; cursor: pointer; font-weight: bold; }
+
         footer { background: #001c3d; color: white; padding: 60px 20px; text-align: center; border-top: 10px solid var(--orange); margin-top: 50px; }
         #qr-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; }
     </style>
@@ -115,43 +115,28 @@
         
         <div class="admin-sec">
             <h3>🔍 स्मार्ट ग्राहक खोज (Search)</h3>
-            <input type="text" id="searchData" class="search-box" placeholder="ग्राहक का नाम या मोबाइल नंबर यहाँ लिखें..." onkeyup="searchLedger()">
+            <input type="text" id="searchData" class="search-box" placeholder="नाम या मोबाइल नंबर से खोजें..." onkeyup="searchLedger()">
         </div>
 
         <div class="ledger-container">
             <div class="admin-sec" style="border-color: green;">
-                <h3 style="color: green;">✅ PAID डेटा (नकद)</h3>
+                <h3 style="color: green;">✅ PAID डेटा</h3>
                 <div id="paid-box" class="ledger-box"></div>
             </div>
             <div class="admin-sec" style="border-color: red;">
-                <h3 style="color: red;">📕 UDHAR डेटा (उधार)</h3>
+                <h3 style="color: red;">📕 UDHAR डेटा</h3>
                 <div id="udhar-box" class="ledger-box"></div>
             </div>
         </div>
 
         <div class="admin-sec">
-            <h3>⚙️ वेबसाइट सेटिंग (Full Control)</h3>
+            <h3>⚙️ वेबसाइट सेटिंग</h3>
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-                <div>
-                    <label><b>लोगो लिंक (Logo URL):</b></label>
-                    <input type="text" id="conf-logo">
-                </div>
-                <div>
-                    <label><b>न्यूज़ अपडेट (News Text):</b></label>
-                    <input type="text" id="conf-news">
-                </div>
-                <div>
-                    <label><b>फोन नंबर:</b></label>
-                    <input type="text" id="conf-phone">
-                </div>
-                <div>
-                    <label><b>UPI ID:</b></label>
-                    <input type="text" id="conf-upi">
-                </div>
-                <div>
-                    <label><b>एडमिन PIN:</b></label>
-                    <input type="text" id="conf-pin">
-                </div>
+                <input type="text" id="conf-logo" placeholder="लोगो URL">
+                <input type="text" id="conf-news" placeholder="न्यूज़ टेक्स्ट">
+                <input type="text" id="conf-phone" placeholder="फोन">
+                <input type="text" id="conf-upi" placeholder="UPI ID">
+                <input type="text" id="conf-pin" placeholder="PIN">
             </div>
         </div>
 
@@ -162,25 +147,25 @@
             <select id="adm-type">
                 <option value="vip">लोकप्रिय सेवा</option>
                 <option value="form">महत्वपूर्ण फॉर्म</option>
-                <option value="rate">रेट लिस्ट टेबल</option>
+                <option value="rate">रेट लिस्ट</option>
             </select>
-            <button onclick="addItem()" style="width:100%; background:green; color:white; border:none; padding:12px; border-radius:8px; font-weight:bold;">+ लिस्ट में जोड़ें</button>
-            <div id="list-items" style="margin-top:15px; max-height:150px; overflow:auto; border-top:1px solid #ccc;"></div>
+            <button onclick="addItem()" style="width:100%; background:green; color:white; border:none; padding:12px; border-radius:8px;">+ जोड़ें</button>
+            <div id="list-items" style="margin-top:15px; max-height:150px; overflow:auto;"></div>
         </div>
 
-        <button onclick="saveAdminChanges()" style="width:100%; padding:20px; background:var(--orange); color:white; border:none; border-radius:10px; font-weight:bold; font-size:24px; cursor:pointer;">✅ सभी बदलाव सुरक्षित करें</button>
+        <button onclick="saveAdminChanges()" style="width:100%; padding:20px; background:var(--orange); color:white; border:none; border-radius:10px; font-weight:bold; font-size:24px;">✅ सुरक्षित करें</button>
     </div>
 </div>
 
 <div id="ai-btn" onclick="toggleAI()">🤖</div>
 <div id="ai-chat">
-    <div class="ai-head">D.M Cyber Assistant <span onclick="toggleAI()" style="cursor:pointer;">✖</span></div>
+    <div class="ai-head">D.M Cyber AI असिस्टेंट <span onclick="toggleAI()" style="cursor:pointer;">✖</span></div>
     <div class="ai-body" id="ai-msgs">
-        <div class="ai-msg bot-msg">नमस्ते! मैं D.M Cyber AI हूँ। मैं आपकी क्या मदद कर सकता हूँ? आप मुझसे 'रेट', 'फॉर्म' या 'पेमेंट' के बारे में पूछ सकते हैं।</div>
+        <div class="ai-msg bot">नमस्ते! मैं D.M Cyber AI हूँ। मैं आपकी क्या सहायता कर सकता हूँ? आप मुझसे "रेट", "फॉर्म" या "पेमेंट" के बारे में पूछ सकते हैं।</div>
     </div>
-    <div class="ai-input-box">
-        <input type="text" id="ai-user-input" placeholder="यहाँ लिखें...">
-        <button onclick="sendAI()">भेजें</button>
+    <div class="ai-input-area">
+        <input type="text" id="ai-input" placeholder="यहाँ पूछें..." onkeypress="if(event.key==='Enter') askAI()">
+        <button onclick="askAI()">भेजें</button>
     </div>
 </div>
 
@@ -189,17 +174,12 @@
         <h3>D.M Cyber Varanasi</h3>
         <div id="qr-img"></div>
         <p id="upi-label" style="font-weight:bold; color:var(--dark-blue); margin:15px 0;"></p>
-        <button onclick="document.getElementById('qr-modal').style.display='none'" style="padding:10px 20px; background:red; color:white; border:none; border-radius:5px;">बंद करें</button>
     </div>
 </div>
 
 <footer>
     <div class="footer-logo">D.M Cyber Varanasi</div>
-    <div class="footer-info">
-        <p>संचालक: धीरज मौर्या</p>
-        <p>मंडाव, रोहनिया, वाराणसी | <span id="foot-phone-label"></span></p>
-        <p style="margin-top:20px; font-size:12px;">© 2025 सर्वाधिकार सुरक्षित</p>
-    </div>
+    <p>संचालक: धीरज मौर्या | मंडाव, रोहनिया | <span id="foot-phone-label"></span></p>
 </footer>
 
 <script>
@@ -213,14 +193,13 @@
         vips: ["पैन कार्ड", "आधार डाउनलोड", "आय प्रमाण"],
         forms: ["यूपी पुलिस भर्ती", "स्कॉलरशिप फॉर्म"],
         rates: [{n:"नया पैन कार्ड", p:"100"}],
-        db: [] 
+        db: []
     };
 
     function render() {
         document.getElementById('disp-logo').src = config.logo;
         document.getElementById('disp-news').innerText = config.news;
         document.getElementById('foot-phone-label').innerText = "मो: +91 " + config.phone;
-
         document.getElementById('conf-logo').value = config.logo;
         document.getElementById('conf-news').value = config.news;
         document.getElementById('conf-phone').value = config.phone;
@@ -229,40 +208,71 @@
 
         document.getElementById('vip-area').innerHTML = config.vips.map(v => `<div class="box">${v}</div>`).join('');
         document.getElementById('form-area').innerHTML = config.forms.map(f => `<div class="box" style="border-left:6px solid var(--dark-blue)">${f}</div>`).join('');
-        document.getElementById('rate-table').innerHTML = `<tr style="background:var(--dark-blue); color:white;"><th style="padding:15px;">काम का नाम</th><th>रेट (₹)</th></tr>` + 
-            config.rates.map(r => `<tr style="border-bottom:1px solid #eee;"><td style="padding:12px;">${r.n}</td><td style="color:red; font-weight:bold;">₹${r.p}</td></tr>`).join('');
+        document.getElementById('rate-table').innerHTML = `<tr><th style="padding:15px; background:var(--dark-blue); color:white;">काम का नाम</th><th style="background:var(--dark-blue); color:white;">रेट (₹)</th></tr>` + 
+            config.rates.map(r => `<tr><td style="padding:10px; border-bottom:1px solid #eee;">${r.n}</td><td style="color:red; font-weight:bold; border-bottom:1px solid #eee;">₹${r.p}</td></tr>`).join('');
         
         document.getElementById('list-items').innerHTML = 
-            config.vips.map((v,i)=>`<div style="padding:5px;">Service: ${v} <button onclick="del('vips',${i})" style="float:right;">X</button></div>`).join('') +
-            config.forms.map((f,i)=>`<div style="padding:5px;">Form: ${f} <button onclick="del('forms',${i})" style="float:right;">X</button></div>`).join('') +
-            config.rates.map((r,i)=>`<div style="padding:5px;">Rate: ${r.n} <button onclick="del('rates',${i})" style="float:right;">X</button></div>`).join('');
+            config.vips.map((v,i)=>`<div style="padding:5px; border-bottom:1px solid #ddd;">V: ${v} <button onclick="del('vips',${i})" style="float:right;">X</button></div>`).join('') +
+            config.forms.map((f,i)=>`<div style="padding:5px; border-bottom:1px solid #ddd;">F: ${f} <button onclick="del('forms',${i})" style="float:right;">X</button></div>`).join('') +
+            config.rates.map((r,i)=>`<div style="padding:5px; border-bottom:1px solid #ddd;">R: ${r.n} <button onclick="del('rates',${i})" style="float:right;">X</button></div>`).join('');
 
         updateLedgerUI();
     }
 
+    // --- AI LOGIC (RECHECKED & ADDED) ---
+    function toggleAI() {
+        let chat = document.getElementById('ai-chat');
+        chat.style.display = (chat.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function askAI() {
+        let input = document.getElementById('ai-input');
+        let text = input.value.trim().toLowerCase();
+        if(!text) return;
+
+        addMsg(input.value, 'user');
+        input.value = "";
+
+        setTimeout(() => {
+            let reply = "क्षमा करें, मैं समझ नहीं पाया। आप 'रेट', 'फॉर्म' या 'पेमेंट' टाइप करें।";
+            
+            if(text.includes('रेट') || text.includes('प्राइस') || text.includes('paisa')) {
+                let list = config.rates.map(r => `${r.n}: ₹${r.p}`).join('<br>');
+                reply = "<b>हमारी रेट लिस्ट:</b><br>" + list;
+            } else if(text.includes('फॉर्म') || text.includes('भर्ती')) {
+                reply = "<b>अभी उपलब्ध फॉर्म:</b><br>" + config.forms.join(', ');
+            } else if(text.includes('पेमेंट') || text.includes('qr') || text.includes('online')) {
+                reply = `आप हमें UPI ID: <b>${config.upi}</b> पर भुगतान कर सकते हैं या 'पेमेंट QR' बटन का उपयोग करें।`;
+            } else if(text.includes('नमस्ते') || text.includes('hello')) {
+                reply = "नमस्ते! मैं D.M Cyber AI हूँ। मैं आपकी कैसे मदद कर सकता हूँ?";
+            } else if(text.includes('पैन')) {
+                reply = "नया पैन कार्ड ₹100 में बनाया जाता है। इसके लिए आधार कार्ड और फोटो की जरूरत होती है।";
+            }
+            
+            addMsg(reply, 'bot');
+        }, 600);
+    }
+
+    function addMsg(txt, sender) {
+        let box = document.getElementById('ai-msgs');
+        box.innerHTML += `<div class="ai-msg ${sender}">${txt}</div>`;
+        box.scrollTop = box.scrollHeight;
+    }
+
+    // --- OTHER FUNCTIONS ---
     function updateLedgerUI(filter = "") {
         let pBox = document.getElementById('paid-box');
         let uBox = document.getElementById('udhar-box');
         pBox.innerHTML = ""; uBox.innerHTML = "";
         config.db.forEach((item, index) => {
             if(item.n.toLowerCase().includes(filter) || item.ph.includes(filter)) {
-                let card = `<div class="data-card">
-                    <b>👤 ${item.n}</b>
-                    <p>📞 मोबाइल: ${item.ph}</p>
-                    <p>🛠 काम: ${item.w}</p>
-                    <span>${item.m === 'Udhar' ? '📕 बकाया: ₹'+item.a : '✅ भुगतान सफल (PAID)'}</span>
-                    <button onclick="delCust(${index})" style="float:right; background:red; color:white; border:none; border-radius:5px; padding:5px 10px; cursor:pointer;">डिलीट</button>
-                </div>`;
-                if(item.m === 'Paid') pBox.innerHTML += card;
-                else uBox.innerHTML += card;
+                let card = `<div class="data-card"><b>👤 ${item.n}</b><p>📞 ${item.ph}</p><p>🛠 ${item.w}</p><span>${item.m === 'Udhar' ? '📕 बकाया: ₹'+item.a : '✅ PAID'}</span><br><button onclick="delCust(${index})" style="background:red; color:white; border:none; padding:5px; border-radius:5px; margin-top:5px; cursor:pointer;">डिलीट</button></div>`;
+                if(item.m === 'Paid') pBox.innerHTML += card; else uBox.innerHTML += card;
             }
         });
     }
 
-    function searchLedger() {
-        let val = document.getElementById('searchData').value.toLowerCase();
-        updateLedgerUI(val);
-    }
+    function searchLedger() { updateLedgerUI(document.getElementById('searchData').value.toLowerCase()); }
 
     function saveCustomer() {
         let n = document.getElementById('cust-n').value;
@@ -282,84 +292,18 @@
         config.upi = document.getElementById('conf-upi').value;
         config.pin = document.getElementById('conf-pin').value;
         localStorage.setItem(KEY, JSON.stringify(config));
-        alert("सेटिंग्स अपडेट हो गई!");
-        location.reload();
+        alert("सेटिंग्स सुरक्षित!"); location.reload();
     }
 
-    function loginAdmin() {
-        if(prompt("Admin PIN:") === config.pin) {
-            document.getElementById('admin-panel').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
-        }
-    }
-
-    function toggleUdhar() {
-        document.getElementById('cust-a').style.display = (document.getElementById('cust-m').value === 'Udhar') ? 'block' : 'none';
-    }
-
+    function loginAdmin() { if(prompt("Admin PIN:") === config.pin) document.getElementById('admin-panel').style.display = 'block'; }
+    function toggleUdhar() { document.getElementById('cust-a').style.display = (document.getElementById('cust-m').value === 'Udhar') ? 'block' : 'none'; }
     function addItem() {
-        let n = document.getElementById('adm-name').value;
-        let p = document.getElementById('adm-price').value;
-        let t = document.getElementById('adm-type').value;
-        if(n) {
-            if(t==='vip') config.vips.push(n);
-            else if(t==='form') config.forms.push(n);
-            else config.rates.push({n:n, p:p});
-            render();
-        }
+        let n = document.getElementById('adm-name').value; let p = document.getElementById('adm-price').value; let t = document.getElementById('adm-type').value;
+        if(n) { if(t==='vip') config.vips.push(n); else if(t==='form') config.forms.push(n); else config.rates.push({n:n, p:p}); render(); }
     }
-
     function del(k,i) { config[k].splice(i,1); render(); }
     function delCust(i) { if(confirm("डिलीट?")) { config.db.splice(i,1); localStorage.setItem(KEY, JSON.stringify(config)); render(); } }
-
-    function openQR() {
-        document.getElementById('qr-modal').style.display = 'flex';
-        document.getElementById('upi-label').innerText = config.upi;
-        document.getElementById('qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=${config.upi}&pn=DMCyber">`;
-    }
-
-    // --- NEW FIXED AI LOGIC ---
-    function toggleAI() {
-        let chat = document.getElementById('ai-chat');
-        chat.style.display = (chat.style.display === 'block') ? 'none' : 'block';
-    }
-
-    function sendAI() {
-        let input = document.getElementById('ai-user-input');
-        let msg = input.value.trim();
-        if(!msg) return;
-
-        addAIMessage(msg, 'user-msg');
-        input.value = "";
-
-        setTimeout(() => {
-            let botReply = getAIResponse(msg.toLowerCase());
-            addAIMessage(botReply, 'bot-msg');
-        }, 500);
-    }
-
-    function addAIMessage(txt, className) {
-        let box = document.getElementById('ai-msgs');
-        box.innerHTML += `<div class="ai-msg ${className}">${txt}</div>`;
-        box.scrollTop = box.scrollHeight;
-    }
-
-    function getAIResponse(query) {
-        if (query.includes('रेट') || query.includes('प्राइस') || query.includes('price')) {
-            let list = config.rates.map(r => `${r.n}: ₹${r.p}`).join(', ');
-            return `हमारी रेट लिस्ट इस प्रकार है: ${list || 'अभी कोई रेट लिस्ट नहीं है।'}`;
-        }
-        if (query.includes('फॉर्म') || query.includes('भर्ती') || query.includes('form')) {
-            return `अभी ये फॉर्म उपलब्ध हैं: ${config.forms.join(', ') || 'फिलहाल कोई नया फॉर्म नहीं है।'}`;
-        }
-        if (query.includes('पेमेंट') || query.includes('upi') || query.includes('qr')) {
-            return `आप हमें UPI ID: ${config.upi} पर पेमेंट कर सकते हैं या 'पेमेंट QR' बटन दबाएं।`;
-        }
-        if (query.includes('हेलो') || query.includes('नमस्ते') || query.includes('hi')) {
-            return "नमस्ते! मैं आपकी क्या सहायता कर सकता हूँ?";
-        }
-        return "क्षमा करें, मैं समझ नहीं पाया। आप 'रेट', 'फॉर्म' या 'पेमेंट' के बारे में पूछ सकते हैं।";
-    }
+    function openQR() { document.getElementById('qr-modal').style.display = 'flex'; document.getElementById('upi-label').innerText = config.upi; document.getElementById('qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=${config.upi}&pn=DMCyber">`; }
 
     render();
 </script>
