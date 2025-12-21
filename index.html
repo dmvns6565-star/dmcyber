@@ -3,188 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi | Final Master Control</title>
+    <title>D.M Cyber Varanasi - Official</title>
     <style>
         :root {
-            --primary: #004a99; --secondary: #ff7b00; --dark: #002b5c;
-            --form: #6a1b9a; --white: #ffffff; --gray: #f4f7f6;
-            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --orange: #ff7b00;
+            --blue: #004a99;
+            --dark: #001c3d;
+            --bg: #f4f7f6;
+            --txt: #1a1a1a;
+            --card: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gray); color: #333; }
-        
-        /* HEADER STYLE */
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --txt: #ffffff; /* डार्क मोड में टेक्स्ट पूरी तरह सफेद */
+            --card: #1e293b;
+            --blue: #3b82f6;
+            --dark: #000000;
+        }
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: var(--bg); color: var(--txt); transition: 0.3s; overflow-x: hidden; }
+
         header { 
-            background: linear-gradient(135deg, var(--dark), var(--primary)); 
-            text-align: center; padding: 40px 20px 70px; color: white; border-bottom: 8px solid var(--secondary);
+            background: linear-gradient(180deg, var(--blue), var(--dark)); 
+            color: white; text-align: center; padding: 50px 10px 100px; position: relative;
+            border-bottom: 5px solid var(--orange);
         }
-        .logo-box { 
-            width: 120px; height: 120px; background: white; border-radius: 50%; 
-            margin: 0 auto 15px; border: 4px solid var(--secondary); overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
+        .logo-circle { 
+            width: 110px; height: 110px; background: white; border-radius: 50%; 
+            margin: 0 auto 15px; border: 4px solid var(--orange); display: flex; 
+            align-items: center; justify-content: center; overflow: hidden; box-shadow: var(--shadow);
         }
-        .logo-box img { width: 100%; height: 100%; object-fit: cover; }
-        .dm-title { font-size: 2.8rem; margin: 0; text-transform: uppercase; font-weight: 900; }
-        .dm-title span { color: var(--secondary); }
-
-        /* SECTIONS STYLE */
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .section-title { 
-            background: var(--primary); color: white; padding: 10px 30px; 
-            border-radius: 50px; display: inline-block; margin: 30px 0 15px; 
-            font-weight: bold; border-left: 5px solid var(--secondary);
-        }
-
-        /* GRIDS FROM YOUR CODE */
-        .grid-5, .grid-3 { display: grid; gap: 12px; margin-bottom: 10px; }
-        .grid-5 { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-
-        .card, .form-card { 
-            background: white; padding: 20px; border-radius: 12px; text-align: center;
-            font-weight: bold; box-shadow: var(--shadow); border-bottom: 4px solid var(--secondary);
-        }
-        .form-card { border-bottom-color: var(--form); color: var(--form); }
-
-        /* TABLE STYLE */
-        .table-container { background: white; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); }
-        table { width: 100%; border-collapse: collapse; }
-        td { padding: 15px; border-bottom: 1px solid #eee; font-weight: bold; }
-        .price { color: red; text-align: right; font-weight: 900; }
-
-        /* ADMIN PANEL */
-        #admin-panel { display: none; background: white; padding: 25px; border: 3px dashed var(--primary); border-radius: 20px; margin-top: 40px; }
-        .admin-box { background: #fdfdfd; padding: 15px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 15px; }
-        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+        .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
         
-        .save-btn { background: var(--secondary); color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
-        .add-btn { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; margin-bottom: 20px; }
+        .brand { font-size: 32px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px; color: #ffffff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .brand span { color: var(--orange); }
 
-        /* AI ASSISTANT FAB */
-        .ai-fab { position: fixed; bottom: 20px; right: 20px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid var(--secondary); font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .action-wrapper { max-width: 900px; margin: -60px auto 20px; padding: 0 15px; position: relative; z-index: 10; }
+        .action-box { background: var(--card); border-radius: 20px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-align: center; border: 1px solid rgba(0,0,0,0.1); color: var(--txt); }
+        
+        .sec-tag { background: var(--dark); color: #ffffff !important; padding: 12px 30px; border-radius: 50px; display: inline-block; margin: 30px 0 20px; border-left: 8px solid var(--orange); font-weight: bold; }
+        
+        .card { background: var(--card); color: var(--txt); padding: 25px 15px; border-radius: 15px; text-align: center; font-weight: bold; border-bottom: 5px solid var(--blue); box-shadow: var(--shadow); }
 
-        footer { background: var(--dark); color: white; text-align: center; padding: 40px; margin-top: 40px; }
+        /* AI Assistant Style Fixes */
+        #ai-box { display: none; position: fixed; bottom: 105px; right: 30px; width: 350px; height: 500px; background: var(--card); border: 2px solid var(--orange); border-radius: 20px; flex-direction: column; overflow: hidden; z-index: 1000; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .ai-msg { background: #e3f2fd; color: #333; padding: 12px; border-radius: 15px 15px 15px 0; align-self: flex-start; font-size: 14px; max-width: 80%; }
+        
+        /* Form Inputs in Dark Mode */
+        input, select { background: var(--card); color: var(--txt); border: 1px solid #555; }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
 <header>
-    <div class="logo-box"><img id="disp-logo" src="https://i.postimg.cc/7f7ae7/image.png"></div>
-    <h1 class="dm-title" id="disp-title">D.M <span>CYBER</span></h1>
-    <p>"आपकी सेवा, हमारी पहचान"</p>
+    <button class="theme-toggle" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:24px; cursor:pointer;" onclick="toggleTheme()">🌓</button>
+    <div class="logo-circle"><img id="d-logo" src=""></div>
+    <h1 class="brand">D.M <span>Cyber</span></h1>
+    <p style="color: white; opacity:0.9; font-style: italic;">"आपकी सेवा, हमारी पहचान"</p>
+    <div style="background: var(--orange); color: white; padding: 6px 20px; border-radius: 20px; font-weight: bold; display: inline-block; margin-top: 12px;">संचालक: धीरज मौर्या</div>
 </header>
 
+<div class="news-bar" style="background: var(--card); border-bottom: 3px solid var(--orange); padding: 12px 0;">
+    <marquee id="d-news" scrollamount="6" style="font-weight: bold; color: var(--txt);"></marquee>
+</div>
+
 <div class="container">
-    <center><div class="section-title">⭐ लोकप्रिय सेवाएँ</div></center>
-    <div class="grid-5" id="vip-area"></div>
-
-    <center><div class="section-title" style="background:var(--form);">📝 महत्वपूर्ण फॉर्म</div></center>
-    <div class="grid-3" id="form-area"></div>
-
-    <center><div class="section-title">💰 रेट लिस्ट</div></center>
-    <div class="table-container">
-        <table><tbody id="rate-table"></tbody></table>
+    <div style="background: var(--card); padding: 25px; border-radius: 20px; border: 2px solid var(--blue); margin-top: 20px; box-shadow: var(--shadow);">
+        <h3 style="text-align:center; color:var(--blue); margin-top:0;">📝 न्यू ग्राहक डाटा एंट्री</h3>
+        <input type="text" id="c-name" placeholder="ग्राहक का नाम लिखें" style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px;">
+        <input type="text" id="c-work" placeholder="काम का विवरण" style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px;">
+        <button onclick="saveClient()" style="background:var(--orange); color:white; width:100%; padding:15px; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">डाटा सुरक्षित करें</button>
     </div>
 
-    <center style="margin-top: 30px;">
-        <button onclick="openAdmin()" style="background:#444; color:white; border:none; padding:10px 25px; border-radius:50px; cursor:pointer;">⚙️ एडमिन कंट्रोल</button>
+    <center><div class="sec-tag">⭐ हमारी सेवाएँ</div></center>
+    <div class="grid" id="srv-grid"></div>
+
+    <center><div class="sec-tag">📋 चालू सरकारी फॉर्म</div></center>
+    <div class="grid" id="frm-grid"></div>
+
+    <center><div class="sec-tag">💰 रेट लिस्ट</div></center>
+    <div id="rate-list-display" style="background: var(--card); border-radius: 15px; padding: 10px;"></div>
+
+    <div id="admin-panel" style="display:none; margin-top: 50px; background: var(--card); padding: 20px; border: 2px dashed var(--orange);">
+        <h3>⚙️ एडमिन पैनल</h3>
+        <label>लोगो अपलोड करें:</label>
+        <input type="file" id="in-logo-file" accept="image/*" onchange="uploadPhoto(this)" style="margin-bottom: 20px;">
+        <input type="text" id="in-news" placeholder="न्यूज टेक्स्ट">
+        <input type="text" id="in-upi" placeholder="UPI ID">
+        <button onclick="saveAll()" style="background: var(--blue); color: white; padding: 15px; width: 100%; border: none; cursor: pointer;">💾 सब कुछ सुरक्षित करें</button>
+        <button onclick="document.getElementById('admin-panel').style.display='none'" style="width:100%; margin-top:10px;">बंद करें</button>
+    </div>
+    
+    <center style="margin: 40px 0;">
+        <button onclick="openAdmin()" style="background: #444; color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer;">एडमिन पैनल खोलें</button>
     </center>
+</div>
 
-    <div id="admin-panel">
-        <h2 style="text-align: center; color: var(--primary);">🛠 मास्टर कंट्रोल पैनल</h2>
-        
-        <div class="admin-box">
-            <h4>1. फोटो और दुकान का नाम</h4>
-            <input type="file" id="up-logo" accept="image/*" onchange="handleLogo(this)" style="margin-bottom:10px;">
-            <input type="text" id="in-title" placeholder="दुकान का नाम" style="width:100%; padding:10px; margin-bottom:10px;">
-        </div>
-
-        <div class="admin-box">
-            <h4>2. सेवाएँ (कोमा लगायें: आय प्रमाण, जाति प्रमाण...)</h4>
-            <textarea id="in-services" placeholder="सेवाओं के नाम लिखें..."></textarea>
-        </div>
-
-        <div class="admin-box">
-            <h4>3. महत्वपूर्ण फॉर्म (कोमा लगायें)</h4>
-            <textarea id="in-forms" placeholder="फॉर्म्स के नाम लिखें..."></textarea>
-        </div>
-
-        <div class="admin-box">
-            <h4>4. रेट लिस्ट (Format: नाम=₹100, नाम2=₹80)</h4>
-            <textarea id="in-rates" placeholder="जैसे: नया पैन कार्ड=₹100, आय प्रमाण=₹80"></textarea>
-        </div>
-
-        <button class="save-btn" onclick="saveMaster()">💾 सब कुछ एक साथ सेव करें</button>
+<div class="ai-btn" onclick="toggleAI()">🤖</div>
+<div id="ai-box">
+    <div style="background:var(--blue); color:white; padding:15px; font-weight:bold; display:flex; justify-content:space-between;">
+        <span>D.M Cyber Assistant</span>
+        <span onclick="toggleAI()" style="cursor:pointer;">✖</span>
+    </div>
+    <div class="ai-chat" id="ai-display"></div>
+    <div style="display:flex; padding:10px;">
+        <input type="text" id="ai-input" placeholder="पूछें..." style="flex:1;">
+        <button onclick="askAI()" style="background:var(--orange); color:white; border:none; padding:10px;">भेजें</button>
     </div>
 </div>
 
-<div class="ai-fab" onclick="alert('D.M Cyber Assistant Active!')">🤖</div>
-
-<footer>
-    <h3 id="foot-title">D.M Cyber Varanasi</h3>
-    <p>मंडाव, रोहनिया, वाराणसी | Mob: 8303585793</p>
-    <p>© 2025 | सुरक्षित डिजिटल सेवा केंद्र</p>
-</footer>
-
 <script>
-    // Initial Database
-    let db = JSON.parse(localStorage.getItem('DM_FINAL_DB')) || {
-        title: "D.M CYBER",
+    let db = JSON.parse(localStorage.getItem('dm_master_final')) || {
         logo: "https://i.postimg.cc/7f7ae7/image.png",
-        services: ["आय प्रमाण", "जाति प्रमाण", "निवास प्रमाण", "नया पैन कार्ड", "आधार डाउनलोड"],
-        forms: ["UP पुलिस भर्ती", "स्कॉलरशिप फॉर्म", "PM किसान ई-केवाईसी"],
-        rates: ["नया पैन कार्ड=₹100", "आय/जाति/निवास=₹80"]
+        news: "D.M Cyber वाराणसी में आपका स्वागत है।",
+        phone: "8303585793",
+        upi: "dm0827717@ybl",
+        pin: "4321",
+        services: ["पैन कार्ड", "आय प्रमाण", "जाति प्रमाण"],
+        forms: ["यूपी पुलिस", "स्कॉलरशिप"],
+        rates: [{n:"पैन कार्ड", p:"200"}],
+        clients: []
     };
 
     function render() {
-        // Basic Info
-        document.getElementById('disp-logo').src = db.logo;
-        document.getElementById('disp-title').innerHTML = db.title.replace("CYBER", "<span>CYBER</span>");
-        document.getElementById('foot-title').innerText = db.title + " Varanasi";
-
-        // Render Services
-        document.getElementById('vip-area').innerHTML = db.services.map(s => `<div class="card">${s}</div>`).join('');
-        
-        // Render Forms
-        document.getElementById('form-area').innerHTML = db.forms.map(f => `<div class="form-card">${f}</div>`).join('');
-
-        // Render Rates
-        document.getElementById('rate-table').innerHTML = db.rates.map(r => {
-            let [name, price] = r.split('=');
-            return `<tr><td>${name}</td><td class="price">${price}</td></tr>`;
-        }).join('');
-
-        // Pre-fill Admin
-        document.getElementById('in-title').value = db.title;
-        document.getElementById('in-services').value = db.services.join(', ');
-        document.getElementById('in-forms').value = db.forms.join(', ');
-        document.getElementById('in-rates').value = db.rates.join(', ');
+        document.getElementById('d-logo').src = db.logo;
+        document.getElementById('d-news').innerText = db.news;
+        document.getElementById('srv-grid').innerHTML = db.services.map(s => `<div class="card">${s}</div>`).join('');
+        document.getElementById('frm-grid').innerHTML = db.forms.map(f => `<div class="card">${f}</div>`).join('');
+        document.getElementById('rate-list-display').innerHTML = db.rates.map(r => `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee; color:var(--txt);"><b>${r.n}</b> <span>₹${r.p}</span></div>`).join('');
     }
 
-    function handleLogo(input) {
+    // फोटो सुरक्षित करने का फंक्शन
+    function uploadPhoto(input) {
         const file = input.files[0];
         const reader = new FileReader();
-        reader.onloadend = () => { db.logo = reader.result; };
+        reader.onloadend = function() {
+            db.logo = reader.result; // Base64 डेटा सुरक्षित
+            document.getElementById('d-logo').src = reader.result;
+        }
         if (file) reader.readAsDataURL(file);
     }
 
+    function toggleTheme() {
+        document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+    }
+
     function openAdmin() {
-        let pin = prompt("Admin PIN:");
-        if(pin === "4321") {
-            document.getElementById('admin-panel').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
+        if(prompt("PIN दर्ज करें:") === db.pin) document.getElementById('admin-panel').style.display = 'block';
+    }
+
+    function saveAll() {
+        db.news = document.getElementById('in-news').value;
+        db.upi = document.getElementById('in-upi').value;
+        localStorage.setItem('dm_master_final', JSON.stringify(db));
+        alert("डेटा पूरी तरह सुरक्षित हो गया है!");
+        location.reload();
+    }
+
+    function saveClient() {
+        let n = document.getElementById('c-name').value;
+        let w = document.getElementById('c-work').value;
+        if(n && w) {
+            db.clients.push({n:n, w:w, t:new Date().toLocaleString()});
+            localStorage.setItem('dm_master_final', JSON.stringify(db));
+            alert("ग्राहक डेटा सुरक्षित किया गया!");
+            document.getElementById('c-name').value = "";
+            document.getElementById('c-work').value = "";
         }
     }
 
-    function saveMaster() {
-        db.title = document.getElementById('in-title').value;
-        db.services = document.getElementById('in-services').value.split(',').map(s => s.trim());
-        db.forms = document.getElementById('in-forms').value.split(',').map(f => f.trim());
-        db.rates = document.getElementById('in-rates').value.split(',').map(r => r.trim());
+    // AI logic fixed
+    function toggleAI() {
+        let b = document.getElementById('ai-box');
+        b.style.display = b.style.display === 'flex' ? 'none' : 'flex';
+    }
 
-        localStorage.setItem('DM_FINAL_DB', JSON.stringify(db));
-        alert("✅ बधाई हो! सारा डेटा एक साथ सुरक्षित हो गया है।");
-        location.reload();
+    function askAI() {
+        let inp = document.getElementById('ai-input');
+        let msg = inp.value.toLowerCase();
+        let display = document.getElementById('ai-display');
+        
+        display.innerHTML += `<div style="align-self:flex-end; background:var(--orange); color:white; padding:10px; border-radius:10px; margin-bottom:10px;">${inp.value}</div>`;
+        
+        let reply = "मैं आपकी कैसे सहायता कर सकता हूँ? आप रेट या सेवाओं के बारे में पूछ सकते हैं।";
+        if(msg.includes("रेट")) reply = "हमारे रेट्स: " + db.rates.map(r => r.n + "=₹" + r.p).join(", ");
+        if(msg.includes("सेवा")) reply = "हम ये काम करते हैं: " + db.services.join(", ");
+        
+        setTimeout(() => {
+            display.innerHTML += `<div style="align-self:flex-start; background:#e3f2fd; color:#333; padding:10px; border-radius:10px; margin-bottom:10px;">${reply}</div>`;
+            display.scrollTop = display.scrollHeight;
+        }, 500);
+        
+        inp.value = "";
     }
 
     render();
