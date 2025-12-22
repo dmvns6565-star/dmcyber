@@ -7,26 +7,37 @@
     <style>
         :root { --dark-blue: #004a99; --orange: #ff851b; --white: #ffffff; --bg: #f4f7f6; --txt-color: #333; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg); color: var(--txt-color); overflow-x: hidden; }
+        
+        /* Updated Professional Header */
         header { background: linear-gradient(135deg, var(--dark-blue) 0%, #002a55 100%); text-align: center; padding: 50px 10px 90px; color: white; border-bottom: 10px solid var(--orange); position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .white-circle { width: 120px; height: 120px; background: white; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 5px solid var(--orange); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        .white-circle { width: 130px; height: 130px; background: white; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 5px solid var(--orange); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
         .dm-brand { font-size: 3.2em; font-weight: 900; margin: 0; letter-spacing: 2px; }
         .dm-brand span { color: var(--orange); }
         .orange-pill-new { background: var(--orange); color: white; padding: 8px 25px; border-radius: 50px; display: inline-block; font-weight: bold; margin-top: 15px; }
+
         .news-container { background: #fff; border: 2px solid var(--orange); margin: -25px auto 10px; max-width: 900px; display: flex; border-radius: 50px; overflow: hidden; height: 45px; align-items: center; position: relative; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .news-label { background: #d32f2f; color: white; padding: 0 20px; font-weight: bold; height: 100%; display: flex; align-items: center; white-space: nowrap; }
+        
         .container { max-width: 1000px; margin: 0 auto; padding: 20px 15px 100px; }
         .action-box { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 3px solid var(--dark-blue); margin-bottom: 30px; }
         input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 2px solid #eee; box-sizing: border-box; font-size: 16px; }
+        
         .submit-btn { background: var(--orange); color: white; width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.2em; transition: 0.3s; }
         .submit-btn:hover { background: #e67600; transform: translateY(-2px); }
+        
         .title { background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%); color: white; padding: 12px 35px; border-radius: 50px; display: inline-block; margin: 30px 0 15px; font-weight: bold; text-align: center; }
         .box { background: white; padding: 15px 5px; border-radius: 12px; font-weight: bold; box-shadow: 0 3px 10px rgba(0,0,0,0.1); color: var(--dark-blue); border: 2px solid #e0e0e0; border-bottom: 6px solid var(--orange); text-align: center; font-size: 14px; }
+        
         #vip-area, #form-area { display: grid; gap: 12px; margin-bottom: 20px; }
         #vip-area { grid-template-columns: repeat(5, 1fr); }
         #form-area { grid-template-columns: repeat(3, 1fr); }
         @media (max-width: 768px) { #vip-area { grid-template-columns: repeat(2, 1fr); } #form-area { grid-template-columns: 1fr; } }
+        
+        /* Silent Security Admin Panel */
         #admin-panel { display: none; background: #fff; padding: 25px; border-radius: 20px; border: 8px double var(--dark-blue); margin-top: 30px; }
         .admin-sec { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 2px solid #ddd; margin-bottom: 20px; }
+        
+        /* AI Assistant Style */
         #ai-btn { position: fixed; bottom: 30px; right: 30px; background: var(--dark-blue); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; z-index: 1000; border: 3px solid var(--orange); }
         #ai-chat { display: none; position: fixed; bottom: 100px; right: 30px; width: 320px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1001; overflow: hidden; border: 2px solid var(--dark-blue); }
         .ai-head { background: var(--dark-blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
@@ -36,14 +47,20 @@
         .ai-input-area { display: flex; border-top: 1px solid #eee; }
         .ai-input-area input { border: none; flex: 1; padding: 12px; border-radius: 0; }
         .ai-input-area button { background: var(--dark-blue); color: white; border: none; padding: 10px 15px; cursor: pointer; }
+        
+        /* Professional Footer */
         footer { background: #001c3d; color: white; padding: 40px 20px; text-align: center; border-top: 10px solid var(--orange); }
+        .footer-logo { font-size: 1.8em; font-weight: bold; margin-bottom: 10px; color: var(--orange); }
+        
         #qr-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="white-circle"><img id="disp-logo" src="" style="width:85%;"></div>
+    <div class="white-circle">
+        <img id="disp-logo" src="https://i.ibb.co/XfXfXf/D-M-Cyber-Logo.jpg" style="width:100%; height:100%; object-fit:cover;">
+    </div>
     <h1 class="dm-brand">D.M <span>CYBER</span></h1>
     <div class="orange-pill-new">वाराणसी का नंबर 1 जन सेवा केंद्र</div>
 </header>
@@ -132,17 +149,16 @@
 
 <footer>
     <div class="footer-logo">D.M Cyber Varanasi</div>
-    <p>संचालक: धीरज मौर्या | मंडाव, रोहनिया | <span id="foot-phone-label"></span></p>
+    <p>संचालक: धीरज मौर्या | मंडाव, रोहनिया | वाराणसी, उत्तर प्रदेश</p>
+    <p><span id="foot-phone-label"></span> | © 2025 सर्वाधिकार सुरक्षित</p>
 </footer>
 
 <script>
-    // --- GLOBAL SYNC SYSTEM (JSONBIN) ---
-    const BIN_ID = '658597321f5677401f11a87b'; // यह आपका फ्री डेटाबेस क्लाउड है
-    const API_KEY = '$2a$10$7zB3p7h3W.hD6YwGfN3KLuXw8Xf8/T.A3r6h1L7C.n9S9Z8Z8Z8Z8'; // Example Key
+    const BIN_ID = '658597321f5677401f11a87b'; 
+    const API_KEY = '$2a$10$7zB3p7h3W.hD6YwGfN3KLuXw8Xf8/T.A3r6h1L7C.n9S9Z8Z8Z8Z8'; 
     
-    // Default Initial Config
     let config = {
-        logo: "https://i.postimg.cc/mDF47CS1/Gemini-Generated-Image-dp4mkadp4mkadp4m.png",
+        logo: "https://i.ibb.co/aC0RkGv/a.jpg", 
         news: "D.M Cyber वाराणसी में आपका स्वागत है।",
         phone: "8303585793",
         upi: "dm0827717@ybl",
@@ -152,21 +168,14 @@
         rates: [{n:"नया पैन कार्ड", p:"100"}]
     };
 
-    // Load Data from Cloud on Startup
     async function loadGlobalData() {
         try {
             const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-                headers: { 'X-Master-Key': '$2a$10$7zB3p7h3W.hD6YwGfN3KLuXw8Xf8/T.A3r6h1L7C.n9S9Z8Z8Z8Z8' } // रिप्लेस विद रियल की इफ नीडेड
+                headers: { 'X-Master-Key': API_KEY }
             });
             const data = await res.json();
-            if(data.record) {
-                config = data.record;
-                render();
-            }
-        } catch (e) { 
-            console.log("Offline Mode: Loading Local"); 
-            render();
-        }
+            if(data.record) { config = data.record; render(); }
+        } catch (e) { render(); }
     }
 
     function render() {
@@ -190,7 +199,7 @@
             config.rates.map((r,i)=>`<div style="padding:5px; border-bottom:1px solid #ddd;">R: ${r.n} <button onclick="del('rates',${i})" style="float:right">X</button></div>`).join('');
     }
 
-    // --- AI ASSISTANT 2.0 (Smart Processor) ---
+    // AI Assistant 2.0
     function toggleAI() {
         let chat = document.getElementById('ai-chat');
         chat.style.display = (chat.style.display === 'block') ? 'none' : 'block';
@@ -205,23 +214,16 @@
         box.innerHTML += `<div class="user-msg">${rawInput}</div>`;
         let reply = "क्षमा करें, मैं समझ नहीं पाया। आप रेट, फॉर्म, काम या पेमेंट के बारे में पूछें।";
 
-        // AI 2.0 Logic: Keywords & Fuzzy matching
         const rateKeywords = ['rate', 'paisa', 'kitna', 'kimat', 'price', 'रेट', 'पैसा', 'कितना'];
         const formKeywords = ['form', 'yojna', 'bharti', 'list', 'फॉर्म', 'योजना', 'भर्ती', 'लिस्ट'];
-        const serviceKeywords = ['kaam', 'service', 'online', 'kya hota', 'काम', 'सेवा'];
-        const payKeywords = ['qr', 'barcode', 'pay', 'online pay', 'upi', 'बारकोड', 'पेमेंट'];
+        const payKeywords = ['qr', 'barcode', 'pay', 'upi', 'बारकोड', 'पेमेंट'];
 
         if (rateKeywords.some(key => input.includes(key))) {
-            let list = config.rates.map(r => `${r.n}: ₹${r.p}`).join("<br>");
-            reply = "<b>हमारी रेट लिस्ट यहाँ है:</b><br>" + list;
+            reply = "<b>रेट लिस्ट:</b><br>" + config.rates.map(r => `${r.n}: ₹${r.p}`).join("<br>");
         } else if (formKeywords.some(key => input.includes(key))) {
-            reply = "<b>अभी उपलब्ध फॉर्म और योजनाएं:</b><br>" + config.forms.join(", ");
-        } else if (serviceKeywords.some(key => input.includes(key))) {
-            reply = "<b>हमारी मुख्य सेवाएं:</b><br>" + config.vips.join(", ");
+            reply = "<b>फॉर्म/योजनाएं:</b><br>" + config.forms.join(", ");
         } else if (payKeywords.some(key => input.includes(key))) {
-            reply = `आप हमें UPI ID: <b>${config.upi}</b> पर भुगतान कर सकते हैं या नीचे दिए गए 'पेमेंट QR' बटन को दबाएं।`;
-        } else if (input.includes("hello") || input.includes("hi") || input.includes("नमस्ते")) {
-            reply = "नमस्ते! मैं D.M Cyber AI हूँ। मैं आपकी कैसे मदद करूँ?";
+            reply = `UPI ID: <b>${config.upi}</b> या QR बटन दबाएं।`;
         }
 
         setTimeout(() => {
@@ -231,7 +233,16 @@
         }, 500);
     }
 
-    // --- ADMIN SYNC SAVE ---
+    // Silent Security Admin Login
+    function loginAdmin() {
+        let enteredPin = prompt("Admin PIN दर्ज करें:");
+        // Silent Security: No error message if wrong
+        if(enteredPin === config.pin) {
+            document.getElementById('admin-panel').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    }
+
     async function saveAdminChanges() {
         let btn = document.getElementById('sync-btn');
         btn.innerText = "⌛ अपडेट हो रहा है...";
@@ -244,30 +255,15 @@
         config.pin = document.getElementById('conf-pin').value;
         
         try {
-            // Updating Global Cloud Storage
             await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
                 method: 'PUT',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'X-Master-Key': '$2a$10$7zB3p7h3W.hD6YwGfN3KLuXw8Xf8/T.A3r6h1L7C.n9S9Z8Z8Z8Z8' 
-                },
+                headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
                 body: JSON.stringify(config)
             });
-            alert("✅ सफलता! सभी डिवाइस पर डेटा अपडेट कर दिया गया है।");
+            alert("✅ सफलता! सभी डिवाइस अपडेट हो गए।");
             location.reload();
-        } catch (e) {
-            alert("Sync Failed! इंटरनेट चेक करें।");
-        } finally {
-            btn.innerText = "☁️ सभी डिवाइस पर अपडेट करें (SYNC)";
-            btn.disabled = false;
-        }
-    }
-
-    function loginAdmin() {
-        if(prompt("Admin PIN दर्ज करें:") === config.pin) {
-            document.getElementById('admin-panel').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
-        } else { alert("गलत पिन!"); }
+        } catch (e) { alert("Sync Failed!"); }
+        finally { btn.innerText = "☁️ SYNC UPDATE"; btn.disabled = false; }
     }
 
     function addItem() {
@@ -288,9 +284,8 @@
     function toggleUdhar() { document.getElementById('cust-a').style.display = (document.getElementById('cust-m').value === 'Udhar') ? 'block' : 'none'; }
     function saveCustomer() {
         let n = document.getElementById('cust-n').value;
-        let ph = document.getElementById('cust-p').value;
-        if(!n || !ph) return alert("नाम और नंबर भरें!");
-        window.open(`https://wa.me/91${config.phone}?text=*D.M Cyber Varanasi*%0A*नाम:* ${n}%0A*काम:* ${document.getElementById('cust-w').value}%0A*पेमेंट:* ${document.getElementById('cust-m').value}`);
+        if(!n) return alert("नाम भरें!");
+        window.open(`https://wa.me/91${config.phone}?text=*D.M Cyber Varanasi*%0A*नाम:* ${n}%0A*काम:* ${document.getElementById('cust-w').value}`);
     }
     function openQR() { 
         document.getElementById('qr-modal').style.display = 'flex'; 
@@ -298,7 +293,6 @@
         document.getElementById('qr-img').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=${config.upi}&pn=DMCyber">`;
     }
 
-    // Startup
     loadGlobalData();
 </script>
 </body>
