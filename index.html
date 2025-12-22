@@ -4,177 +4,359 @@
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>D.M Cyber Varanasi - Final Secure</title>
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="D.M Cyber - वाराणसी का सबसे विश्वसनीय जन सेवा केंद्र।">
+    <title>D.M Cyber - आपकी सेवा, हमारी पहचान</title>
+    
     <style>
-        :root { --dark-blue: #004a99; --orange: #ff851b; --bg: #f4f7f6; }
-        body { font-family: sans-serif; margin: 0; background: var(--bg); color: #333; }
-        header { background: linear-gradient(135deg, var(--dark-blue), #002a55); text-align: center; padding: 35px 10px; color: white; border-bottom: 5px solid var(--orange); }
-        .container { max-width: 900px; margin: 0 auto; padding: 15px; }
-        .action-box { background: white; border-radius: 15px; padding: 20px; border: 2px solid var(--dark-blue); box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 25px; }
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 16px; outline: none; }
-        input:focus { border-color: var(--orange); }
-        .submit-btn { background: var(--orange); color: white; width: 100%; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 17px; cursor: pointer; transition: 0.3s; }
-        .submit-btn:active { transform: scale(0.98); }
-        .title { background: var(--dark-blue); color: white; padding: 8px 25px; border-radius: 20px; display: inline-block; margin: 20px 0 10px; font-weight: bold; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
-        .box { background: white; padding: 15px; border-radius: 12px; text-align: center; font-weight: bold; border-bottom: 5px solid var(--orange); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        #admin-panel { display: none; background: #fff; padding: 20px; border: 4px solid var(--dark-blue); border-radius: 20px; margin-top: 30px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
-        th, td { border: 1px solid #eee; padding: 12px; text-align: center; }
-        th { background: var(--dark-blue); color: white; }
-        footer { background: #001c3d; color: white; text-align: center; padding: 40px 10px; border-top: 5px solid var(--orange); margin-top: 50px; }
+        /* आपका पुराना स्टाइल यहाँ बरकरार है */
+        :root { --primary: #001f3f; --accent: #ff851b; --bg: #f4f7f6; --success: #28a745; --form-color: #0074d9; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--bg); color: #333; padding-bottom: 80px; }
+        
+        #admin-notice { display: none; background: #d32f2f; color: white; text-align: center; padding: 10px; font-weight: bold; position: sticky; top: 0; z-index: 3000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .editing-active { border: 2px dashed var(--accent) !important; background: #fffde7 !important; outline: none; padding: 4px; border-radius: 4px; position: relative; cursor: text; }
+
+        header { background: linear-gradient(135deg, var(--primary), #0074d9); color: white; padding: 40px 15px 80px; text-align: center; border-bottom: 5px solid var(--accent); position: relative; z-index: 1; }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 10px; object-fit: cover; background: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.4); transition: transform 0.3s; }
+        .logo-text { font-size: 3.5em; font-weight: bold; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .logo-text span { color: var(--accent); }
+        .owner-tag { background: var(--accent); padding: 6px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-top: 15px; }
+
+        .container { padding: 15px; max-width: 1100px; margin: auto; position: relative; z-index: 2; margin-top: -60px; }
+        
+        .news-container { background: white; padding: 10px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid #d32f2f; display: flex; align-items: center; overflow: hidden; }
+        .news-badge { background: #d32f2f; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px; white-space: nowrap; }
+        marquee { font-weight: 500; color: #333; font-size: 1.1em; flex-grow: 1; display: flex; align-items: center; }
+        .news-item { margin-right: 30px; display: inline-block; position: relative; }
+        .news-item::after { content: " | "; color: #d32f2f; font-weight: bold; margin-left: 10px; }
+
+        .main-card { background: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #ddd; }
+
+        .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+        .btn { text-decoration: none; padding: 12px 22px; border-radius: 30px; font-weight: bold; color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; font-size: 0.95em; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-wa { background: #25D366; } .btn-call { background: var(--primary); } .btn-pay { background: #673ab7; } .btn-admin { background: #444; } .btn-ledger { background: #d32f2f; }
+
+        .section-title { background: var(--primary); color: white; padding: 10px 22px; border-radius: 8px; margin: 30px 0 15px; display: inline-block; box-shadow: 3px 3px 0 var(--accent); font-weight: bold; font-size: 1.2em; }
+        
+        .vip-grid, .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 10px; }
+        .vip-card { background: white; border-top: 4px solid var(--accent); padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-weight: bold; position: relative; }
+        .form-card { background: #e3f2fd; border-left: 5px solid var(--form-color); padding: 15px; border-radius: 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: bold; position: relative; display: flex; flex-direction: column; justify-content: center; }
+        .form-badge { font-size: 0.8em; color: var(--form-color); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;}
+
+        .rate-table { width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .rate-table td { border-bottom: 1px solid #eee; padding: 15px; }
+        .price { color: #d32f2f; font-weight: bold; text-align: right; width: 100px; }
+
+        .del-btn-float { position: absolute; top: -8px; right: -8px; background: red; color: white; border-radius: 50%; width: 22px; height: 22px; text-align: center; line-height: 22px; cursor: pointer; font-size: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); display: none; z-index: 10; }
+        .del-row-btn { display: none; color: red; cursor: pointer; margin-left: 10px; font-weight: bold; }
+        .add-btn-style { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; margin-top: 15px; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.15); display: none; font-size: 0.9em; }
+
+        .float-wa { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 12px 18px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); z-index: 2000; display: flex; align-items: center; gap: 8px; }
+
+        #pay-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4000; width: 85%; max-width: 400px; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 0 100px rgba(0,0,0,0.6); }
+        #ledger-section { display: none; background: #fff; padding: 20px; border-radius: 20px; border: 2px solid #d32f2f; margin-top: 20px; }
+        .ledger-row { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+
+        footer { text-align: center; padding: 50px 15px; background: var(--primary); color: white; margin-top: 50px; }
+
+        /* एंट्री फॉर्म स्टाइल (New Add) */
+        .entry-form { margin-top: 20px; padding: 15px; background: #fdfdfd; border-radius: 12px; border: 1px solid #eee; }
+        .entry-form input, .entry-form select { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
+
+<div id="admin-notice">🛠️ एडमिन मोड चालू है | बदलाव के बाद 'सेव' बटन दबाएं</div>
 
 <header>
-    <h1 style="margin:0; font-size: 2.5em;">D.M <span>CYBER</span></h1>
-    <p style="margin:5px 0 0; opacity:0.9;">वाराणसी का नंबर 1 जन सेवा केंद्र</p>
+    <img id="myLogo" src="https://via.placeholder.com/120?text=Logo" class="profile-img" onclick="changePhoto()" title="फोटो बदलने के लिए क्लिक करें">
+    <div class="logo-text">D.M <span>Cyber</span></div>
+    <div class="owner-tag">संचालक: <span id="owner-name" class="editable">धीरज मौर्या</span></div>
+    <p id="site-desc" class="editable" style="margin-top:10px; opacity:0.9;">वाराणसी का नंबर 1 जन सेवा केंद्र</p>
 </header>
 
 <div class="container">
-    <div class="action-box">
-        <h3 style="margin-top:0; color:var(--dark-blue); border-bottom: 2px solid var(--orange); padding-bottom: 5px;">📝 कस्टमर एंट्री फॉर्म</h3>
-        <input type="text" id="c-name" placeholder="ग्राहक का नाम">
-        <input type="number" id="c-phone" placeholder="मोबाइल नंबर">
-        <input type="text" id="c-work" placeholder="काम का विवरण">
-        <select id="c-pay">
-            <option value="Paid">✅ नकद भुगतान (Paid)</option>
-            <option value="Udhar">📕 उधार खाता (Ledger)</option>
-        </select>
-        <button class="submit-btn" id="sendBtn" onclick="sendToSheet()">डाटा सुरक्षित करें और WhatsApp भेजें</button>
-        <button onclick="loginAdmin()" style="margin-top:20px; width:100%; border:none; background:#444; color:white; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer;">⚙️ एडमिन पैनल लॉगिन</button>
+    
+    <div class="news-container">
+        <div class="news-badge">LATEST</div>
+        <marquee id="news-marquee" behavior="scroll" direction="left" scrollamount="5"></marquee>
+    </div>
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button id="add-news-btn" class="add-btn-style" onclick="addNewsItem()">+ नया अपडेट जोड़ें</button>
     </div>
 
-    <center><div class="title">⭐ हमारी सेवाएं</div></center>
-    <div id="vip-list" class="grid"></div>
-
-    <center><div class="title">💰 रेट लिस्ट</div></center>
-    <div style="overflow-x:auto;">
-        <table id="rate-list"></table>
-    </div>
-
-    <div id="admin-panel">
-        <h2 style="text-align:center; color:var(--dark-blue);">📊 एडमिन कंट्रोल</h2>
-        <div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-bottom:15px;">
-            <label><b>न्यूज़ अपडेट:</b></label>
-            <input type="text" id="adm-news">
-            <label><b>नया PIN सेट करें:</b></label>
-            <input type="password" id="adm-pin" placeholder="नया गुप्त पिन लिखें">
-        </div>
+    <div class="main-card">
+        <p>📍 <strong id="addr" class="editable">Mandaw, Rohaniya, Varanasi</strong></p>
+        <p>📞 <span id="mob" class="editable">8303585793</span></p>
         
-        <div style="background:#f9f9f9; padding:15px; border-radius:10px;">
-            <h4>➕ लिस्ट में नया आइटम जोड़ें</h4>
-            <input type="text" id="add-n" placeholder="नाम लिखें">
-            <input type="text" id="add-p" placeholder="रेट (₹) - केवल रेट लिस्ट के लिए">
-            <select id="add-t">
-                <option value="vips">सेवाएं ग्रिड में जोड़ें</option>
-                <option value="rates">रेट लिस्ट टेबल में जोड़ें</option>
+        <div class="entry-form">
+            <h4 style="margin:0 0 10px 0; color:var(--primary);">📝 कस्टमर एंट्री</h4>
+            <input type="text" id="cust-entry-name" placeholder="ग्राहक का नाम">
+            <input type="number" id="cust-entry-phone" placeholder="मोबाइल नंबर">
+            <input type="text" id="cust-entry-work" placeholder="काम का नाम">
+            <select id="cust-entry-pay">
+                <option value="Paid">✅ नकद (Paid)</option>
+                <option value="Udhar">📕 उधार (Ledger)</option>
             </select>
-            <button onclick="addNewItem()" style="width:100%; background:green; color:white; padding:12px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">+ आइटम जोड़ें</button>
+            <button onclick="submitCustomerData()" style="background:var(--accent); color:white; width:100%; padding:10px; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-top:5px;">सुरक्षित करें (Save)</button>
         </div>
-        
-        <br>
-        <button onclick="saveEverything()" style="width:100%; background:var(--orange); color:white; padding:18px; border:none; border-radius:12px; font-weight:bold; font-size:18px; cursor:pointer; box-shadow: 0 4px 10px rgba(255,133,27,0.3);">✅ फाइनल अपडेट (Update Site)</button>
-        <button onclick="location.reload()" style="margin-top:10px; width:100%; border:none; background:#eee; padding:10px; border-radius:10px; cursor:pointer;">बंद करें (Close)</button>
+
+        <div class="btn-group">
+            <a href="tel:8303585793" class="btn btn-call">📞 कॉल</a>
+            <a href="https://wa.me/918303585793" class="btn btn-wa">💬 व्हाट्सएप</a>
+            <button onclick="togglePay()" class="btn btn-pay">💳 पेमेंट</button>
+            <button onclick="openLedger()" class="btn btn-ledger">📒 उधार खाता</button>
+            <button id="admin-btn" onclick="handleAdmin()" class="btn btn-admin">⚙️ एडमिन पैनल</button>
+        </div>
+    </div>
+
+    <div class="section-title">⭐ लोकप्रिय सेवाएँ</div>
+    <div class="vip-grid" id="vip-section"></div>
+    <div style="text-align:center;">
+        <button id="add-vip-btn" class="add-btn-style" onclick="addNewVip()">+ नई VIP सेवा जोड़ें</button>
+    </div>
+
+    <div class="section-title" style="background:var(--form-color);">📝 महत्वपूर्ण फॉर्म (Forms)</div>
+    <div class="form-grid" id="form-section"></div>
+    <div style="text-align:center;">
+        <button id="add-form-btn" class="add-btn-style" style="background:var(--form-color);" onclick="addNewForm()">+ नया फॉर्म जोड़ें</button>
+    </div>
+
+    <div class="section-title">💰 सर्विस रेट लिस्ट</div>
+    <table class="rate-table">
+        <tbody id="rate-body"></tbody>
+    </table>
+    <div style="text-align:center;">
+        <button id="add-rate-btn" class="add-btn-style" onclick="addNewRow()">+ नई रेट लिस्ट जोड़ें</button>
+    </div>
+
+    <div id="ledger-section">
+        <h2 style="color:#d32f2f; margin-top:0;">📒 उधार रजिस्टर</h2>
+        <input type="text" id="cust-name" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="ग्राहक का नाम">
+        <input type="number" id="cust-amt" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="बकाया रकम (₹)">
+        <button onclick="saveUdhaar()" style="background:var(--success); color:white; width:100%; padding:10px; border:none; border-radius:8px;">खाते में जोड़ें</button>
+        <div id="ledger-display" style="margin-top:20px; max-height: 200px; overflow-y: auto;"></div>
+        <button onclick="document.getElementById('ledger-section').style.display='none'" style="width:100%; margin-top:10px; background:#666; color:white; border:none; padding:8px; border-radius:8px;">❌ बंद करें</button>
     </div>
 </div>
 
+<a href="https://wa.me/918303585793" class="float-wa"><span>💬 Chat Now</span></a>
+
+<div id="pay-modal">
+    <h3 style="margin:0; color:#673ab7; border-bottom:2px solid #eee; padding-bottom:10px;">💳 पेमेंट जानकारी</h3>
+    <div style="padding:15px 0;">
+        <p><strong>UPI ID:</strong> <span id="upi-id" class="editable">8303585793@okicici</span></p>
+        <p><strong>IFSC:</strong> <span id="ifsc" class="editable">SBIN0000</span></p>
+    </div>
+    <button onclick="togglePay()" style="background:#673ab7; color:white; border:none; width:100%; padding:12px; border-radius:12px; font-weight:bold; cursor:pointer;">❌ बंद करें</button>
+</div>
+
 <footer>
-    <p><b>D.M Cyber Varanasi</b><br>संचालक: धीरज मौर्या | मंडाव, रोहनिया<br>संपर्क: +91 8303585793</p>
+    <h2 class="editable">D.M Cyber Varanasi</h2>
+    <p>© 2025 सर्वाधिकार सुरक्षित</p>
 </footer>
 
 <script>
-    const SHEET_URL = "https://script.google.com/macros/s/AKfycbwHsvnx0VFXkKnSUmVbqlgwmk1jTyZQQF6V5ot2y0_sE8yv43VGoGaa9AaHKicZIVw/exec";
-    const DB_KEY = "dm_cyber_final_secure"; // नया स्टोरेज की (ताकि पुराना डिलीट हो जाए)
+    // --- Google Sheet Settings (Silent Security) ---
+    const SHEET_URL = "यहाँ_अपना_गूगल_लिंक_डालें"; // अपनी Script URL यहाँ डालें
+    let isAdmin = false;
+    let isAuthorized = false; // Silent security check
 
-    // डेटा लोड करना
-    let db = JSON.parse(localStorage.getItem(DB_KEY)) || {
-        news: "D.M Cyber में आपका स्वागत है!",
-        pin: "4321", // डिफ़ॉल्ट पिन
-        vips: ["पैन कार्ड", "आधार प्रिंट", "आय प्रमाण"],
-        rates: [{n: "नया पैन कार्ड", p: "100"}, {n: "फोटोकॉपी", p: "2"}]
-    };
+    // --- Customer Data Submission to Google Sheet ---
+    async function submitCustomerData() {
+        const name = document.getElementById('cust-entry-name').value;
+        const phone = document.getElementById('cust-entry-phone').value;
+        const work = document.getElementById('cust-entry-work').value;
+        const status = document.getElementById('cust-entry-pay').value;
 
-    let isAuthorized = false;
+        if(!name || !phone) return alert("नाम और नंबर जरूरी है!");
 
-    function render() {
-        document.getElementById('vip-list').innerHTML = db.vips.map(x => `<div class="box">${x}</div>`).join('');
-        document.getElementById('rate-list').innerHTML = `<tr><th>काम का नाम</th><th>रेट (₹)</th></tr>` + 
-            db.rates.map(x => `<tr><td>${x.n}</td><td style="color:red; font-weight:bold;">₹${x.p}</td></tr>`).join('');
-        
-        document.getElementById('adm-news').value = db.news;
-        document.getElementById('adm-pin').value = db.pin;
-    }
-
-    function loginAdmin() {
-        let p = prompt("Security PIN दर्ज करें:");
-        if (p === db.pin) {
-            isAuthorized = true;
-            document.getElementById('admin-panel').style.display = 'block';
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        } else {
-            isAuthorized = false;
-            alert("❌ गलत पासवर्ड! आप एडमिन सेटिंग्स नहीं खोल सकते।");
-        }
-    }
-
-    function addNewItem() {
-        if (!isAuthorized) return alert("Security Error: कृपया दोबारा लॉगिन करें।");
-        let n = document.getElementById('add-n').value;
-        let p = document.getElementById('add-p').value;
-        let t = document.getElementById('add-t').value;
-        if(!n) return alert("नाम लिखना जरूरी है!");
-
-        if(t === 'vips') db.vips.push(n);
-        else db.rates.push({n, p});
-        
-        render();
-        alert("लिस्ट में जोड़ दिया गया है।");
-    }
-
-    function saveEverything() {
-        // सुरक्षा जांच: अगर लॉगिन नहीं है या पिन गलत है तो रुक जाओ
-        if (!isAuthorized) {
-            alert("अनधिकृत प्रयास! डेटा सेव नहीं किया गया।");
-            return;
-        }
-
-        let newPin = document.getElementById('adm-pin').value;
-        if(newPin.length < 4) return alert("पिन कम से कम 4 अंकों का रखें!");
-
-        db.news = document.getElementById('adm-news').value;
-        db.pin = newPin;
-        
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-        alert("✅ बधाई हो! वेबसाइट सफलतापूर्वक अपडेट हो गई है।");
-        location.reload();
-    }
-
-    async function sendToSheet() {
-        let n = document.getElementById('c-name').value;
-        let ph = document.getElementById('c-phone').value;
-        if(!n || !ph) return alert("नाम और मोबाइल नंबर भरें!");
-        
-        let btn = document.getElementById('sendBtn');
-        btn.disabled = true; btn.innerText = "प्रोसेसिंग...";
-
-        let d = { n, ph, w: document.getElementById('c-work').value, m: document.getElementById('c-pay').value };
+        const data = { 
+            n: name, ph: phone, w: work, m: status, 
+            a: 0, 
+            date: new Date().toLocaleDateString(),
+            month: new Date().getMonth() + 1 // Monthly tracking logic
+        };
 
         try {
-            await fetch(SHEET_URL, { method: "POST", mode: "no-cors", body: JSON.stringify(d) });
-            window.open(`https://wa.me/918303585793?text=*D.M Cyber Entry*%0Aनाम: ${n}%0Aकाम: ${d.w}%0Aपेमेंट: ${d.m}`);
-            alert("डाटा सेव हो गया!");
+            // Google Sheet पर डेटा भेजना
+            await fetch(SHEET_URL, { method: "POST", mode: "no-cors", body: JSON.stringify(data) });
+            
+            // WhatsApp पर भी सूचना भेजना
+            let waMsg = `*D.M Cyber Entry*%0AName: ${name}%0AWork: ${work}%0AStatus: ${status}`;
+            window.open(`https://wa.me/918303585793?text=${waMsg}`);
+            
+            alert("डेटा सुरक्षित कर लिया गया है!");
             location.reload();
-        } catch(e) { 
-            alert("नेटवर्क एरर! फिर कोशिश करें।"); 
-            btn.disabled = false; btn.innerText = "डाटा सुरक्षित करें और WhatsApp भेजें";
+        } catch(e) {
+            alert("Error: डेटा सेव नहीं हो पाया!");
         }
     }
 
-    render();
-</script>
-</body>
-</html>
+    function handleAdmin() {
+        if (!isAdmin) {
+            let pin = prompt("एडमिन पिन डालें ");
+            if (pin === "2525") {
+                isAuthorized = true; // Silent auth
+                enterAdminMode();
+            } else { alert("गलत पिन!"); }
+        } else {
+            if(isAuthorized) saveAllData();
+        }
+    }
+
+    function enterAdminMode() {
+        isAdmin = true;
+        document.getElementById('admin-notice').style.display = 'block';
+        let btn = document.getElementById('admin-btn');
+        btn.innerText = "💾 डेटा सेव करें";
+        btn.style.background = "var(--success)";
+        
+        document.getElementById('add-vip-btn').style.display = 'inline-block';
+        document.getElementById('add-rate-btn').style.display = 'inline-block';
+        document.getElementById('add-news-btn').style.display = 'inline-block';
+        document.getElementById('add-form-btn').style.display = 'inline-block';
+        
+        document.getElementById('news-marquee').stop();
+
+        document.querySelectorAll('.editable, #rate-body td, .vip-card, .form-card, .news-item').forEach(el => {
+            el.contentEditable = "true";
+            el.classList.add('editing-active');
+        });
+
+        document.querySelectorAll('.del-row-btn').forEach(el => el.style.display = "inline");
+        injectDeleteButtons('.vip-card');
+        injectDeleteButtons('.form-card');
+        injectDeleteButtons('.news-item');
+    }
+
+    function injectDeleteButtons(selector) {
+        document.querySelectorAll(selector).forEach(card => {
+            if(!card.querySelector('.del-btn-float')) {
+                let x = document.createElement('div');
+                x.className = 'del-btn-float';
+                x.innerText = 'X';
+                x.onclick = function() { card.remove(); };
+                x.style.display = 'block';
+                x.contentEditable = "false"; 
+                card.appendChild(x);
+            }
+        });
+    }
+
+    function addNewsItem() {
+        let mq = document.getElementById('news-marquee');
+        let span = document.createElement('span');
+        span.className = 'news-item editing-active';
+        span.contentEditable = "true";
+        span.innerText = "नया अपडेट यहाँ लिखें";
+        mq.appendChild(span);
+        injectDeleteButtons('.news-item');
+    }
+
+    function addNewVip() {
+        let grid = document.getElementById('vip-section');
+        let div = document.createElement('div');
+        div.className = 'vip-card editing-active';
+        div.contentEditable = "true";
+        div.innerText = 'नई सेवा';
+        grid.appendChild(div);
+        injectDeleteButtons('.vip-card');
+    }
+
+    function addNewForm() {
+        let grid = document.getElementById('form-section');
+        let div = document.createElement('div');
+        div.className = 'form-card editing-active';
+        div.contentEditable = "true";
+        div.innerHTML = `<span class="form-badge">APPLY NOW</span>नया फॉर्म नाम`;
+        grid.appendChild(div);
+        injectDeleteButtons('.form-card');
+    }
+
+    function addNewRow() {
+        let tbody = document.getElementById('rate-body');
+        let row = tbody.insertRow();
+        row.innerHTML = `<td contenteditable="true" class="editing-active">नई सेवा</td>
+                         <td class="price editing-active" contenteditable="true">₹00</td>
+                         <td class="del-row-btn" onclick="this.parentElement.remove()" style="display:inline">❌</td>`;
+    }
+
+    function changePhoto() {
+        if(!isAdmin) return;
+        let url = prompt("फोटो URL डालें:");
+        if(url) document.getElementById('myLogo').src = url;
+    }
+
+    function togglePay() {
+        let m = document.getElementById('pay-modal');
+        m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function openLedger() {
+        let pin = prompt("पिन डालें (Default: 1234):");
+        if(pin === "1234") {
+            document.getElementById('ledger-section').style.display = 'block';
+            displayLedger();
+        }
+    }
+
+    function saveUdhaar() {
+        let n = document.getElementById('cust-name').value;
+        let a = document.getElementById('cust-amt').value;
+        if(n && a) {
+            let records = JSON.parse(localStorage.getItem('dm_ledger_v9') || "[]");
+            records.push({name: n, amt: a, date: new Date().toLocaleDateString()});
+            localStorage.setItem('dm_ledger_v9', JSON.stringify(records));
+            document.getElementById('cust-name').value = '';
+            document.getElementById('cust-amt').value = '';
+            displayLedger();
+        }
+    }
+
+    function displayLedger() {
+        let records = JSON.parse(localStorage.getItem('dm_ledger_v9') || "[]");
+        let html = '';
+        records.forEach((r, i) => {
+            html += `<div class="ledger-row"><span><strong>${r.name}</strong> (${r.date})</span> <span>₹${r.amt} <span style="color:red;cursor:pointer;" onclick="deleteUdhaar(${i})">❌</span></span></div>`;
+        });
+        document.getElementById('ledger-display').innerHTML = html || 'कोई उधार नहीं।';
+    }
+
+    function deleteUdhaar(i) {
+        if(confirm('हटाना है?')) {
+            let records = JSON.parse(localStorage.getItem('dm_ledger_v9'));
+            records.splice(i, 1);
+            localStorage.setItem('dm_ledger_v9', JSON.stringify(records));
+            displayLedger();
+        }
+    }
+
+    function saveAllData() {
+        if(!isAuthorized) return;
+
+        document.querySelectorAll('.del-btn-float').forEach(e => e.remove());
+        document.querySelectorAll('.del-row-btn').forEach(e => e.style.display = "none");
+        
+        document.querySelectorAll('[contenteditable]').forEach(el => {
+            el.removeAttribute('contenteditable');
+            el.classList.remove('editing-active');
+        });
+
+        document.getElementById('add-vip-btn').style.display = 'none';
+        document.getElementById('add-rate-btn').style.display = 'none';
+        document.getElementById('add-news-btn').style.display = 'none';
+        document.getElementById('add-form-btn').style.display = 'none';
+        
+        document.getElementById('news-marquee').start();
+
+        const config = {
+            owner: document.getElementById('owner-name').innerText,
+            desc: document.getElementById('site-desc').innerText,
+            addr: document.getElementById('addr').innerText,
+            mob: document.getElementById('mob').innerText,
+            newsHTML: document.getElementById('news-marquee').innerHTML,
+            logo: document.getElementById('myLogo').src,
+            vip: document.getElementById('vip-section').innerHTML,
+            forms: document.getElement
