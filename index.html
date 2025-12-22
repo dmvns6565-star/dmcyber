@@ -3,26 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber Varanasi - Official</title>
+    <title>D.M Cyber Varanasi</title>
     
-    <!-- Firebase Libraries (Live Updates के लिए जरूरी) -->
+    <!-- इंटरनेट डेटाबेस के लिए Firebase (Global Updates के लिए) -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
     <style>
-        :root { --dark-blue: #004a99; --orange: #ff9900; --white: #ffffff; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f2f5; padding-bottom: 80px; }
+        /* आपकी पुरानी थीम और कलर्स */
+        :root { --primary: #004a99; --accent: #ff9900; --bg: #f4f7f6; --text: #333; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; }
         
-        /* हेडर और नेविगेशन */
-        header { background: var(--dark-blue); color: white; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .marquee { background: red; color: white; padding: 8px; font-weight: bold; white-space: nowrap; overflow: hidden; }
+        /* न्यूज़ पट्टी (Ticker) */
+        .marquee-container { background: red; color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-weight: bold; }
+        .marquee-content { display: inline-block; animation: scroll 15s linear infinite; }
+        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
+        /* हेडर */
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { margin: 0; font-size: 24px; }
         
-        /* ग्रिड लेआउट */
-        .container { padding: 15px; max-width: 1200px; margin: auto; }
-        h2 { color: var(--dark-blue); border-bottom: 2px solid var(--orange); display: inline-block; padding-bottom: 5px; }
+        /* लेआउट (मोबाइल और पीसी दोनों के लिए) */
+        .container { max-width: 1200px; margin: auto; padding: 15px; }
+        h2 { border-left: 5px solid var(--accent); padding-left: 10px; color: var(--primary); margin-top: 30px; }
         
-        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .grid-area { display: grid; gap: 15px; }
+        .grid-5 { grid-template-columns: repeat(5, 1fr); } /* लोकप्रिय सेवा - 5 की लाइन */
+        .grid-3 { grid-template-columns: repeat(3, 1fr); } /* फॉर्म - 3 की लाइन */
         
         /* मोबाइल रिस्पॉन्सिव */
         @media (max-width: 768px) {
@@ -30,280 +37,268 @@
             .grid-3 { grid-template-columns: 1fr; }
         }
 
-        /* कार्ड डिजाइन */
-        .card { background: white; padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { margin: 10px 0; font-size: 18px; color: #333; }
-        .price-tag { color: green; font-weight: bold; font-size: 14px; }
-        .del-btn { position: absolute; top: -10px; right: -10px; background: red; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; display: none; font-weight: bold; }
-        
-        /* एडमिन और मोडल */
-        .admin-btn { position: fixed; bottom: 90px; left: 20px; background: #333; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 24px; z-index: 1000; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 2000; }
-        .modal-content { background: white; padding: 25px; border-radius: 12px; width: 300px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        
-        /* AI Chat 2.0 */
-        .chat-toggle { position: fixed; bottom: 20px; right: 20px; background: var(--orange); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(255,153,0,0.4); z-index: 1000; transition: transform 0.3s; }
-        .chat-toggle:hover { transform: scale(1.1); }
-        
-        .chat-box { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 999; }
-        .chat-header { background: var(--dark-blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
-        .chat-msgs { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; }
-        .msg { margin: 8px 0; padding: 8px 12px; border-radius: 15px; max-width: 80%; font-size: 14px; }
-        .bot { background: #e0e0e0; color: black; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .user { background: var(--dark-blue); color: white; align-self: flex-end; margin-left: auto; border-bottom-right-radius: 2px; }
-        .chat-input-area { display: flex; padding: 10px; border-top: 1px solid #eee; }
-        .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
-        .chat-input-area button { background: var(--orange); border: none; color: white; padding: 0 15px; margin-left: 5px; border-radius: 50%; cursor: pointer; }
+        /* कार्ड का डिज़ाइन */
+        .card { background: white; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: relative; border-bottom: 3px solid var(--primary); }
+        .card h3 { font-size: 16px; margin: 10px 0; }
+        .price { color: green; font-weight: bold; font-size: 18px; }
+        .desc { font-size: 12px; color: #666; }
+        .del-btn { position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; display: none; }
+
+        /* फ्लोटिंग बटन (Admin & Chat) */
+        .float-btn { position: fixed; bottom: 20px; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
+        .admin-btn { left: 20px; background: #333; }
+        .chat-btn { right: 20px; background: var(--accent); }
+
+        /* AI चैट बॉक्स (2.0 Update) */
+        .chat-window { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 400px; background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 999; }
+        .chat-header { background: var(--primary); color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .chat-body { flex: 1; padding: 10px; overflow-y: auto; background: #f9f9f9; }
+        .msg { padding: 8px 12px; margin: 5px 0; border-radius: 15px; font-size: 14px; max-width: 80%; }
+        .bot { background: #e0e0e0; align-self: flex-start; border-bottom-left-radius: 0; }
+        .user { background: var(--primary); color: white; align-self: flex-end; margin-left: auto; border-bottom-right-radius: 0; }
+        .chat-footer { padding: 10px; border-top: 1px solid #ddd; display: flex; }
+        .chat-footer input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
+        .chat-footer button { margin-left: 5px; background: var(--accent); border: none; color: white; padding: 8px 15px; border-radius: 50%; cursor: pointer; }
+
+        /* मोडल (Admin Login & Add Item) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 2000; }
+        .modal-content { background: white; padding: 20px; border-radius: 10px; width: 300px; text-align: center; }
+        .input-group { margin: 10px 0; }
+        .input-group input { width: 90%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; }
     </style>
 </head>
 <body>
 
 <!-- न्यूज़ पट्टी -->
-<div class="marquee" id="news-ticker">Loading updates...</div>
+<div class="marquee-container">
+    <div class="marquee-content" id="news-text">D.M Cyber में आपका स्वागत है! नवीनतम अपडेट के लिए संपर्क करें।</div>
+</div>
 
 <header>
     <h1>D.M Cyber Varanasi</h1>
-    <p>जन सेवा केंद्र & ऑनलाइन सॉल्यूशन</p>
+    <p>आपका भरोसेमंद जन सेवा केंद्र</p>
 </header>
 
 <div class="container">
-    <h2>⭐ लोकप्रिय सेवाएँ & रेट</h2>
-    <div id="services-area" class="grid-5">Loading services...</div>
+    <h2>⭐ लोकप्रिय सेवाएँ (Live Rates)</h2>
+    <div id="services-grid" class="grid-area grid-5">Loading...</div>
 
-    <h2>📝 महत्वपूर्ण फॉर्म</h2>
-    <div id="forms-area" class="grid-3">Loading forms...</div>
+    <h2>📝 महत्वपूर्ण फॉर्म (New Forms)</h2>
+    <div id="forms-grid" class="grid-area grid-3">Loading...</div>
 </div>
 
-<!-- एडमिन बटन -->
-<div class="admin-btn" onclick="openAdmin()" title="Admin Login">⚙️</div>
+<!-- फ्लोटिंग बटन्स -->
+<div class="float-btn admin-btn" onclick="openModal('login-modal')">⚙️</div>
+<div class="float-btn chat-btn" onclick="toggleChat()">🤖</div>
+
+<!-- AI चैट बॉक्स -->
+<div class="chat-window" id="chat-window">
+    <div class="chat-header">
+        <span>DM Cyber AI 2.0</span>
+        <span style="cursor:pointer" onclick="toggleChat()">✖</span>
+    </div>
+    <div class="chat-body" id="chat-body">
+        <div class="msg bot">नमस्ते! मैं अपडेटेड AI हूँ। आप मुझसे किसी भी फॉर्म या रेट के बारे में पूछ सकते हैं।</div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="user-input" placeholder="पूछें (जैसे: Pan card rate?)" onkeypress="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">➤</button>
+    </div>
+</div>
 
 <!-- एडमिन लॉगिन मोडल -->
 <div id="login-modal" class="modal">
     <div class="modal-content">
-        <h3>Admin Access</h3>
-        <input type="password" id="admin-pass" placeholder="PIN (2525)" style="padding: 10px; width: 80%; border: 1px solid #ccc; border-radius: 5px;">
+        <h3>Admin Login</h3>
+        <input type="password" id="pin-input" placeholder="Enter PIN (2525)">
         <br><br>
-        <button onclick="checkLogin()" style="padding: 10px 20px; background: green; color: white; border: none; border-radius: 5px; cursor: pointer;">Login</button>
-        <button onclick="closeModal('login-modal')" style="padding: 10px 20px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
-    </div>
-</div>
-
-<!-- AI Chat Interface -->
-<div class="chat-toggle" onclick="toggleChat()">🤖</div>
-<div class="chat-box" id="chat-box">
-    <div class="chat-header">
-        <span>DM Cyber Assistant</span>
-        <span style="cursor:pointer;" onclick="toggleChat()">✖</span>
-    </div>
-    <div class="chat-msgs" id="chat-msgs">
-        <div class="msg bot">नमस्ते! मैं AI असिस्टेंट हूँ। मैं रेट लिस्ट और फॉर्म की जानकारी दे सकता हूँ। पूछिए?</div>
-    </div>
-    <div class="chat-input-area">
-        <input type="text" id="user-msg" placeholder="Type here..." onkeypress="handleEnter(event)">
-        <button onclick="sendMsg()">➤</button>
+        <button onclick="login()">Login</button>
+        <button onclick="closeModal('login-modal')" style="background:red; color:white; border:none; padding:5px 10px;">Close</button>
     </div>
 </div>
 
 <script>
-    // ---------------------------------------------------------
-    //  STEP: यहाँ अपना FIREBASE CONFIG पेस्ट करें
-    // ---------------------------------------------------------
+    // ------------------------------------------------------------
+    // ⚠️ यहाँ अपनी Firebase Config Key पेस्ट करें (Global Update के लिए)
+    // ------------------------------------------------------------
     const firebaseConfig = {
-        // यहाँ अपना config पेस्ट करें जो Firebase से मिला है
-        // उदाहरण:
-        // apiKey: "AIzaSyD...",
-        // authDomain: "dm-cyber.firebaseapp.com",
-        // databaseURL: "https://dm-cyber-default-rtdb.firebaseio.com",
-        // projectId: "dm-cyber",
+        // apiKey: "AIzaSy...", 
+        // authDomain: "...",
+        // databaseURL: "..."
     };
+    // ------------------------------------------------------------
 
-    // Firebase इनिशियलाइज़ करें (अगर config खाली है तो लोकल मोड चलेगा)
     let db;
-    let useFirebase = false;
+    let isGlobal = false;
+    let data = {
+        services: [
+            { name: "Pan Card", price: "200" },
+            { name: "Aadhaar Print", price: "50" },
+            { name: "Income Certificate", price: "100" }
+        ],
+        forms: [
+            { name: "UP Police Constable", desc: "Bharti Open" },
+            { name: "SSC GD", desc: "Last Date Soon" }
+        ],
+        news: "D.M Cyber में आपका स्वागत है!"
+    };
     
+    // इनिशियलाइज़ेशन
     try {
         if (firebaseConfig.apiKey) {
             firebase.initializeApp(firebaseConfig);
             db = firebase.database();
-            useFirebase = true;
-            console.log("Connected to Global Database");
-        } else {
-            console.log("Firebase config missing. Using Local Mode.");
-        }
-    } catch (e) { console.error("Firebase Error:", e); }
-
-    // --- डेटा मैनेजमेन्ट ---
-    let localData = JSON.parse(localStorage.getItem('dm_data')) || {
-        services: [{name:'Pan Card', price:'200'}, {name:'Income Cert', price:'100'}, {name:'Caste Cert', price:'100'}],
-        forms: [{name:'UP Police', desc:'Bharti Open'}, {name:'SSC GD', desc:'Last Date 31st'}],
-        news: 'D.M Cyber में आपका स्वागत है!'
-    };
-    
-    let currentData = localData; // यह वो डेटा है जो अभी स्क्रीन पर है
-    let isAdmin = false;
-
-    // --- डेटा लाना (Sync) ---
-    function syncData() {
-        if(useFirebase) {
-            // ग्लोबल डेटाबेस से डेटा लाओ
-            db.ref('siteData').on('value', (snapshot) => {
+            isGlobal = true;
+            // रियल-टाइम लिसनर (Live Updates)
+            db.ref('dm_data').on('value', (snapshot) => {
                 const val = snapshot.val();
-                if(val) {
-                    currentData = val;
-                    render();
-                } else {
-                    // अगर डेटाबेस खाली है, तो लोकल डेटा भेज दो
-                    saveData();
-                }
+                if(val) { data = val; render(); }
             });
         } else {
-            // लोकल स्टोरेज से चलाओ
+            // अगर Key नहीं है तो पुराने तरीके से LocalStorage से उठाएगा
+            const local = localStorage.getItem('dm_local_data');
+            if(local) data = JSON.parse(local);
             render();
         }
-    }
+    } catch(e) { console.log("Offline Mode Active"); }
 
-    // --- स्क्रीन पर दिखाना (Render) ---
+    let isAdmin = false;
+
+    // --- रेंडर फंक्शन (स्क्रीन पर दिखाना) ---
     function render() {
-        // न्यूज़
-        document.getElementById('news-ticker').innerText = currentData.news;
+        document.getElementById('news-text').innerText = data.news;
         
-        // सेवाएँ
-        const sArea = document.getElementById('services-area');
-        sArea.innerHTML = '';
-        (currentData.services || []).forEach((item, index) => {
-            sArea.innerHTML += `
+        // सेवाएँ (Services)
+        const sGrid = document.getElementById('services-grid');
+        sGrid.innerHTML = '';
+        (data.services || []).forEach((item, i) => {
+            sGrid.innerHTML += `
                 <div class="card">
                     <h3>${item.name}</h3>
-                    <div class="price-tag">₹${item.price}</div>
-                    ${isAdmin ? `<button class="del-btn" style="display:block" onclick="deleteItem('services', ${index})">X</button>` : ''}
+                    <div class="price">₹${item.price}</div>
+                    ${isAdmin ? `<button class="del-btn" style="display:block" onclick="remove('services', ${i})">X</button>` : ''}
                 </div>`;
         });
-        if(isAdmin) sArea.innerHTML += `<div class="card" onclick="addItem('services')" style="background:#e9ecef; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#007bff; font-weight:bold; font-size:40px;">+</div>`;
+        // अगर एडमिन है तो + बटन दिखेगा
+        if(isAdmin) sGrid.innerHTML += `<div class="card" onclick="addService()" style="background:#eee; cursor:pointer; font-size:40px; color:green; display:flex; align-items:center; justify-content:center;">+</div>`;
 
-        // फॉर्म
-        const fArea = document.getElementById('forms-area');
-        fArea.innerHTML = '';
-        (currentData.forms || []).forEach((item, index) => {
-            fArea.innerHTML += `
-                <div class="card" style="border-left: 5px solid var(--orange);">
+        // फॉर्म (Forms)
+        const fGrid = document.getElementById('forms-grid');
+        fGrid.innerHTML = '';
+        (data.forms || []).forEach((item, i) => {
+            fGrid.innerHTML += `
+                <div class="card" style="border-bottom-color: var(--accent);">
                     <h3>${item.name}</h3>
-                    <small>${item.desc || 'Available'}</small>
-                    ${isAdmin ? `<button class="del-btn" style="display:block" onclick="deleteItem('forms', ${index})">X</button>` : ''}
+                    <div class="desc">${item.desc}</div>
+                    ${isAdmin ? `<button class="del-btn" style="display:block" onclick="remove('forms', ${i})">X</button>` : ''}
                 </div>`;
         });
-        if(isAdmin) fArea.innerHTML += `<div class="card" onclick="addItem('forms')" style="background:#e9ecef; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--orange); font-weight:bold; font-size:40px;">+</div>`;
+        if(isAdmin) fGrid.innerHTML += `<div class="card" onclick="addForm()" style="background:#eee; cursor:pointer; font-size:40px; color:orange; display:flex; align-items:center; justify-content:center;">+</div>`;
     }
 
-    // --- डेटा सेव करना ---
+    // --- डेटा सेविंग ---
     function saveData() {
-        if(useFirebase) {
-            db.ref('siteData').set(currentData);
+        if(isGlobal) {
+            db.ref('dm_data').set(data); // Cloud (सबके लिए)
         } else {
-            localStorage.setItem('dm_data', JSON.stringify(currentData));
+            localStorage.setItem('dm_local_data', JSON.stringify(data)); // Local (सिर्फ आपके लिए)
             render();
         }
     }
 
-    // --- एडमिन फंक्शन्स ---
-    function openAdmin() { document.getElementById('login-modal').style.display = 'flex'; }
+    // --- एडमिन लॉजिक ---
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     
-    function checkLogin() {
-        if(document.getElementById('admin-pass').value === '2525') {
+    function login() {
+        if(document.getElementById('pin-input').value === '2525') {
             isAdmin = true;
-            alert("Admin Mode ON - अब आप Changes कर सकते हैं (Global Update)");
             closeModal('login-modal');
-            render();
             
-            // न्यूज़ अपडेट करने का आप्शन दें
-            const newNews = prompt("Update News Ticker:", currentData.news);
-            if(newNews) { currentData.news = newNews; saveData(); }
+            // न्यूज़ अपडेट का ऑप्शन
+            if(confirm("Admin Mode ON!
+क्या आप News पट्टी अपडेट करना चाहते हैं?")) {
+                const n = prompt("नई खबर लिखें:", data.news);
+                if(n) { data.news = n; saveData(); }
+            }
+            render();
         } else { alert("गलत पिन!"); }
     }
 
-    function addItem(type) {
-        if(type === 'services') {
-            const name = prompt("Service Name (Ex: Pan Card):");
-            const price = prompt("Price (Ex: 200):");
-            if(name && price) {
-                if(!currentData.services) currentData.services = [];
-                currentData.services.push({name, price});
-                saveData();
-            }
-        } else {
-            const name = prompt("Form Name (Ex: UP Police):");
-            const desc = prompt("Short Detail (Ex: Last Date 20th):");
-            if(name) {
-                if(!currentData.forms) currentData.forms = [];
-                currentData.forms.push({name, desc});
-                saveData();
-            }
-        }
-    }
-
-    function deleteItem(type, index) {
-        if(confirm("Delete this? This will update everywhere.")) {
-            currentData[type].splice(index, 1);
+    function addService() {
+        const name = prompt("सेवा का नाम (Service Name):");
+        const price = prompt("रेट (Rate):");
+        if(name && price) {
+            if(!data.services) data.services = [];
+            data.services.push({name, price});
             saveData();
         }
     }
 
-    // --- AI 2.0 Logic (Advanced Fuzzy Search) ---
-    function toggleChat() {
-        const b = document.getElementById('chat-box');
-        b.style.display = b.style.display === 'flex' ? 'none' : 'flex';
+    function addForm() {
+        const name = prompt("फॉर्म का नाम (Form Name):");
+        const desc = prompt("विवरण (Details):");
+        if(name) {
+            if(!data.forms) data.forms = [];
+            data.forms.push({name, desc: desc || "Available"});
+            saveData();
+        }
     }
-    
-    function handleEnter(e) { if(e.key === 'Enter') sendMsg(); }
 
-    function sendMsg() {
-        const input = document.getElementById('user-msg');
+    function remove(type, index) {
+        if(confirm("हटाना चाहते हैं?")) {
+            data[type].splice(index, 1);
+            saveData();
+        }
+    }
+
+    // --- AI 2.0 (Intelligent Logic) ---
+    function toggleChat() {
+        const w = document.getElementById('chat-window');
+        w.style.display = w.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('user-input');
         const txt = input.value.toLowerCase().trim();
         if(!txt) return;
 
-        const chat = document.getElementById('chat-msgs');
-        chat.innerHTML += `<div class="msg user">${input.value}</div>`;
-        
-        // AI Thinking Process
-        let reply = "माफ़ कीजिये, मुझे समझ नहीं आया। दुकान पर संपर्क करें।";
-        
-        // 1. Check Services (Dynamic Rate Check)
-        // यह लूप चलाकर चेक करेगा कि क्या कस्टमर ने किसी सर्विस का नाम लिखा है
-        // चाहे स्पेलिंग थोड़ी गलत भी हो (जैसे 'pen' -> 'pan')
-        let foundService = (currentData.services || []).find(s => txt.includes(s.name.toLowerCase()) || (txt.includes('pan') && s.name.toLowerCase().includes('pan')) || (txt.includes('adhar') && s.name.toLowerCase().includes('adhaar')));
-        
-        if (foundService) {
-            reply = `जी, ${foundService.name} का चार्ज ₹${foundService.price} है।`;
-        }
-        // 2. Check Forms
-        else if (currentData.forms && currentData.forms.some(f => txt.includes(f.name.toLowerCase()))) {
-            let form = currentData.forms.find(f => txt.includes(f.name.toLowerCase()));
-            reply = `हाँ, ${form.name} का फॉर्म भरा जा रहा है। (${form.desc})`;
-        }
-        // 3. General Questions (Fuzzy Logic)
-        else if (txt.includes('time') || txt.includes('kab') || txt.includes('open')) {
-            reply = "दुकान सुबह 10 बजे खुलती है और रात 8 बजे बंद होती है।";
-        }
-        else if (txt.includes('hello') || txt.includes('hi') || txt.includes('namaste')) {
-            reply = "नमस्ते! D.M Cyber में आपका स्वागत है। फॉर्म या रेट के बारे में पूछें।";
-        }
-        else if (txt.includes('number') || txt.includes('call') || txt.includes('sampark')) {
-            reply = "हमारा नंबर दुकान के बोर्ड पर लिखा है। कृपया वहाँ चेक करें।";
-        }
-
-        // Reply भेजें
-        setTimeout(() => {
-            chat.innerHTML += `<div class="msg bot">${reply}</div>`;
-            chat.scrollTop = chat.scrollHeight;
-        }, 500);
-
+        // यूज़र मैसेज दिखाएं
+        const body = document.getElementById('chat-body');
+        body.innerHTML += `<div class="msg user">${input.value}</div>`;
         input.value = '';
+
+        // AI सोचेगा (Smart Logic)
+        let reply = "माफ़ कीजिये, मुझे समझ नहीं आया। दुकान पर आएं।";
+        
+        // 1. सामान्य शब्द सुधार (Typo Correction Dictionary)
+        let query = txt.replace('pen', 'pan').replace('adhar', 'aadhaar').replace('adhaar', 'aadhaar').replace('jati', 'caste').replace('niwas', 'residence');
+
+        // 2. लाइव डेटा में सर्च (Dynamic Search)
+        // यह आपके द्वारा अपडेट की गई लिस्ट में से ढूंढेगा
+        let foundService = (data.services || []).find(s => query.includes(s.name.toLowerCase()));
+        let foundForm = (data.forms || []).find(f => query.includes(f.name.toLowerCase()));
+
+        if (foundService) {
+            reply = `✅ ${foundService.name} का अभी का रेट ₹${foundService.price} है।`;
+        } else if (foundForm) {
+            reply = `📄 हाँ, ${foundForm.name} भरा जा रहा है। जानकारी: ${foundForm.desc}`;
+        } else if (query.includes('time') || query.includes('kab') || query.includes('khula')) {
+            reply = "⏰ दुकान सुबह 10 बजे से रात 8 बजे तक खुली है।";
+        } else if (query.includes('hello') || query.includes('hi')) {
+            reply = "👋 नमस्ते! D.M Cyber में आपका स्वागत है। फॉर्म या रेट पूछें।";
+        }
+
+        // AI का जवाब भेजें
+        setTimeout(() => {
+            body.innerHTML += `<div class="msg bot">${reply}</div>`;
+            body.scrollTop = body.scrollHeight;
+        }, 600);
     }
 
-    // Start App
-    syncData();
-
+    // पहली बार रेंडर
+    render();
 </script>
+
 </body>
 </html>
