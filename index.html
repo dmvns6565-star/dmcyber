@@ -4,179 +4,174 @@
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>D.M Cyber Varanasi</title>
-    
+    <title>D.M Cyber Varanasi - Final Secure</title>
     <style>
         :root { --dark-blue: #004a99; --orange: #ff851b; --bg: #f4f7f6; }
-        body { font-family: sans-serif; margin: 0; background: var(--bg); overflow-x: hidden; }
-        header { background: linear-gradient(135deg, var(--dark-blue), #002a55); text-align: center; padding: 30px 10px; color: white; border-bottom: 5px solid var(--orange); }
-        .dm-brand { font-size: 2.2em; font-weight: 900; margin: 0; }
-        .dm-brand span { color: var(--orange); }
-        
-        .news-container { background: white; border: 2px solid var(--orange); margin: -15px auto 10px; width: 90%; border-radius: 50px; overflow: hidden; display: flex; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .news-label { background: #d32f2f; color: white; padding: 8px 15px; font-weight: bold; font-size: 13px; }
-        
-        .container { max-width: 800px; margin: 0 auto; padding: 15px; }
-        .action-box { background: white; border-radius: 15px; padding: 20px; border: 2px solid var(--dark-blue); margin-bottom: 20px; }
-        
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 16px; }
-        .submit-btn { background: var(--orange); color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; font-size: 17px; cursor: pointer; }
-        
-        .title { background: var(--dark-blue); color: white; padding: 8px 25px; border-radius: 20px; display: inline-block; margin: 20px 0 10px; font-size: 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-        .box { background: white; padding: 12px; border-radius: 10px; text-align: center; font-weight: bold; border-bottom: 4px solid var(--orange); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-
-        #admin-panel { display: none; background: #fff; padding: 15px; border: 3px solid #333; border-radius: 15px; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        body { font-family: sans-serif; margin: 0; background: var(--bg); color: #333; }
+        header { background: linear-gradient(135deg, var(--dark-blue), #002a55); text-align: center; padding: 35px 10px; color: white; border-bottom: 5px solid var(--orange); }
+        .container { max-width: 900px; margin: 0 auto; padding: 15px; }
+        .action-box { background: white; border-radius: 15px; padding: 20px; border: 2px solid var(--dark-blue); box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 25px; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 16px; outline: none; }
+        input:focus { border-color: var(--orange); }
+        .submit-btn { background: var(--orange); color: white; width: 100%; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 17px; cursor: pointer; transition: 0.3s; }
+        .submit-btn:active { transform: scale(0.98); }
+        .title { background: var(--dark-blue); color: white; padding: 8px 25px; border-radius: 20px; display: inline-block; margin: 20px 0 10px; font-weight: bold; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+        .box { background: white; padding: 15px; border-radius: 12px; text-align: center; font-weight: bold; border-bottom: 5px solid var(--orange); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        #admin-panel { display: none; background: #fff; padding: 20px; border: 4px solid var(--dark-blue); border-radius: 20px; margin-top: 30px; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
+        th, td { border: 1px solid #eee; padding: 12px; text-align: center; }
         th { background: var(--dark-blue); color: white; }
-        footer { background: #001c3d; color: white; text-align: center; padding: 30px 10px; margin-top: 40px; }
+        footer { background: #001c3d; color: white; text-align: center; padding: 40px 10px; border-top: 5px solid var(--orange); margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 class="dm-brand">D.M <span>CYBER</span></h1>
-    <p style="margin:5px 0 0; opacity:0.9;">वाराणसी का भरोसेमंद केंद्र</p>
+    <h1 style="margin:0; font-size: 2.5em;">D.M <span>CYBER</span></h1>
+    <p style="margin:5px 0 0; opacity:0.9;">वाराणसी का नंबर 1 जन सेवा केंद्र</p>
 </header>
-
-<div class="news-container">
-    <div class="news-label">UPDATE</div>
-    <marquee id="disp-news" scrollamount="5"></marquee>
-</div>
 
 <div class="container">
     <div class="action-box">
-        <h3 style="margin-top:0; color:var(--dark-blue);">📝 कस्टमर एंट्री</h3>
-        <input type="text" id="c-name" placeholder="नाम">
-        <input type="number" id="c-phone" placeholder="मोबाइल">
-        <input type="text" id="c-work" placeholder="काम का नाम">
-        <select id="c-pay" onchange="checkUdhar()">
-            <option value="Paid">✅ नकद (Paid)</option>
-            <option value="Udhar">📕 उधार (Ledger)</option>
+        <h3 style="margin-top:0; color:var(--dark-blue); border-bottom: 2px solid var(--orange); padding-bottom: 5px;">📝 कस्टमर एंट्री फॉर्म</h3>
+        <input type="text" id="c-name" placeholder="ग्राहक का नाम">
+        <input type="number" id="c-phone" placeholder="मोबाइल नंबर">
+        <input type="text" id="c-work" placeholder="काम का विवरण">
+        <select id="c-pay">
+            <option value="Paid">✅ नकद भुगतान (Paid)</option>
+            <option value="Udhar">📕 उधार खाता (Ledger)</option>
         </select>
-        <input type="number" id="c-amt" placeholder="बकाया राशि (₹)" style="display:none; border:2px solid red;">
-        <button class="submit-btn" id="s-btn" onclick="sendData()">सुरक्षित करें और WhatsApp</button>
-        <button onclick="openAdmin()" style="margin-top:15px; width:100%; border:none; background:#eee; padding:10px; border-radius:8px; cursor:pointer;">⚙️ एडमिन लॉगिन</button>
+        <button class="submit-btn" id="sendBtn" onclick="sendToSheet()">डाटा सुरक्षित करें और WhatsApp भेजें</button>
+        <button onclick="loginAdmin()" style="margin-top:20px; width:100%; border:none; background:#444; color:white; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer;">⚙️ एडमिन पैनल लॉगिन</button>
     </div>
 
-    <center><div class="title">⭐ मुख्य सेवाएं</div></center>
+    <center><div class="title">⭐ हमारी सेवाएं</div></center>
     <div id="vip-list" class="grid"></div>
 
-    <center><div class="title">📝 जरूरी फॉर्म</div></center>
-    <div id="form-list" class="grid"></div>
-
     <center><div class="title">💰 रेट लिस्ट</div></center>
-    <table id="rate-list"></table>
+    <div style="overflow-x:auto;">
+        <table id="rate-list"></table>
+    </div>
 
     <div id="admin-panel">
-        <h3 style="text-align:center;">📊 एडमिन कंट्रोल पैनल</h3>
-        <label>न्यूज़ बदलें:</label>
-        <input type="text" id="new-news">
-        <label>नया पिन (4 अंक):</label>
-        <input type="password" id="new-pin">
-        <hr>
-        <h4>➕ नया आइटम जोड़ें</h4>
-        <input type="text" id="add-n" placeholder="नाम">
-        <input type="text" id="add-p" placeholder="रेट (रेट लिस्ट के लिए)">
-        <select id="add-t">
-            <option value="vips">मुख्य सेवा</option>
-            <option value="forms">जरूरी फॉर्म</option>
-            <option value="rates">रेट लिस्ट</option>
-        </select>
-        <button onclick="pushItem()" style="width:100%; background:green; color:white; padding:10px; border:none; border-radius:5px; cursor:pointer;">+ लिस्ट में डालें</button>
-        <br><br>
-        <button onclick="finalSave()" style="width:100%; background:var(--orange); color:white; padding:15px; border:none; border-radius:10px; font-weight:bold; font-size:16px;">✅ सब कुछ सुरक्षित करें</button>
+        <h2 style="text-align:center; color:var(--dark-blue);">📊 एडमिन कंट्रोल</h2>
+        <div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-bottom:15px;">
+            <label><b>न्यूज़ अपडेट:</b></label>
+            <input type="text" id="adm-news">
+            <label><b>नया PIN सेट करें:</b></label>
+            <input type="password" id="adm-pin" placeholder="नया गुप्त पिन लिखें">
+        </div>
+        
+        <div style="background:#f9f9f9; padding:15px; border-radius:10px;">
+            <h4>➕ लिस्ट में नया आइटम जोड़ें</h4>
+            <input type="text" id="add-n" placeholder="नाम लिखें">
+            <input type="text" id="add-p" placeholder="रेट (₹) - केवल रेट लिस्ट के लिए">
+            <select id="add-t">
+                <option value="vips">सेवाएं ग्रिड में जोड़ें</option>
+                <option value="rates">रेट लिस्ट टेबल में जोड़ें</option>
+            </select>
+            <button onclick="addNewItem()" style="width:100%; background:green; color:white; padding:12px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">+ आइटम जोड़ें</button>
+        </div>
+        
+        <br>
+        <button onclick="saveEverything()" style="width:100%; background:var(--orange); color:white; padding:18px; border:none; border-radius:12px; font-weight:bold; font-size:18px; cursor:pointer; box-shadow: 0 4px 10px rgba(255,133,27,0.3);">✅ फाइनल अपडेट (Update Site)</button>
+        <button onclick="location.reload()" style="margin-top:10px; width:100%; border:none; background:#eee; padding:10px; border-radius:10px; cursor:pointer;">बंद करें (Close)</button>
     </div>
 </div>
 
 <footer>
-    <p><b>D.M Cyber Varanasi</b><br>संचालक: धीरज मौर्या | +91 8303585793</p>
+    <p><b>D.M Cyber Varanasi</b><br>संचालक: धीरज मौर्या | मंडाव, रोहनिया<br>संपर्क: +91 8303585793</p>
 </footer>
 
 <script>
-    // 1. पुराने कचरे को साफ करना (Cleanup)
-    localStorage.removeItem('dm_pro_v19'); 
-    localStorage.removeItem('dm_pro_v20');
+    const SHEET_URL = "https://script.google.com/macros/s/AKfycbwHsvnx0VFXkKnSUmVbqlgwmk1jTyZQQF6V5ot2y0_sE8yv43VGoGaa9AaHKicZIVw/exec";
+    const DB_KEY = "dm_cyber_final_secure"; // नया स्टोरेज की (ताकि पुराना डिलीट हो जाए)
 
-    // 2. नया स्टोरेज की (New Version)
-    const STORAGE_KEY = 'dm_cyber_final_v1';
-    const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbwHsvnx0VFXkKnSUmVbqlgwmk1jTyZQQF6V5ot2y0_sE8yv43VGoGaa9AaHKicZIVw/exec";
-
-    let db = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
-        news: "D.M Cyber वाराणसी में आपका स्वागत है!",
-        pin: "4321",
-        vips: ["पैन कार्ड", "आधार डाउनलोड"],
-        forms: ["आय प्रमाण", "जाति प्रमाण"],
-        rates: [{n:"पैन कार्ड", p:"100"}]
+    // डेटा लोड करना
+    let db = JSON.parse(localStorage.getItem(DB_KEY)) || {
+        news: "D.M Cyber में आपका स्वागत है!",
+        pin: "4321", // डिफ़ॉल्ट पिन
+        vips: ["पैन कार्ड", "आधार प्रिंट", "आय प्रमाण"],
+        rates: [{n: "नया पैन कार्ड", p: "100"}, {n: "फोटोकॉपी", p: "2"}]
     };
 
-    let auth = false;
+    let isAuthorized = false;
 
     function render() {
-        document.getElementById('disp-news').innerText = db.news;
         document.getElementById('vip-list').innerHTML = db.vips.map(x => `<div class="box">${x}</div>`).join('');
-        document.getElementById('form-list').innerHTML = db.forms.map(x => `<div class="box">${x}</div>`).join('');
-        document.getElementById('rate-list').innerHTML = `<tr><th>काम</th><th>रेट</th></tr>` + 
-            db.rates.map(x => `<tr><td>${x.n}</td><td>₹${x.p}</td></tr>`).join('');
+        document.getElementById('rate-list').innerHTML = `<tr><th>काम का नाम</th><th>रेट (₹)</th></tr>` + 
+            db.rates.map(x => `<tr><td>${x.n}</td><td style="color:red; font-weight:bold;">₹${x.p}</td></tr>`).join('');
         
-        document.getElementById('new-news').value = db.news;
-        document.getElementById('new-pin').value = db.pin;
+        document.getElementById('adm-news').value = db.news;
+        document.getElementById('adm-pin').value = db.pin;
     }
 
-    function openAdmin() {
-        let p = prompt("अपना पिन डालें:");
-        if(p === db.pin) {
-            auth = true;
+    function loginAdmin() {
+        let p = prompt("Security PIN दर्ज करें:");
+        if (p === db.pin) {
+            isAuthorized = true;
             document.getElementById('admin-panel').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         } else {
-            alert("गलत पिन!");
+            isAuthorized = false;
+            alert("❌ गलत पासवर्ड! आप एडमिन सेटिंग्स नहीं खोल सकते।");
         }
     }
 
-    function checkUdhar() {
-        document.getElementById('c-amt').style.display = (document.getElementById('c-pay').value === 'Udhar') ? 'block' : 'none';
-    }
-
-    function pushItem() {
-        if(!auth) return;
+    function addNewItem() {
+        if (!isAuthorized) return alert("Security Error: कृपया दोबारा लॉगिन करें।");
         let n = document.getElementById('add-n').value;
         let p = document.getElementById('add-p').value;
         let t = document.getElementById('add-t').value;
-        if(!n) return;
-        if(t === 'rates') db.rates.push({n, p});
-        else db[t].push(n);
+        if(!n) return alert("नाम लिखना जरूरी है!");
+
+        if(t === 'vips') db.vips.push(n);
+        else db.rates.push({n, p});
+        
         render();
-        alert("ऐड हो गया! अब नीचे Save All दबाएं।");
+        alert("लिस्ट में जोड़ दिया गया है।");
     }
 
-    function finalSave() {
-        if(!auth) return;
-        db.news = document.getElementById('new-news').value;
-        db.pin = document.getElementById('new-pin').value;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
-        alert("बधाई हो! डेटा सुरक्षित हो गया।");
+    function saveEverything() {
+        // सुरक्षा जांच: अगर लॉगिन नहीं है या पिन गलत है तो रुक जाओ
+        if (!isAuthorized) {
+            alert("अनधिकृत प्रयास! डेटा सेव नहीं किया गया।");
+            return;
+        }
+
+        let newPin = document.getElementById('adm-pin').value;
+        if(newPin.length < 4) return alert("पिन कम से कम 4 अंकों का रखें!");
+
+        db.news = document.getElementById('adm-news').value;
+        db.pin = newPin;
+        
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+        alert("✅ बधाई हो! वेबसाइट सफलतापूर्वक अपडेट हो गई है।");
         location.reload();
     }
 
-    async function sendData() {
+    async function sendToSheet() {
         let n = document.getElementById('c-name').value;
         let ph = document.getElementById('c-phone').value;
-        if(!n || !ph) return alert("नाम और मोबाइल जरूरी है!");
+        if(!n || !ph) return alert("नाम और मोबाइल नंबर भरें!");
         
-        let btn = document.getElementById('s-btn');
-        btn.disabled = true; btn.innerText = "सेव हो रहा है...";
+        let btn = document.getElementById('sendBtn');
+        btn.disabled = true; btn.innerText = "प्रोसेसिंग...";
 
-        let d = { n, ph, w: document.getElementById('c-work').value, m: document.getElementById('c-pay').value, a: document.getElementById('c-amt').value };
+        let d = { n, ph, w: document.getElementById('c-work').value, m: document.getElementById('c-pay').value };
 
         try {
-            await fetch(GOOGLE_URL, { method: "POST", mode: "no-cors", body: JSON.stringify(d) });
+            await fetch(SHEET_URL, { method: "POST", mode: "no-cors", body: JSON.stringify(d) });
             window.open(`https://wa.me/918303585793?text=*D.M Cyber Entry*%0Aनाम: ${n}%0Aकाम: ${d.w}%0Aपेमेंट: ${d.m}`);
+            alert("डाटा सेव हो गया!");
             location.reload();
-        } catch(e) { alert("नेटवर्क चेक करें!"); btn.disabled = false; }
+        } catch(e) { 
+            alert("नेटवर्क एरर! फिर कोशिश करें।"); 
+            btn.disabled = false; btn.innerText = "डाटा सुरक्षित करें और WhatsApp भेजें";
+        }
     }
 
     render();
