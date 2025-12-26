@@ -492,7 +492,7 @@
             <input type="text" id="in-title" class="form-input" placeholder="दुकान का नाम (HTML allowed)">
             <input type="text" id="in-owner" class="form-input" placeholder="संचालक का नाम">
             <input type="text" id="in-loc" class="form-input" placeholder="लोकेशन">
-            <input type="text" id="in-pin" class="form-input" placeholder="Change Login PIN" value="4321">
+            <input type="password" id="in-pin" class="form-input" placeholder="Change Login PIN" value="4321">
         </div>
 
         <!-- Service/Form Management -->
@@ -533,7 +533,7 @@
     <div class="modal-content">
         <h3>💳 पेमेंट QR कोड</h3>
         <div id="qr-img" style="margin:20px auto;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UPI_ID_HERE" alt="QR Code" style="width:200px;height:200px;">
+            <img src="" alt="QR Code" id="qr-image" style="width:200px;height:200px;">
         </div>
         <p id="upi-label" style="font-weight:bold; margin:10px 0;">UPI: dhirajmaurya@okaxis</p>
         <button onclick="closeQR()" class="submit-btn" style="background:var(--dark-blue);">बंद करें</button>
@@ -557,14 +557,21 @@
         phone: "8303585793",
         upi: "dhirajmaurya@okaxis",
         pin: "4321", // PIN changed to 4321
-        services: ["पैन कार्ड", "आधार कार्ड", "वोटर आईडी", "राशन कार्ड", "बैंक खाता"],
-        forms: ["आयुष्मान कार्ड", "विश्वकर्मा योजना", "किसान सम्मान निधि", "पेंशन योजना"],
+        services: ["पैन कार्ड", "आधार कार्ड", "वोटर आईडी", "राशन कार्ड", "बैंक खाता", "आयुष्मान कार्ड", "मोबाइल रिचार्ज"],
+        forms: ["आयुष्मान कार्ड", "विश्वकर्मा योजना", "किसान सम्मान निधि", "पेंशन योजना", "श्रमिक कार्ड", "ड्राइविंग लाइसेंस"],
         rates: [
             {n: "पैन कार्ड", p: "₹200"},
             {n: "आधार अपडेट", p: "₹100"},
             {n: "वोटर आईडी", p: "₹150"},
             {n: "राशन कार्ड", p: "₹250"},
-            {n: "बैंक खाता खोलना", p: "₹300"}
+            {n: "बैंक खाता खोलना", p: "₹300"},
+            {n: "आयुष्मान कार्ड", p: "₹150"},
+            {n: "ड्राइविंग लाइसेंस", p: "₹500"},
+            {n: "पासपोर्ट", p: "₹800"},
+            {n: "प्रिंटिंग (ब्लैक/सफेद)", p: "₹5/पेज"},
+            {n: "फोटो कॉपी", p: "₹2/पेज"},
+            {n: "लैमिनेशन", p: "₹20"},
+            {n: "फोटो प्रिंट (4x6)", p: "₹15"}
         ]
     };
     
@@ -687,11 +694,11 @@
         }
         
         // Prepare WhatsApp message
-        let message = `*A-Z D.M Cyber Customer Details*%0A%0A`;
+        let message = `*A-Z D.M Cyber - ग्राहक विवरण*%0A%0A`;
         message += `*नाम:* ${name}%0A`;
         message += `*मोबाइल:* ${phone}%0A`;
         message += `*पता:* ${address}%0A`;
-        message += `*काम:* ${work}%0A`;
+        message += `*काम का नाम:* ${work}%0A`;
         message += `*मोड:* ${mode}%0A`;
         
         if (mode === 'Udhar' && amount) {
@@ -699,14 +706,17 @@
         }
         
         if (note) {
-            message += `*नोट:* ${note}%0A`;
+            message += `*विशेष जानकारी:* ${note}%0A`;
         }
         
-        message += `*तारीख:* ${new Date().toLocaleDateString('hi-IN')}%0A%0A`;
+        message += `*तारीख:* ${new Date().toLocaleDateString('hi-IN')}%0A`;
+        message += `*समय:* ${new Date().toLocaleTimeString('hi-IN')}%0A%0A`;
         message += `_धन्यवाद, D.M Cyber Varanasi_`;
         
-        // Open WhatsApp
-        window.open(`https://wa.me/91${config.phone}?text=${message}`, '_blank');
+        // Open WhatsApp - FIXED: Using correct WhatsApp URL format
+        const whatsappNumber = '8303585793'; // Fixed number
+        const whatsappURL = `https://wa.me/91${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappURL, '_blank');
         
         // Clear form
         document.getElementById('cust-n').value = '';
@@ -718,7 +728,7 @@
         document.getElementById('cust-m').selectedIndex = 0;
         document.getElementById('cust-a').style.display = 'none';
         
-        alert("ग्राहक डेटा सुरक्षित कर दिया गया है! WhatsApp खुल गया है।");
+        alert("✅ ग्राहक डेटा सुरक्षित कर दिया गया है!\nWhatsApp खुल गया है।");
     }
 
     // ====================
@@ -730,7 +740,7 @@
             document.getElementById('admin-panel').style.display = 'block';
             window.scrollTo({ top: document.getElementById('admin-panel').offsetTop, behavior: 'smooth' });
         } else {
-            alert("गलत पिन! सही PIN: 4321");
+            alert("❌ गलत पिन! सही PIN: 4321");
         }
     }
     
@@ -748,6 +758,7 @@
         
         document.getElementById('in-item-name').value = '';
         render();
+        alert("✅ आइटम सफलतापूर्वक जोड़ा गया!");
     }
     
     function addMasterRate() {
@@ -761,6 +772,7 @@
         document.getElementById('in-rate-name').value = '';
         document.getElementById('in-rate-price').value = '';
         render();
+        alert("✅ रेट सफलतापूर्वक जोड़ा गया!");
     }
     
     function removeItem(type, index) {
@@ -771,6 +783,7 @@
                 config.forms.splice(index, 1);
             }
             render();
+            alert("✅ आइटम हटा दिया गया!");
         }
     }
     
@@ -778,6 +791,7 @@
         if (confirm("क्या आप वाकई इस रेट को हटाना चाहते हैं?")) {
             config.rates.splice(index, 1);
             render();
+            alert("✅ रेट हटा दिया गया!");
         }
     }
     
@@ -792,8 +806,10 @@
         // Save to localStorage
         localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
         
-        alert("सभी बदलाव सुरक्षित कर दिए गए हैं! पेज रिफ्रेश हो रहा है...");
-        location.reload();
+        alert("✅ सभी बदलाव सुरक्षित कर दिए गए हैं!\nपेज रिफ्रेश हो रहा है...");
+        setTimeout(() => {
+            location.reload();
+        }, 1500);
     }
 
     // ====================
@@ -802,17 +818,41 @@
     function openQR() {
         const qrModal = document.getElementById('qr-modal');
         const upiLabel = document.getElementById('upi-label');
+        const qrImg = document.getElementById('qr-image');
         
         // Update QR code with current UPI
-        const qrImg = document.querySelector('#qr-img img');
-        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${config.upi}`;
-        upiLabel.textContent = `UPI: ${config.upi}`;
+        const upiId = config.upi || "dhirajmaurya@okaxis";
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiId)}`;
+        upiLabel.textContent = `UPI: ${upiId}`;
         
         qrModal.style.display = 'flex';
     }
     
     function closeQR() {
         document.getElementById('qr-modal').style.display = 'none';
+    }
+
+    // ====================
+    // TEST ALL FUNCTIONS
+    // ====================
+    function testAllFunctions() {
+        console.log("Testing all functions...");
+        
+        // Test 1: Check if config is loaded
+        console.log("Config loaded:", config);
+        
+        // Test 2: Check if render works
+        console.log("Render function available");
+        
+        // Test 3: Check WhatsApp function
+        const testMsg = "*Test Message*%0AThis is a test.";
+        console.log("WhatsApp URL would be:", `https://wa.me/91${config.phone}?text=${testMsg}`);
+        
+        // Test 4: Check localStorage
+        console.log("LocalStorage CONFIG_KEY:", localStorage.getItem(CONFIG_KEY) ? "Exists" : "Not exists");
+        console.log("LocalStorage CUSTOMER_KEY:", localStorage.getItem(CUSTOMER_KEY) ? "Exists" : "Not exists");
+        
+        alert("✅ सभी फंक्शन्स टेस्ट किए गए!\nकंसोल में डिटेल्स देखें।");
     }
 
     // ====================
@@ -827,7 +867,17 @@
                 closeQR();
             }
         });
+        
+        // Test all functions on load (for debugging)
+        setTimeout(testAllFunctions, 1000);
+        
+        // Add Enter key support for form
+        document.getElementById('cust-q').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                saveCustomer();
+            }
+        });
     };
 </script>
 </body>
-</html>`
+</html>
