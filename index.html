@@ -348,6 +348,33 @@
             display: none;
         }
         
+        /* ALERT STYLES */
+        .alert-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--green);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+            max-width: 300px;
+        }
+        
+        .alert-error {
+            background: var(--red);
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
         /* FOOTER */
         footer {
             background-color: var(--dark-blue);
@@ -389,6 +416,13 @@
             .grid-forms {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .alert-message {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
         }
         
         @media (max-width: 480px) {
@@ -415,6 +449,9 @@
 </head>
 <body>
 
+<!-- Alert Container -->
+<div id="alert-container"></div>
+
 <!-- Header Section -->
 <header>
     <div class="logo-container">
@@ -431,17 +468,15 @@
     <div class="action-box">
         <h2>📝 ग्राहक डिजिटल सेवा फॉर्म</h2>
         
-        <input type="text" id="cust-n" class="form-input" placeholder="ग्राहक का नाम" required>
-        <input type="tel" id="cust-p" class="form-input" placeholder="मोबाइल नंबर" maxlength="10" required>
+        <input type="text" id="cust-n" class="form-input" placeholder="ग्राहक का नाम *" required>
+        <input type="tel" id="cust-p" class="form-input" placeholder="मोबाइल नंबर *" maxlength="10" required>
         <input type="text" id="cust-addr" class="form-input" placeholder="पता (गाँव/शहर)">
-        <input type="text" id="cust-w" class="form-input" placeholder="काम का नाम" required>
+        <input type="text" id="cust-w" class="form-input" placeholder="काम का नाम *" required>
         
         <select id="cust-m" class="form-input">
             <option value="DATA">सामान्य ग्राहक डाटा</option>
-            <option value="Udhar">📕 उधार खाता</option>
         </select>
         
-        <input type="number" id="cust-a" class="form-input" placeholder="बकाया राशि (₹)" style="display:none;">
         <textarea id="cust-q" class="form-input" placeholder="विशेष जानकारी..." rows="2"></textarea>
         
         <button class="submit-btn" onclick="saveCustomer()">✅ WhatsApp पर भेजें</button>
@@ -552,7 +587,7 @@
         <div style="margin:15px auto; text-align:center;">
             <div style="background:#fff; padding:15px; border-radius:8px; display:inline-block; border:2px solid #ddd;">
                 <div style="width:180px; height:180px; background:#f5f5f5; display:flex; align-items:center; justify-content:center; border-radius:5px;">
-                    <span style="font-size:13px; color:#666; text-align:center;">QR Code<br>UPI: <br><strong>dhirajmaurya@okaxis</strong></span>
+                    <span style="font-size:13px; color:#666; text-align:center;">QR Code<br>UPI: <br><strong id="qr-upi">dm0827717@ybl</strong></span>
                 </div>
             </div>
         </div>
@@ -572,7 +607,7 @@
     
     let config = {
         news: "D.M Cyber पोर्टल में आपका स्वागत है",
-        title: "D.M <span>Cyber</span>",
+        title: "D.M Cyber",
         owner: "संचालक: धीरज मौर्य",
         loc: "वाराणसी",
         phone: "8303585793",
@@ -587,19 +622,98 @@
     };
 
     // ====================
+    // ALERT FUNCTION
+    // ====================
+    function showAlert(message, isError = false) {
+        const alertContainer = document.getElementById('alert-container');
+        const alertDiv = document.createElement('div');
+        alertDiv.className = isError ? 'alert-message alert-error' : 'alert-message';
+        alertDiv.innerHTML = `
+            ${isError ? '❌' : '✅'} 
+            <span>${message}</span>
+        `;
+        
+        alertContainer.appendChild(alertDiv);
+        
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            alertDiv.style.animation = 'slideIn 0.3s ease reverse';
+            setTimeout(() => {
+                alertContainer.removeChild(alertDiv);
+            }, 300);
+        }, 3000);
+    }
+
+    // ====================
+    // WHATSAPP FUNCTION
+    // ====================
+    function saveCustomer() {
+        const name = document.getElementById('cust-n').value.trim();
+        const phone = document.getElementById('cust-p').value.trim();
+        const address = document.getElementById('cust-addr').value.trim();
+        const work = document.getElementById('cust-w').value.trim();
+        const notes = document.getElementById('cust-q').value.trim();
+        
+        // Validation
+        if (!name || !phone || !work) {
+            showAlert("❌ नाम, नंबर और काम का नाम अनिवार्य है!", true);
+            return;
+        }
+        
+        if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+            showAlert("❌ कृपया 10 अंकों का वैध नंबर दर्ज करें!", true);
+            return;
+        }
+
+        // Prepare WhatsApp message
+        let message = `*D.M Cyber - ग्राहक जानकारी*\n\n`;
+        message += `*नाम:* ${name}\n`;
+        message += `*मोबाइल:* ${phone}\n`;
+        if (address) message += `*पता:* ${address}\n`;
+        message += `*काम का नाम:* ${work}\n`;
+        if (notes) message += `*विशेष जानकारी:* ${notes}\n\n`;
+        message += `*दुकान:* D.M Cyber\n`;
+        message += `*संचालक:* धीरज मौर्य\n`;
+        message += `*तिथि:* ${new Date().toLocaleDateString('hi-IN')}\n`;
+        message += `*समय:* ${new Date().toLocaleTimeString('hi-IN', {hour: '2-digit', minute:'2-digit'})}`;
+        
+        // Encode message for URL
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappNumber = config.phone;
+        
+        // Open WhatsApp with pre-filled message
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        
+        // Clear form fields
+        document.getElementById('cust-n').value = '';
+        document.getElementById('cust-p').value = '';
+        document.getElementById('cust-addr').value = '';
+        document.getElementById('cust-w').value = '';
+        document.getElementById('cust-q').value = '';
+        
+        // Show success message
+        showAlert("✅ WhatsApp खोला जा रहा है...");
+        
+        // Open WhatsApp after a short delay
+        setTimeout(() => {
+            window.open(whatsappURL, '_blank');
+        }, 1000);
+    }
+
+    // ====================
     // INITIAL RENDER
     // ====================
     function render() {
         // Display shop info
-        document.getElementById('disp-title').innerHTML = config.title;
+        document.getElementById('disp-title').innerHTML = `D.M <span>Cyber</span>`;
         document.getElementById('disp-owner').innerText = config.owner;
-        document.getElementById('foot-title').innerHTML = config.title;
+        document.getElementById('foot-title').innerHTML = `D.M <span>Cyber</span>`;
         document.getElementById('foot-loc').innerText = `A-Z डिजिटल सर्विस सेंटर | ${config.loc}`;
         
         // Fill admin inputs
         document.getElementById('in-news').value = config.news;
         document.getElementById('in-title').value = config.title;
-        document.getElementById('in-owner').value = config.owner;
+        document.getElementById('in-owner').value = config.owner.replace('संचालक: ', '');
         document.getElementById('in-loc').value = config.loc;
         document.getElementById('in-phone').value = config.phone;
         document.getElementById('in-upi').value = config.upi;
@@ -638,7 +752,7 @@
     // ====================
     function openPinModal() {
         if (loginAttempts >= MAX_ATTEMPTS) {
-            alert(`❌ बहुत अधिक गलत प्रयास! ${LOCKOUT_TIME/1000} सेकंड बाद पुनः प्रयास करें।`);
+            showAlert(`❌ बहुत अधिक गलत प्रयास! ${LOCKOUT_TIME/1000} सेकंड बाद पुनः प्रयास करें।`, true);
             return;
         }
         document.getElementById('pin-modal').style.display = 'flex';
@@ -674,6 +788,7 @@
             closePinModal();
             document.getElementById('admin-panel').style.display = 'block';
             window.scrollTo({ top: document.getElementById('admin-panel').offsetTop, behavior: 'smooth' });
+            showAlert("✅ एडमिन पैनल खुल गया!");
         } else {
             // Wrong PIN
             loginAttempts++;
@@ -750,65 +865,6 @@
     }
 
     // ====================
-    // CUSTOMER FUNCTIONS
-    // ====================
-    function saveCustomer() {
-        const name = document.getElementById('cust-n').value.trim();
-        const phone = document.getElementById('cust-p').value.trim();
-        const address = document.getElementById('cust-addr').value.trim();
-        const work = document.getElementById('cust-w').value.trim();
-        const mode = document.getElementById('cust-m').value;
-        const amount = document.getElementById('cust-a').value;
-        const note = document.getElementById('cust-q').value.trim();
-        
-        // Validation
-        if (!name || !phone || !work) {
-            alert("❌ नाम, नंबर और काम का नाम अनिवार्य है!");
-            return;
-        }
-        
-        if (phone.length !== 10 || !/^\d+$/.test(phone)) {
-            alert("❌ कृपया 10 अंकों का वैध नंबर दर्ज करें!");
-            return;
-        }
-        
-        // Prepare WhatsApp message
-        let message = `*D.M Cyber - ग्राहक विवरण*%0A%0A`;
-        message += `*नाम:* ${name}%0A`;
-        message += `*मोबाइल:* ${phone}%0A`;
-        if (address) message += `*पता:* ${address}%0A`;
-        message += `*काम:* ${work}%0A`;
-        message += `*प्रकार:* ${mode}%0A`;
-        
-        if (mode === 'Udhar' && amount) {
-            message += `*बकाया:* ₹${amount}%0A`;
-        }
-        
-        if (note) {
-            message += `*नोट:* ${note}%0A`;
-        }
-        
-        message += `*तारीख:* ${new Date().toLocaleDateString('hi-IN')}%0A`;
-        message += `*समय:* ${new Date().toLocaleTimeString('hi-IN', {hour: '2-digit', minute:'2-digit'})}%0A%0A`;
-        message += `_धन्यवाद, D.M Cyber_`;
-        
-        // Open WhatsApp
-        window.open(`https://wa.me/91${config.phone}?text=${encodeURIComponent(message)}`, '_blank');
-        
-        // Clear form
-        document.getElementById('cust-n').value = '';
-        document.getElementById('cust-p').value = '';
-        document.getElementById('cust-addr').value = '';
-        document.getElementById('cust-w').value = '';
-        document.getElementById('cust-a').value = '';
-        document.getElementById('cust-q').value = '';
-        document.getElementById('cust-m').selectedIndex = 0;
-        
-        // Show success
-        alert("✅ WhatsApp पर भेजा गया!");
-    }
-
-    // ====================
     // ADMIN FUNCTIONS
     // ====================
     function addMasterItem() {
@@ -816,7 +872,7 @@
         const type = document.getElementById('in-item-type').value;
         
         if (!name) {
-            alert("❌ नाम लिखें!");
+            showAlert("❌ नाम लिखें!", true);
             return;
         }
         
@@ -828,6 +884,7 @@
         
         document.getElementById('in-item-name').value = '';
         render();
+        showAlert(`✅ ${type === 'service' ? 'सेवा' : 'फॉर्म'} जोड़ा गया!`);
     }
     
     function addMasterRate() {
@@ -835,7 +892,7 @@
         const price = document.getElementById('in-rate-price').value.trim();
         
         if (!name || !price) {
-            alert("❌ नाम और शुल्क दोनों भरें!");
+            showAlert("❌ नाम और शुल्क दोनों भरें!", true);
             return;
         }
         
@@ -844,16 +901,19 @@
         document.getElementById('in-rate-name').value = '';
         document.getElementById('in-rate-price').value = '';
         render();
+        showAlert("✅ रेट जोड़ा गया!");
     }
     
     function removeItem(type, index) {
-        if (confirm(`क्या आप "${type === 'services' ? config.services[index] : config.forms[index]}" हटाना चाहते हैं?`)) {
+        const itemName = type === 'services' ? config.services[index] : config.forms[index];
+        if (confirm(`क्या आप "${itemName}" हटाना चाहते हैं?`)) {
             if (type === 'services') {
                 config.services.splice(index, 1);
             } else {
                 config.forms.splice(index, 1);
             }
             render();
+            showAlert("✅ आइटम हटाया गया!");
         }
     }
     
@@ -861,6 +921,7 @@
         if (confirm(`क्या आप "${config.rates[index].n}" हटाना चाहते हैं?`)) {
             config.rates.splice(index, 1);
             render();
+            showAlert("✅ रेट हटाया गया!");
         }
     }
     
@@ -868,12 +929,12 @@
         // Update config from inputs
         config.news = document.getElementById('in-news').value || config.news;
         config.title = document.getElementById('in-title').value || config.title;
-        config.owner = document.getElementById('in-owner').value || config.owner;
+        config.owner = "संचालक: " + (document.getElementById('in-owner').value || "धीरज मौर्य");
         config.loc = document.getElementById('in-loc').value || config.loc;
         config.phone = document.getElementById('in-phone').value || config.phone;
         config.upi = document.getElementById('in-upi').value || config.upi;
         
-        alert("✅ सभी बदलाव सुरक्षित!");
+        showAlert("✅ सभी बदलाव सुरक्षित!");
         render();
     }
 
@@ -882,6 +943,7 @@
     // ====================
     function openQR() {
         document.getElementById('qr-modal').style.display = 'flex';
+        document.getElementById('qr-upi').innerText = config.upi;
         document.getElementById('upi-label').innerText = config.upi;
     }
     
@@ -895,12 +957,6 @@
     window.onload = function() {
         render();
         
-        // Udhar field toggle
-        document.getElementById('cust-m').addEventListener('change', function() {
-            document.getElementById('cust-a').style.display = 
-                this.value === 'Udhar' ? 'block' : 'none';
-        });
-        
         // Number input validation
         document.getElementById('cust-p').addEventListener('input', function(e) {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
@@ -911,8 +967,17 @@
             if (e.key === 'Enter') verifyPin();
         });
         
+        // Enter key for form submission
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !this.classList.contains('pin-input')) {
+                    saveCustomer();
+                }
+            });
+        });
+        
         // Security info
-        console.log("सुरक्षित पोर्टल चालू | पिन:", adminPin);
+        console.log("सुरक्षित पोर्टल बंद | पिन:", adminPin);
     };
 </script>
 </body>
