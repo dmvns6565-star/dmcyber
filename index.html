@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.M Cyber - Customer Portal</title>
+    <title>A-Z - D.M Cyber Customer Portal</title>
     <style>
         :root {
             --dark-blue: #004a99;
@@ -26,20 +26,48 @@
             background-color: var(--light-gray);
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* SCROLLING NEWS */
+        .news-container {
+            background: #fff;
+            border: 2px solid #ddd;
+            margin: 10px auto;
+            max-width: 900px;
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 40px;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .news-label {
+            background: var(--red);
+            color: white;
+            padding: 0 15px;
+            font-weight: bold;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         /* HEADER */
         header {
             background-color: var(--dark-blue);
             text-align: center;
-            padding: 25px 10px;
+            padding: 30px 10px;
             color: white;
             border-bottom: 8px solid var(--orange);
+            position: relative;
         }
         
         .logo-container {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: white;
             border-radius: 50%;
             margin: 0 auto 15px;
@@ -58,7 +86,7 @@
         }
         
         .dm-brand {
-            font-size: 2.2em;
+            font-size: 2.8em;
             font-weight: 900;
             margin: 0;
             line-height: 1.2;
@@ -70,57 +98,56 @@
         
         .owner-info {
             font-weight: bold;
-            font-size: 1em;
+            font-size: 1.1em;
             margin: 10px 0;
         }
         
         .orange-pill {
             background: var(--orange);
             color: white;
-            padding: 6px 20px;
+            padding: 8px 25px;
             border-radius: 50px;
             font-weight: bold;
             display: inline-block;
             border: 2px solid white;
             text-transform: uppercase;
             margin-top: 10px;
-            font-size: 0.9em;
         }
         
         /* MAIN CONTAINER */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 15px 30px;
+            padding: 0 15px 50px;
         }
         
         /* ACTION BOX */
         .action-box {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
-            margin-top: -20px;
+            margin-top: -30px;
             border: 1px solid #eee;
             position: relative;
+            z-index: 10;
         }
         
         .action-box h2 {
             color: var(--dark-blue);
             border-bottom: 2px solid var(--orange);
-            padding-bottom: 12px;
+            padding-bottom: 15px;
             margin-bottom: 20px;
-            font-size: 1.4em;
         }
         
         /* FORM STYLES */
         .form-input {
             width: 100%;
-            max-width: 500px;
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            border-radius: 8px;
+            max-width: 600px;
+            padding: 14px;
+            margin-bottom: 15px;
+            border-radius: 10px;
             border: 1px solid #ccc;
             font-size: 1em;
             display: block;
@@ -132,15 +159,15 @@
             background: var(--orange);
             color: white;
             width: 100%;
-            max-width: 500px;
-            padding: 14px;
+            max-width: 600px;
+            padding: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: bold;
-            font-size: 1em;
+            font-size: 1.1em;
             cursor: pointer;
             display: block;
-            margin: 15px auto;
+            margin: 20px auto;
             transition: background 0.3s;
         }
         
@@ -159,16 +186,15 @@
         
         .btn {
             border-radius: 50px;
-            padding: 10px 18px;
+            padding: 12px 22px;
             color: white;
             border: none;
             font-weight: bold;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             transition: all 0.3s;
-            font-size: 0.9em;
         }
         
         .btn-call { background: var(--dark-blue); }
@@ -176,80 +202,77 @@
         .btn-admin { background: #444; }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         /* SECTION TAGS */
         .section-tag {
             background: linear-gradient(90deg, var(--dark-blue) 50%, var(--orange) 50%);
             color: white;
-            padding: 8px 25px;
+            padding: 10px 35px;
             border-radius: 50px;
             display: inline-block;
-            margin: 25px 0 15px;
+            margin: 35px 0 20px;
             font-weight: bold;
             border: 2px solid white;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            font-size: 0.9em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         /* GRIDS */
         .grid-services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
         }
         
         .grid-forms {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
         }
         
         .box {
             background: white;
-            padding: 15px 8px;
-            border-radius: 10px;
+            padding: 18px 10px;
+            border-radius: 12px;
             font-weight: bold;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             color: var(--dark-blue);
-            border-bottom: 3px solid var(--orange);
+            border-bottom: 4px solid var(--orange);
             text-align: center;
-            font-size: 0.85em;
+            font-size: 0.9em;
             transition: all 0.3s;
         }
         
         .box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
         
         /* RATE TABLE */
         .rate-table {
             width: 100%;
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 20px;
             border-collapse: collapse;
         }
         
         .rate-table th {
             background: var(--dark-blue);
             color: white;
-            padding: 12px 15px;
+            padding: 15px;
             text-align: left;
-            font-size: 0.9em;
         }
         
         .rate-table td {
-            padding: 10px 15px;
+            padding: 12px 15px;
             border-bottom: 1px solid #eee;
-            font-size: 0.9em;
         }
         
         .rate-table tr:hover {
@@ -260,41 +283,39 @@
         #admin-panel {
             display: none;
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            border: 4px solid var(--dark-blue);
-            margin-top: 25px;
+            padding: 25px;
+            border-radius: 20px;
+            border: 5px solid var(--dark-blue);
+            margin-top: 30px;
         }
         
         .admin-sec {
             background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ddd;
         }
         
         .admin-sec h4 {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             color: var(--dark-blue);
             border-bottom: 1px solid #ddd;
-            padding-bottom: 6px;
-            font-size: 1em;
+            padding-bottom: 8px;
         }
         
         .manage-list {
             margin-top: 10px;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
             background: white;
             border: 1px solid #ccc;
             border-radius: 5px;
-            padding: 8px;
-            font-size: 0.85em;
+            padding: 10px;
         }
         
-        /* MODALS */
-        .modal {
+        /* QR MODAL */
+        #qr-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -302,99 +323,63 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.8);
-            z-index: 1000;
+            z-index: 2000;
             justify-content: center;
             align-items: center;
         }
         
         .modal-content {
             background: white;
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 15px;
             width: 90%;
             max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             text-align: center;
         }
         
         .modal-content h3 {
             color: var(--dark-blue);
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        
-        /* PIN INPUT */
-        .pin-input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            text-align: center;
-            letter-spacing: 8px;
-            font-family: monospace;
-        }
-        
-        .pin-input:focus {
-            border-color: var(--orange);
-            outline: none;
-        }
-        
-        .pin-error {
-            color: var(--red);
-            margin: 8px 0;
-            font-size: 0.9em;
-            display: none;
-        }
-        
-        /* ALERT STYLES */
-        .alert-message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--green);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideIn 0.3s ease;
-            max-width: 300px;
-        }
-        
-        .alert-error {
-            background: var(--red);
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            margin-bottom: 20px;
         }
         
         /* FOOTER */
         footer {
             background-color: var(--dark-blue);
             color: white;
-            padding: 25px 15px;
+            padding: 40px 20px;
             text-align: center;
-            border-top: 6px solid var(--orange);
-            margin-top: 30px;
+            border-top: 8px solid var(--orange);
+            margin-top: 50px;
         }
         
         footer h2 {
-            font-size: 1.5em;
+            font-size: 2em;
             font-weight: 900;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
-        /* RESPONSIVE */
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .grid-services {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-forms {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
             .dm-brand {
-                font-size: 1.8em;
+                font-size: 2.2em;
+            }
+            
+            .grid-services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-forms {
+                grid-template-columns: repeat(1, 1fr);
             }
             
             .btn-flex {
@@ -404,87 +389,75 @@
             
             .btn {
                 width: 100%;
-                max-width: 250px;
+                max-width: 300px;
                 justify-content: center;
-            }
-            
-            .action-box {
-                padding: 20px 15px;
-            }
-            
-            .grid-services,
-            .grid-forms {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .alert-message {
-                top: 10px;
-                right: 10px;
-                left: 10px;
-                max-width: none;
             }
         }
         
         @media (max-width: 480px) {
             .logo-container {
-                width: 80px;
-                height: 80px;
+                width: 90px;
+                height: 90px;
             }
             
             .dm-brand {
-                font-size: 1.5em;
+                font-size: 1.8em;
             }
             
-            .grid-services,
-            .grid-forms {
-                grid-template-columns: 1fr;
+            .action-box {
+                padding: 20px;
             }
             
             .section-tag {
-                padding: 6px 18px;
-                font-size: 0.85em;
+                padding: 8px 20px;
+                font-size: 0.9em;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Alert Container -->
-<div id="alert-container"></div>
+<!-- Scrolling News Ticker -->
+<div class="news-container">
+    <div class="news-label">नया अपडेट</div>
+    <marquee id="disp-news">A-Z D.M Cyber पोर्टल में आपका स्वागत है। हम सभी डिजिटल सेवाएँ प्रदान करते हैं।</marquee>
+</div>
 
 <!-- Header Section -->
 <header>
     <div class="logo-container">
         <img src="https://i.postimg.cc/mDF47CS1/Gemini-Generated-Image-dp4mkadp4mkadp4m.png" alt="D.M Cyber Logo">
     </div>
-    <h1 class="dm-brand" id="disp-title">D.M <span>Cyber</span></h1>
+    <h1 class="dm-brand" id="disp-title">D.M <span>Cyber</span> Varanasi</h1>
     <p class="owner-info" id="disp-owner">संचालक: धीरज मौर्य</p>
-    <div class="orange-pill">वाराणसी</div>
+    <div class="orange-pill">A-Z डिजिटल सर्विस सेंटर</div>
 </header>
 
 <!-- Main Container -->
 <div class="container">
     <!-- Customer Action Box -->
     <div class="action-box">
-        <h2>📝 ग्राहक डिजिटल सेवा फॉर्म</h2>
+        <h2>📝 ग्राहक डिजिटल सेवा फॉर्म यहाँ भरें</h2>
         
-        <input type="text" id="cust-n" class="form-input" placeholder="ग्राहक का नाम *" required>
-        <input type="tel" id="cust-p" class="form-input" placeholder="मोबाइल नंबर *" maxlength="10" required>
-        <input type="text" id="cust-addr" class="form-input" placeholder="पता (गाँव/शहर)">
-        <input type="text" id="cust-w" class="form-input" placeholder="काम का नाम *" required>
+        <input type="text" id="cust-n" class="form-input" placeholder="ग्राहक का नाम (Name)">
+        <input type="number" id="cust-p" class="form-input" placeholder="मोबाइल नंबर (Mobile)">
+        <input type="text" id="cust-addr" class="form-input" placeholder="पूरा पता (Village/City)">
+        <input type="text" id="cust-w" class="form-input" placeholder="काम का नाम (Work)">
         
-        <select id="cust-m" class="form-input">
-            <option value="DATA">सामान्य ग्राहक डाटा</option>
+        <select id="cust-m" class="form-input" onchange="toggleUdhar()">
+            <option value="DATA">सामान्य ग्राहक डाटा (General Customer Data)</option>
+            <option value="Udhar">📕 उधार खाता (Ledger)</option>
         </select>
         
-        <textarea id="cust-q" class="form-input" placeholder="विशेष जानकारी..." rows="2"></textarea>
+        <input type="number" id="cust-a" class="form-input" placeholder="बकाया राशि (₹)" style="display:none; border: 2px solid #d32f2f;">
+        <textarea id="cust-q" class="form-input" placeholder="कोई विशेष जानकारी..." rows="3"></textarea>
         
-        <button class="submit-btn" onclick="saveCustomer()">✅ WhatsApp पर भेजें</button>
+        <button class="submit-btn" onclick="saveCustomer()">सुरक्षित करें और WhatsApp भेजें</button>
         
         <div class="btn-flex">
             <button class="btn btn-call" onclick="window.open('tel:8303585793')">📞 कॉल</button>
             <button class="btn btn-qr" onclick="openQR()">💳 पेमेंट QR</button>
-            <button class="btn btn-admin" onclick="openPinModal()">⚙️ एडमिन</button>
+            <button class="btn btn-admin" onclick="loginAdmin()">⚙️ एडमिन</button>
         </div>
     </div>
 
@@ -497,12 +470,12 @@
     <div class="grid-forms" id="show-forms"></div>
 
     <!-- Rate List -->
-    <center><div class="section-tag">💰 रेट लिस्ट</div></center>
+    <center><div class="section-tag">💰 रेट लिस्ट (Fees)</div></center>
     <table class="rate-table">
         <thead>
             <tr>
                 <th>सेवा का नाम</th>
-                <th>शुल्क</th>
+                <th>शुल्क (Price)</th>
             </tr>
         </thead>
         <tbody id="show-rates"></tbody>
@@ -510,371 +483,262 @@
 
     <!-- Admin Panel -->
     <div id="admin-panel">
-        <h2 style="text-align:center; color:var(--dark-blue); margin-bottom:15px;">🛠️ एडमिन पैनल</h2>
+        <h2 style="text-align:center; color:var(--dark-blue); margin-bottom:20px;">🛠️ मास्टर कंट्रोल पैनल</h2>
         
         <!-- Shop Information -->
         <div class="admin-sec">
             <h4>1. दुकान की जानकारी</h4>
-            <input type="text" id="in-news" class="form-input" placeholder="समाचार पट्टी">
-            <input type="text" id="in-title" class="form-input" placeholder="दुकान का नाम">
+            <input type="text" id="in-news" class="form-input" placeholder="न्यूज पट्टी संदेश">
+            <input type="text" id="in-title" class="form-input" placeholder="दुकान का नाम (HTML allowed)">
             <input type="text" id="in-owner" class="form-input" placeholder="संचालक का नाम">
-            <input type="text" id="in-loc" class="form-input" placeholder="स्थान">
-            <input type="tel" id="in-phone" class="form-input" placeholder="WhatsApp नंबर">
-            <input type="text" id="in-upi" class="form-input" placeholder="UPI ID">
-        </div>
-
-        <!-- PIN Change -->
-        <div class="admin-sec">
-            <h4>2. एडमिन पिन बदलें</h4>
-            <input type="password" id="current-pin" class="form-input" placeholder="वर्तमान पिन" maxlength="4">
-            <input type="password" id="new-pin" class="form-input" placeholder="नया पिन (4 अंक)" maxlength="4">
-            <input type="password" id="confirm-pin" class="form-input" placeholder="पिन दोबारा" maxlength="4">
-            <button onclick="changePin()" class="submit-btn" style="background:var(--purple);">🔄 पिन बदलें</button>
-            <p id="pin-message" style="margin-top:8px; font-size:0.85em;"></p>
+            <input type="text" id="in-loc" class="form-input" placeholder="लोकेशन">
+            <input type="text" id="in-pin" class="form-input" placeholder="Change Login PIN" value="4321">
         </div>
 
         <!-- Service/Form Management -->
         <div class="admin-sec">
-            <h4>3. सेवा / फॉर्म प्रबंधन</h4>
+            <h4>2. सेवा / फॉर्म मैनेजमेंट</h4>
             <input type="text" id="in-item-name" class="form-input" placeholder="नाम लिखें">
             <select id="in-item-type" class="form-input">
-                <option value="service">सेवा</option>
-                <option value="form">फॉर्म</option>
+                <option value="service">लोकप्रिय सेवा</option>
+                <option value="form">महत्वपूर्ण फॉर्म</option>
             </select>
-            <button onclick="addMasterItem()" class="submit-btn" style="background:var(--green);">+ जोड़ें</button>
+            <button onclick="addMasterItem()" class="submit-btn" style="background:var(--green);">+ लिस्ट में जोड़ें</button>
             <div class="manage-list" id="list-items"></div>
         </div>
 
         <!-- Rate List Management -->
         <div class="admin-sec">
-            <h4>4. रेट लिस्ट प्रबंधन</h4>
+            <h4>3. रेट लिस्ट मैनेजमेंट</h4>
             <input type="text" id="in-rate-name" class="form-input" placeholder="सेवा का नाम">
-            <input type="text" id="in-rate-price" class="form-input" placeholder="शुल्क (₹)">
-            <button onclick="addMasterRate()" class="submit-btn" style="background:var(--dark-blue);">+ जोड़ें</button>
+            <input type="text" id="in-rate-price" class="form-input" placeholder="शुल्क (उदा: ₹100)">
+            <button onclick="addMasterRate()" class="submit-btn" style="background:var(--dark-blue);">+ रेट जोड़ें</button>
             <div class="manage-list" id="list-rates"></div>
         </div>
 
         <!-- Save Button -->
-        <button onclick="saveAllMasterData()" class="submit-btn" style="background:var(--orange); margin-top:10px;">💾 सभी बदलाव सुरक्षित करें</button>
+        <button onclick="saveAllMasterData()" class="submit-btn" style="background:var(--orange); font-size:1.2em; margin-top:20px;">✅ सभी बदलाव सुरक्षित (SAVE) करें</button>
     </div>
 </div>
 
 <!-- Footer -->
 <footer>
-    <h2 id="foot-title">D.M Cyber</h2>
-    <p id="foot-loc">A-Z डिजिटल सर्विस सेंटर</p>
-    <p style="font-size:0.9em; margin-top:5px;">© 2025 | वाराणसी, उत्तर प्रदेश</p>
+    <h2 id="foot-title">D.M Cyber Varanasi</h2>
+    <p id="foot-loc">A-Z | वाराणसी, उत्तर प्रदेश</p>
+    <p>© 2025 | A-Z डिजिटल सर्विस सेंटर</p>
 </footer>
 
-<!-- PIN Login Modal -->
-<div id="pin-modal" class="modal">
-    <div class="modal-content">
-        <h3>🔐 एडमिन लॉगिन</h3>
-        <p style="margin-bottom: 10px; color: #666; font-size:0.9em;">कृपया एडमिन पिन दर्ज करें</p>
-        <input type="password" id="pin-input" class="pin-input" placeholder="****" maxlength="4" autocomplete="off">
-        <div class="pin-error" id="pin-error">❌ गलत पिन! पुनः प्रयास करें</div>
-        <div style="margin-top: 15px;">
-            <button onclick="verifyPin()" class="submit-btn" style="background:var(--dark-blue);">लॉगिन</button>
-            <button onclick="closePinModal()" class="submit-btn" style="background:#666; margin-top:8px;">बंद करें</button>
-        </div>
-    </div>
-</div>
-
 <!-- QR Modal -->
-<div id="qr-modal" class="modal">
+<div id="qr-modal">
     <div class="modal-content">
         <h3>💳 पेमेंट QR कोड</h3>
-        <div style="margin:15px auto; text-align:center;">
-            <div style="background:#fff; padding:15px; border-radius:8px; display:inline-block; border:2px solid #ddd;">
-                <div style="width:180px; height:180px; background:#f5f5f5; display:flex; align-items:center; justify-content:center; border-radius:5px;">
-                    <span style="font-size:13px; color:#666; text-align:center;">QR Code<br>UPI: <br><strong id="qr-upi">dm0827717@ybl</strong></span>
-                </div>
-            </div>
+        <div id="qr-img" style="margin:20px auto;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UPI_ID_HERE" alt="QR Code" style="width:200px;height:200px;">
         </div>
-        <p id="upi-label" style="font-weight:bold; margin:10px 0; font-size:16px; color:#2c3e50;"></p>
+        <p id="upi-label" style="font-weight:bold; margin:10px 0;">UPI: dhirajmaurya@okaxis</p>
         <button onclick="closeQR()" class="submit-btn" style="background:var(--dark-blue);">बंद करें</button>
     </div>
 </div>
 
 <script>
     // ====================
-    // SECURITY CONFIGURATION
+    // CONFIGURATION & DATA
     // ====================
-    let adminPin = "4321"; // Default PIN
-    let loginAttempts = 0;
-    const MAX_ATTEMPTS = 3;
-    const LOCKOUT_TIME = 30000; // 30 seconds
+    const CONFIG_KEY = 'dm_cyber_v_final_cfg';
+    const CUSTOMER_KEY = 'dm_cyber_customers';
+    const UDHAR_KEY = 'dm_cyber_udhar';
     
-    let config = {
-        news: "D.M Cyber पोर्टल में आपका स्वागत है",
-        title: "D.M Cyber",
+    // Default configuration with PIN 4321
+    let config = JSON.parse(localStorage.getItem(CONFIG_KEY)) || {
+        news: "A-Z D.M Cyber पोर्टल में आपका स्वागत है। हम सभी डिजिटल सेवाएँ प्रदान करते हैं।",
+        title: "D.M <span>Cyber</span> Varanasi",
         owner: "संचालक: धीरज मौर्य",
-        loc: "वाराणसी",
+        loc: "वाराणसी, उत्तर प्रदेश",
         phone: "8303585793",
         upi: "dhirajmaurya@okaxis",
-        services: ["पैन कार्ड", "आधार कार्ड", "वोटर आईडी"],
-        forms: ["आयुष्मान कार्ड", "विश्वकर्मा योजना"],
+        pin: "4321", // PIN changed to 4321
+        services: ["पैन कार्ड", "आधार कार्ड", "वोटर आईडी", "राशन कार्ड", "बैंक खाता"],
+        forms: ["आयुष्मान कार्ड", "विश्वकर्मा योजना", "किसान सम्मान निधि", "पेंशन योजना"],
         rates: [
             {n: "पैन कार्ड", p: "₹200"},
             {n: "आधार अपडेट", p: "₹100"},
-            {n: "वोटर आईडी", p: "₹150"}
+            {n: "वोटर आईडी", p: "₹150"},
+            {n: "राशन कार्ड", p: "₹250"},
+            {n: "बैंक खाता खोलना", p: "₹300"}
         ]
     };
-
-    // ====================
-    // ALERT FUNCTION
-    // ====================
-    function showAlert(message, isError = false) {
-        const alertContainer = document.getElementById('alert-container');
-        const alertDiv = document.createElement('div');
-        alertDiv.className = isError ? 'alert-message alert-error' : 'alert-message';
-        alertDiv.innerHTML = `
-            ${isError ? '❌' : '✅'} 
-            <span>${message}</span>
-        `;
-        
-        alertContainer.appendChild(alertDiv);
-        
-        // Auto remove after 3 seconds
-        setTimeout(() => {
-            alertDiv.style.animation = 'slideIn 0.3s ease reverse';
-            setTimeout(() => {
-                alertContainer.removeChild(alertDiv);
-            }, 300);
-        }, 3000);
-    }
-
-    // ====================
-    // WHATSAPP FUNCTION
-    // ====================
-    function saveCustomer() {
-        const name = document.getElementById('cust-n').value.trim();
-        const phone = document.getElementById('cust-p').value.trim();
-        const address = document.getElementById('cust-addr').value.trim();
-        const work = document.getElementById('cust-w').value.trim();
-        const notes = document.getElementById('cust-q').value.trim();
-        
-        // Validation
-        if (!name || !phone || !work) {
-            showAlert("❌ नाम, नंबर और काम का नाम अनिवार्य है!", true);
-            return;
-        }
-        
-        if (phone.length !== 10 || !/^\d+$/.test(phone)) {
-            showAlert("❌ कृपया 10 अंकों का वैध नंबर दर्ज करें!", true);
-            return;
-        }
-
-        // Prepare WhatsApp message
-        let message = `*D.M Cyber - ग्राहक जानकारी*\n\n`;
-        message += `*नाम:* ${name}\n`;
-        message += `*मोबाइल:* ${phone}\n`;
-        if (address) message += `*पता:* ${address}\n`;
-        message += `*काम का नाम:* ${work}\n`;
-        if (notes) message += `*विशेष जानकारी:* ${notes}\n\n`;
-        message += `*दुकान:* D.M Cyber\n`;
-        message += `*संचालक:* धीरज मौर्य\n`;
-        message += `*तिथि:* ${new Date().toLocaleDateString('hi-IN')}\n`;
-        message += `*समय:* ${new Date().toLocaleTimeString('hi-IN', {hour: '2-digit', minute:'2-digit'})}`;
-        
-        // Encode message for URL
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappNumber = config.phone;
-        
-        // Open WhatsApp with pre-filled message
-        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-        
-        // Clear form fields
-        document.getElementById('cust-n').value = '';
-        document.getElementById('cust-p').value = '';
-        document.getElementById('cust-addr').value = '';
-        document.getElementById('cust-w').value = '';
-        document.getElementById('cust-q').value = '';
-        
-        // Show success message
-        showAlert("✅ WhatsApp खोला जा रहा है...");
-        
-        // Open WhatsApp after a short delay
-        setTimeout(() => {
-            window.open(whatsappURL, '_blank');
-        }, 1000);
-    }
+    
+    let customers = JSON.parse(localStorage.getItem(CUSTOMER_KEY)) || [];
+    let udharEntries = JSON.parse(localStorage.getItem(UDHAR_KEY)) || [];
 
     // ====================
     // INITIAL RENDER
     // ====================
     function render() {
         // Display shop info
-        document.getElementById('disp-title').innerHTML = `D.M <span>Cyber</span>`;
+        document.getElementById('disp-news').innerHTML = config.news;
+        document.getElementById('disp-title').innerHTML = config.title;
         document.getElementById('disp-owner').innerText = config.owner;
-        document.getElementById('foot-title').innerHTML = `D.M <span>Cyber</span>`;
-        document.getElementById('foot-loc').innerText = `A-Z डिजिटल सर्विस सेंटर | ${config.loc}`;
+        document.getElementById('foot-title').innerHTML = config.title;
+        document.getElementById('foot-loc').innerText = `A-Z | ${config.loc}`;
         
         // Fill admin inputs
         document.getElementById('in-news').value = config.news;
         document.getElementById('in-title').value = config.title;
-        document.getElementById('in-owner').value = config.owner.replace('संचालक: ', '');
+        document.getElementById('in-owner').value = config.owner;
         document.getElementById('in-loc').value = config.loc;
-        document.getElementById('in-phone').value = config.phone;
-        document.getElementById('in-upi').value = config.upi;
+        document.getElementById('in-pin').value = config.pin;
         
         // Render services
-        document.getElementById('show-services').innerHTML = 
-            config.services.map(service => `<div class="box">${service}</div>`).join('');
+        let servicesHtml = '';
+        config.services.forEach(service => {
+            servicesHtml += `<div class="box">${service}</div>`;
+        });
+        document.getElementById('show-services').innerHTML = servicesHtml;
         
         // Render forms
-        document.getElementById('show-forms').innerHTML = 
-            config.forms.map(form => `<div class="box">${form}</div>`).join('');
+        let formsHtml = '';
+        config.forms.forEach(form => {
+            formsHtml += `<div class="box">${form}</div>`;
+        });
+        document.getElementById('show-forms').innerHTML = formsHtml;
         
         // Render rates
-        document.getElementById('show-rates').innerHTML = 
-            config.rates.map(rate => `<tr><td>${rate.n}</td><td><strong>${rate.p}</strong></td></tr>`).join('');
+        let ratesHtml = '';
+        config.rates.forEach(rate => {
+            ratesHtml += `<tr><td>${rate.n}</td><td><strong>${rate.p}</strong></td></tr>`;
+        });
+        document.getElementById('show-rates').innerHTML = ratesHtml;
         
         // Render items list for admin
         let itemsHtml = '';
         config.services.forEach((item, index) => {
-            itemsHtml += `<div>${index+1}. ${item} <button onclick="removeItem('services', ${index})" style="background:var(--red); color:white; border:none; border-radius:3px; padding:2px 6px; margin-left:8px; cursor:pointer; font-size:0.8em;">X</button></div>`;
+            itemsHtml += `<div>${index+1}. ${item} <button onclick="removeItem('services', ${index})" style="background:red; color:white; border:none; border-radius:3px; padding:2px 8px; margin-left:10px; cursor:pointer;">X</button></div>`;
         });
         config.forms.forEach((item, index) => {
-            itemsHtml += `<div>${index+1}. ${item} <button onclick="removeItem('forms', ${index})" style="background:var(--red); color:white; border:none; border-radius:3px; padding:2px 6px; margin-left:8px; cursor:pointer; font-size:0.8em;">X</button></div>`;
+            itemsHtml += `<div>${index+1}. ${item} (फॉर्म) <button onclick="removeItem('forms', ${index})" style="background:red; color:white; border:none; border-radius:3px; padding:2px 8px; margin-left:10px; cursor:pointer;">X</button></div>`;
         });
         document.getElementById('list-items').innerHTML = itemsHtml;
         
         // Render rates list for admin
-        document.getElementById('list-rates').innerHTML = 
-            config.rates.map((rate, index) => 
-                `<div>${index+1}. ${rate.n}: ${rate.p} <button onclick="removeRate(${index})" style="background:var(--red); color:white; border:none; border-radius:3px; padding:2px 6px; margin-left:8px; cursor:pointer; font-size:0.8em;">X</button></div>`
-            ).join('');
+        let ratesListHtml = '';
+        config.rates.forEach((rate, index) => {
+            ratesListHtml += `<div>${index+1}. ${rate.n}: ${rate.p} <button onclick="removeRate(${index})" style="background:red; color:white; border:none; border-radius:3px; padding:2px 8px; margin-left:10px; cursor:pointer;">X</button></div>`;
+        });
+        document.getElementById('list-rates').innerHTML = ratesListHtml;
     }
 
     // ====================
-    // SECURITY FUNCTIONS
+    // CUSTOMER FUNCTIONS
     // ====================
-    function openPinModal() {
-        if (loginAttempts >= MAX_ATTEMPTS) {
-            showAlert(`❌ बहुत अधिक गलत प्रयास! ${LOCKOUT_TIME/1000} सेकंड बाद पुनः प्रयास करें।`, true);
-            return;
-        }
-        document.getElementById('pin-modal').style.display = 'flex';
-        document.getElementById('pin-input').value = '';
-        document.getElementById('pin-error').style.display = 'none';
-        document.getElementById('pin-input').focus();
+    function toggleUdhar() {
+        const udharField = document.getElementById('cust-a');
+        udharField.style.display = (document.getElementById('cust-m').value === 'Udhar') ? 'block' : 'none';
     }
     
-    function closePinModal() {
-        document.getElementById('pin-modal').style.display = 'none';
-        document.getElementById('pin-input').value = '';
-        document.getElementById('pin-error').style.display = 'none';
-    }
-    
-    function verifyPin() {
-        const enteredPin = document.getElementById('pin-input').value;
+    function saveCustomer() {
+        const name = document.getElementById('cust-n').value.trim();
+        const phone = document.getElementById('cust-p').value.trim();
+        const address = document.getElementById('cust-addr').value.trim();
+        const work = document.getElementById('cust-w').value.trim();
+        const mode = document.getElementById('cust-m').value;
+        const amount = document.getElementById('cust-a').value;
+        const note = document.getElementById('cust-q').value.trim();
         
-        if (loginAttempts >= MAX_ATTEMPTS) {
-            document.getElementById('pin-error').innerHTML = `❌ अकाउंट लॉक! ${LOCKOUT_TIME/1000} सेकंड बाद प्रयास करें`;
-            document.getElementById('pin-error').style.display = 'block';
+        if (!name || !phone) {
+            alert("नाम और नंबर अनिवार्य है!");
             return;
         }
         
-        if (enteredPin.length !== 4) {
-            document.getElementById('pin-error').innerHTML = "❌ पिन 4 अंकों का होना चाहिए";
-            document.getElementById('pin-error').style.display = 'block';
+        if (phone.length !== 10) {
+            alert("कृपया 10 अंकों का मोबाइल नंबर दर्ज करें!");
             return;
         }
         
-        if (enteredPin === adminPin) {
-            // Correct PIN
-            loginAttempts = 0;
-            closePinModal();
-            document.getElementById('admin-panel').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('admin-panel').offsetTop, behavior: 'smooth' });
-            showAlert("✅ एडमिन पैनल खुल गया!");
-        } else {
-            // Wrong PIN
-            loginAttempts++;
-            document.getElementById('pin-error').innerHTML = `❌ गलत पिन! ${MAX_ATTEMPTS - loginAttempts} प्रयास बचे`;
-            document.getElementById('pin-error').style.display = 'block';
-            document.getElementById('pin-input').value = '';
-            document.getElementById('pin-input').focus();
+        // Save customer data
+        const customer = {
+            id: Date.now(),
+            name: name,
+            phone: phone,
+            address: address,
+            work: work,
+            mode: mode,
+            amount: amount,
+            note: note,
+            date: new Date().toLocaleDateString('hi-IN')
+        };
+        
+        customers.push(customer);
+        localStorage.setItem(CUSTOMER_KEY, JSON.stringify(customers));
+        
+        // If it's Udhar, save separately
+        if (mode === 'Udhar' && amount) {
+            const udharEntry = {
+                id: Date.now(),
+                name: name,
+                work: work,
+                amount: amount,
+                date: new Date().toLocaleDateString('hi-IN'),
+                phone: phone
+            };
             
-            if (loginAttempts >= MAX_ATTEMPTS) {
-                setTimeout(() => {
-                    loginAttempts = 0;
-                }, LOCKOUT_TIME);
-            }
-        }
-    }
-    
-    function changePin() {
-        const current = document.getElementById('current-pin').value;
-        const newPin = document.getElementById('new-pin').value;
-        const confirmPin = document.getElementById('confirm-pin').value;
-        
-        // Clear previous message
-        const pinMsg = document.getElementById('pin-message');
-        pinMsg.innerHTML = '';
-        pinMsg.style.color = '';
-        
-        // Validation
-        if (!current || !newPin || !confirmPin) {
-            pinMsg.innerHTML = "❌ सभी फील्ड भरें!";
-            pinMsg.style.color = "var(--red)";
-            return;
+            udharEntries.push(udharEntry);
+            localStorage.setItem(UDHAR_KEY, JSON.stringify(udharEntries));
         }
         
-        if (current !== adminPin) {
-            pinMsg.innerHTML = "❌ वर्तमान पिन गलत है!";
-            pinMsg.style.color = "var(--red)";
-            return;
+        // Prepare WhatsApp message
+        let message = `*A-Z D.M Cyber Customer Details*%0A%0A`;
+        message += `*नाम:* ${name}%0A`;
+        message += `*मोबाइल:* ${phone}%0A`;
+        message += `*पता:* ${address}%0A`;
+        message += `*काम:* ${work}%0A`;
+        message += `*मोड:* ${mode}%0A`;
+        
+        if (mode === 'Udhar' && amount) {
+            message += `*बकाया राशि:* ₹${amount}%0A`;
         }
         
-        if (newPin.length !== 4) {
-            pinMsg.innerHTML = "❌ नया पिन 4 अंकों का होना चाहिए!";
-            pinMsg.style.color = "var(--red)";
-            return;
+        if (note) {
+            message += `*नोट:* ${note}%0A`;
         }
         
-        if (newPin !== confirmPin) {
-            pinMsg.innerHTML = "❌ नया पिन मेल नहीं खा रहा!";
-            pinMsg.style.color = "var(--red)";
-            return;
-        }
+        message += `*तारीख:* ${new Date().toLocaleDateString('hi-IN')}%0A%0A`;
+        message += `_धन्यवाद, D.M Cyber Varanasi_`;
         
-        if (newPin === current) {
-            pinMsg.innerHTML = "❌ नया पिन पुराने से अलग होना चाहिए!";
-            pinMsg.style.color = "var(--red)";
-            return;
-        }
+        // Open WhatsApp
+        window.open(`https://wa.me/91${config.phone}?text=${message}`, '_blank');
         
-        // Change PIN
-        adminPin = newPin;
+        // Clear form
+        document.getElementById('cust-n').value = '';
+        document.getElementById('cust-p').value = '';
+        document.getElementById('cust-addr').value = '';
+        document.getElementById('cust-w').value = '';
+        document.getElementById('cust-a').value = '';
+        document.getElementById('cust-q').value = '';
+        document.getElementById('cust-m').selectedIndex = 0;
+        document.getElementById('cust-a').style.display = 'none';
         
-        // Clear fields
-        document.getElementById('current-pin').value = '';
-        document.getElementById('new-pin').value = '';
-        document.getElementById('confirm-pin').value = '';
-        
-        // Show success
-        pinMsg.innerHTML = "✅ पिन बदल गया!";
-        pinMsg.style.color = "var(--green)";
-        
-        // Auto hide message
-        setTimeout(() => {
-            pinMsg.innerHTML = '';
-        }, 3000);
+        alert("ग्राहक डेटा सुरक्षित कर दिया गया है! WhatsApp खुल गया है।");
     }
 
     // ====================
     // ADMIN FUNCTIONS
     // ====================
+    function loginAdmin() {
+        const pin = prompt("Admin PIN दर्ज करें:");
+        if (pin === config.pin) {
+            document.getElementById('admin-panel').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('admin-panel').offsetTop, behavior: 'smooth' });
+        } else {
+            alert("गलत पिन! सही PIN: 4321");
+        }
+    }
+    
     function addMasterItem() {
         const name = document.getElementById('in-item-name').value.trim();
         const type = document.getElementById('in-item-type').value;
         
-        if (!name) {
-            showAlert("❌ नाम लिखें!", true);
-            return;
-        }
+        if (!name) return alert("नाम लिखें!");
         
         if (type === 'service') {
             config.services.push(name);
@@ -884,67 +748,67 @@
         
         document.getElementById('in-item-name').value = '';
         render();
-        showAlert(`✅ ${type === 'service' ? 'सेवा' : 'फॉर्म'} जोड़ा गया!`);
     }
     
     function addMasterRate() {
         const name = document.getElementById('in-rate-name').value.trim();
         const price = document.getElementById('in-rate-price').value.trim();
         
-        if (!name || !price) {
-            showAlert("❌ नाम और शुल्क दोनों भरें!", true);
-            return;
-        }
+        if (!name || !price) return alert("नाम और शुल्क दोनों भरें!");
         
         config.rates.push({ n: name, p: price });
         
         document.getElementById('in-rate-name').value = '';
         document.getElementById('in-rate-price').value = '';
         render();
-        showAlert("✅ रेट जोड़ा गया!");
     }
     
     function removeItem(type, index) {
-        const itemName = type === 'services' ? config.services[index] : config.forms[index];
-        if (confirm(`क्या आप "${itemName}" हटाना चाहते हैं?`)) {
+        if (confirm("क्या आप वाकई इसे हटाना चाहते हैं?")) {
             if (type === 'services') {
                 config.services.splice(index, 1);
             } else {
                 config.forms.splice(index, 1);
             }
             render();
-            showAlert("✅ आइटम हटाया गया!");
         }
     }
     
     function removeRate(index) {
-        if (confirm(`क्या आप "${config.rates[index].n}" हटाना चाहते हैं?`)) {
+        if (confirm("क्या आप वाकई इस रेट को हटाना चाहते हैं?")) {
             config.rates.splice(index, 1);
             render();
-            showAlert("✅ रेट हटाया गया!");
         }
     }
     
     function saveAllMasterData() {
         // Update config from inputs
-        config.news = document.getElementById('in-news').value || config.news;
-        config.title = document.getElementById('in-title').value || config.title;
-        config.owner = "संचालक: " + (document.getElementById('in-owner').value || "धीरज मौर्य");
-        config.loc = document.getElementById('in-loc').value || config.loc;
-        config.phone = document.getElementById('in-phone').value || config.phone;
-        config.upi = document.getElementById('in-upi').value || config.upi;
+        config.news = document.getElementById('in-news').value;
+        config.title = document.getElementById('in-title').value;
+        config.owner = document.getElementById('in-owner').value;
+        config.loc = document.getElementById('in-loc').value;
+        config.pin = document.getElementById('in-pin').value;
         
-        showAlert("✅ सभी बदलाव सुरक्षित!");
-        render();
+        // Save to localStorage
+        localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+        
+        alert("सभी बदलाव सुरक्षित कर दिए गए हैं! पेज रिफ्रेश हो रहा है...");
+        location.reload();
     }
 
     // ====================
-    // QR FUNCTIONS
+    // QR CODE FUNCTIONS
     // ====================
     function openQR() {
-        document.getElementById('qr-modal').style.display = 'flex';
-        document.getElementById('qr-upi').innerText = config.upi;
-        document.getElementById('upi-label').innerText = config.upi;
+        const qrModal = document.getElementById('qr-modal');
+        const upiLabel = document.getElementById('upi-label');
+        
+        // Update QR code with current UPI
+        const qrImg = document.querySelector('#qr-img img');
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${config.upi}`;
+        upiLabel.textContent = `UPI: ${config.upi}`;
+        
+        qrModal.style.display = 'flex';
     }
     
     function closeQR() {
@@ -952,33 +816,18 @@
     }
 
     // ====================
-    // PAGE LOAD
+    // INITIALIZE ON LOAD
     // ====================
     window.onload = function() {
         render();
         
-        // Number input validation
-        document.getElementById('cust-p').addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+        // Add click outside to close QR modal
+        document.getElementById('qr-modal').addEventListener('click', function(e) {
+            if (e.target.id === 'qr-modal') {
+                closeQR();
+            }
         });
-        
-        // Enter key for PIN input
-        document.getElementById('pin-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') verifyPin();
-        });
-        
-        // Enter key for form submission
-        document.querySelectorAll('.form-input').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && !this.classList.contains('pin-input')) {
-                    saveCustomer();
-                }
-            });
-        });
-        
-        // Security info
-        console.log("सुरक्षित पोर्टल बंद | पिन:", adminPin);
     };
 </script>
 </body>
-</html>
+</html>`
